@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .bigger {
+                font-size: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <button id="loadContent">새로고침없이 다른거 열기</button>
+        <div id="contentHere"></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('loadContent').addEventListener('click', function () {
+                    fetch('bbb.html')
+                        .then((response) => response.text())
+                        .then((data) => {
+                            const parser = new DOMParser();
+                            const htmlDocument = parser.parseFromString(data, 'text/html');
+                            const pContent = htmlDocument.documentElement.querySelector('p').innerHTML;
+                            document.getElementById('contentHere').innerHTML = pContent;
+                            // document.getElementById('contentHere').classList.add('bigger');
+                        });
+                });
+            });
+        </script>
+    </body>
+</html>

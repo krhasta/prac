@@ -1,0 +1,255 @@
+/*
+Pretendard size table
+Thin        100
+ExtraLight  200
+Light       300
+Regular     400
+Medium      500
+SemiBold    600
+ExtraBold   700
+Black       800
+*/
+
+@font-face {
+    font-family: 'Pretendard-R';
+    font-weight: 400;
+    font-display: swap;
+    src: local('Pretendard Regular'), url(/public/fonts/Pretendard-Regular.woff2) format('woff2'),
+        url(/public/fonts/Pretendard-Regular.woff2) format('woff');
+}
+
+@font-face {
+    font-family: 'Pretendard-M';
+    font-weight: 500;
+    font-display: swap;
+    src: local('Pretendard Medium'), url(/public/fonts/Pretendard-Medium.woff2) format('woff2'),
+        url(/public/fonts/Pretendard-Medium.woff2) format('woff');
+}
+
+@font-face {
+    font-family: 'Pretendard-SB';
+    font-weight: 500;
+    font-display: swap;
+    src: local('Pretendard SemiBold'), url(/public/fonts/Pretendard-SemiBold.woff2) format('woff2'),
+        url(/public/fonts/Pretendard-SemiBold.woff2) format('woff');
+}
+
+@font-face {
+    font-family: 'Pretendard-EB';
+    font-weight: 500;
+    font-display: swap;
+    src: local('Pretendard ExtraBold'), url(/public/fonts/Pretendard-ExtraBold.woff2) format('woff2'),
+        url(/public/fonts/Pretendard-ExtraBold.woff2) format('woff');
+}
+
+@font-face {
+    font-family: 'Pretendard-B';
+    font-weight: 500;
+    font-display: swap;
+    src: local('Pretendard Black'), url(/public/fonts/Pretendard-Black.woff2) format('woff2'),
+        url(/public/fonts/Pretendard-Black.woff2) format('woff');
+}
+
+@font-face {
+    font-family: 'JS Arirang';
+    src: url(/public/fonts/JSArirang.woff2);
+}
+
+* {
+    font-family: 'Pretendard-R';
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    background-color: #f2f3f5;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: black;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+
+body::-webkit-scrollbar-track {
+    opacity: 0;
+}
+
+form {
+    z-index: 10;
+}
+
+a {
+    text-decoration: none;
+}
+
+nav {
+    background-color: #f2f3f5;
+    display: flex;
+    justify-content: center;
+}
+
+.modal {
+    position: fixed;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 15;
+}
+
+.modal_body {
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    width: 400px;
+    height: 600px;
+    padding: 40px;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+    transform: translateY(-50%);
+}
+
+.white_div {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 5px 5px 3px 1px rgba(0, 0, 0, 0.2);
+}
+/* .nav-main {
+    position: fixed;
+    z-index: 5;
+    width: 70%;
+    height: 60px;
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+} */
+
+.nav-main {
+    position: fixed;
+    z-index: 5;
+    width: 70%;
+    height: 60px;
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(202, 204, 176);
+}
+
+.nav-title {
+    font-family: 'JS Arirang';
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.page-main {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    margin-top: 70px;
+}
+
+.main-Title {
+    margin: 0px 0px 25px 0px;
+    font-family: 'Pretendard-B';
+}
+
+.form-info {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-info {
+    width: 100%;
+    height: 50px;
+    padding: 9px;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    transition: all 0.5s;
+}
+
+.fontasm-c {
+    position: absolute;
+    opacity: 0;
+    transition: all 1s;
+    right: 10px;
+}
+
+.fontasm-v {
+    position: absolute;
+    opacity: 0;
+    transition: all 1s;
+    right: 30px;
+}
+
+#submit {
+    background-color: white;
+    color: black;
+    padding: 9px 18px;
+    border-radius: 0.5rem;
+}
+
+.terms {
+    overflow: scroll; /* 텍스트가 padding 아래로 삐져나오는 문제 해결 */
+    white-space: pre;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    /* overflow-y: scroll; 텍스트가 padding 아래로 삐져나오는 문제 해결 x */
+    white-space: pre-wrap;
+}
+
+.terms::-webkit-scrollbar {
+    width: 10px;
+}
+
+.terms::-webkit-scrollbar-thumb {
+    background-color: black;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+
+.terms::-webkit-scrollbar-track {
+    opacity: 0;
+}
+
+.form-info {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-info {
+    width: 100%;
+    height: 50px;
+    padding: 9px;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    transition: all 0.5s;
+}
+
+.fontasm {
+    position: absolute;
+    opacity: 0;
+    transition: all 1s;
+    right: 10px;
+}
+
+#submit {
+    background-color: white;
+    color: black;
+    padding: 9px 18px;
+    border-radius: 0.5rem;
+}
