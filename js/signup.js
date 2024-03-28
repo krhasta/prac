@@ -3,19 +3,6 @@ const test_password = /^([A-Za-z1234567890!@#$%^&*()]){6,12}$/;
 const test_korean = /^([가-힣\s]){3,12}$/;
 //  \s는 공백 포함
 
-// 이용약관 불러오는 코드 챗gpt 작품,,
-// $(document).ready(function () {
-//     $.ajax({
-//         url: '/public/terms.txt',
-//         success: function (data) {
-//             $('.terms').text(data);
-//         },
-//         error: function () {
-//             $('.terms').text('파일을 불러오는 데 실패했습니다.');
-//         },
-//     });
-// });
-
 document.addEventListener('DOMContentLoaded', function (event) {
     event.preventDefault();
     fetch('/public/terms.txt')
