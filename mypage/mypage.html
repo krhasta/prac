@@ -21,15 +21,11 @@
         ></script>
     </head>
     <body>
-        <!-- <nav>
+        <nav class="w100" style="background-color: rgb(202, 204, 176); height: 60px">
             <div class="nav-main">
                 <p class="nav-title">천하제일 단타대회</p>
-                <p class="btn-open-modal">입장</p>
+                <p id="open-modal" class="white-div" style="cursor: pointer">로그인하세요</p>
             </div>
-        </nav> -->
-
-        <nav class="w100" style="background-color: rgb(202, 204, 176); height: 60px">
-            <!-- navbar 모듈 추가 -->
         </nav>
 
         <div class="page-main w70">
@@ -37,17 +33,18 @@
             <div class="flex s-bet" style="align-items: flex-start">
                 <!-- <aside class="white_div flex flex-colm w15 h500"> -->
                 <aside class="white_div w15" style="text-align: center">
-                    <a id="a" href="#">Account</a>
+                    <a id="account" href="#">Account</a>
                     <hr class="w100" />
-                    <a id="b" href="#">Status</a>
+                    <a id="status" href="#">Status</a>
                     <hr class="w100" />
-                    <a id="c" href="#">Settings</a>
+                    <a id="settings" href="#">Settings</a>
                 </aside>
-                <main class="white_div w80 h500"></main>
+                <main class="white_div w80 h500">
+                    <iframe src="/modules/account.html" frameborder="0"></iframe>
+                </main>
             </div>
         </div>
 
-        <script src="/js/signup.js"></script>
         <script src="/js/index.js"></script>
         <script src="/js/mypage.js"></script>
     </body>

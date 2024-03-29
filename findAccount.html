@@ -25,7 +25,7 @@
             <div class="modal-body">
                 <div class="white_div p40 w100 mb20">
                     <h2 class="main-Title">로그인</h2>
-                    <form method="POST" action="application/x-www-form-urlencoded">
+                    <form action="POST">
                         <div class="form-info">
                             <h4 class="margin_b">이메일</h4>
                             <div class="flex">
@@ -65,28 +65,44 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="white_div w100">
-                            <button id="login" type="submit" class="white_button w100">로그인</button>
-                        </div>
                     </form>
+                </div>
+                <div class="white_div w100">
+                    <button id="login" type="submit" class="white_button w100">로그인</button>
+                </div>
+            </div>
+        </div>
+        <nav class="w100" style="background-color: rgb(202, 204, 176); height: 60px">
+            <!-- navbar 모듈 추가 -->
+        </nav>
+
+        <div class="page-main w70">
+            <h2 class="main-Title">어쩌다가 잊어버렸대...</h2>
+            <div class="flex s-bet w100" style="flex-direction: row; align-items: flex-start">
+                <div class="w45">
+                    <div class="white_div">
+                        <h4 class="main-Title">아이디(이메일) 찾기</h4>
+                        <form action="POST">
+                            <div class="form-info"></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="w45">
+                    <div class="white_div"><h4 class="main-Title">비밀번호 찾기</h4></div>
                 </div>
             </div>
         </div>
 
-        <nav class="w100" style="background-color: rgb(202, 204, 176); height: 60px; cursor: pointer">
-            <div class="nav-main">
-                <p class="nav-title">천하제일 단타대회</p>
-                <p id="open-modal" class="white-div" style="cursor: pointer">로그인하세요</p>
-            </div>
-        </nav>
-
-        <div class="page-main w70">
-            <h2 class="main-Title">환영합니다!</h2>
-            <div class="white_div w40 h50">으</div>
-            <div class="white_div w40 h50">악</div>
-        </div>
-
+        <script src="/js/signup.js"></script>
         <script src="/js/index.js"></script>
-        <script src="/js/login.js"></script>
+        <script src="/js/mypage.js"></script>
     </body>
 </html>
+<!-- data:text/html;
+<div class="page-main w70">
+    <h2 class="main-Title">MyPage</h2>
+    <div class="flex s-bet">
+        <div class="white_div w25"></div>
+        <div class="white_div w70"></div>
+    </div>
+</div> -->
