@@ -16,11 +16,11 @@ $('.nav-title').click(function (e) {
 });
 
 function addVW() {
-    let vwVal = -65;
+    let vwVal = -20;
     setInterval(() => {
         $('.carousel').css('transform', 'translateX(' + vwVal + 'vw)');
-        vwVal -= 65;
-        if (vwVal < -195) vwVal = 0;
+        vwVal -= 20;
+        if (vwVal <= -80) vwVal = 0;
     }, 2000);
 }
 

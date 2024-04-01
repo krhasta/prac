@@ -297,19 +297,24 @@ nav {
 }
 
 .carousel {
-    width: 260vw;
-    transition: all 1.5s;
+    width: 80vw;
+    transition: all 2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .carousel-item {
-    width: 65vw;
+    width: 20vw;
     float: left;
     text-align: center;
+    align-items: center;
 }
 
 .carousel-item p {
     width: 100%;
-    display: inline;
+    display: inline-block;
     font-size: 25px;
     font-family: 'KoPub-Dotum-M';
+    align-items: center;
 }
