@@ -6,6 +6,10 @@
     display: inline-block;
 }
 
+.display-i {
+    display: inline;
+}
+
 .red {
     color: red;
 }
@@ -71,6 +75,11 @@
 
 .m-auto {
     margin: 0px auto;
+}
+
+.m-v0 {
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
 
 .mt0 {

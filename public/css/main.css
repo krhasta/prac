@@ -295,3 +295,21 @@ nav {
     padding: 9px 18px;
     border-radius: 0.5rem;
 }
+
+.carousel {
+    width: 260vw;
+    transition: all 1.5s;
+}
+
+.carousel-item {
+    width: 65vw;
+    float: left;
+    text-align: center;
+}
+
+.carousel-item p {
+    width: 100%;
+    display: inline;
+    font-size: 25px;
+    font-family: 'KoPub-Dotum-M';
+}

@@ -14,3 +14,14 @@ $('.modal').click(function (e) {
 $('.nav-title').click(function (e) {
     window.location = '/index.html';
 });
+
+function addVW() {
+    let vwVal = -65;
+    setInterval(() => {
+        $('.carousel').css('transform', 'translateX(' + vwVal + 'vw)');
+        vwVal -= 65;
+        if (vwVal < -195) vwVal = 0;
+    }, 2000);
+}
+
+addVW();
