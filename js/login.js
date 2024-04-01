@@ -1,5 +1,8 @@
 $('form').on('submit', function (e) {
     e.preventDefault();
+    const email = $('#email-login').val();
+    const pass = $('#password-login').val();
+    console.log(email, pass);
 
     fetch('http://scalper.0xff.kr/interface/auth.php?action=signin', {
         method: 'POST',
@@ -7,9 +10,10 @@ $('form').on('submit', function (e) {
             'Content-type': 'application/json',
         },
         body: JSON.stringify({
-            username: 'john@daejin.ac.kr',
-            password: 'asdf1234!@#$',
+            username: email,
+            password: pass,
         }),
+        mode: 'no-cors',
     })
         .then((response) => response.json())
         .then((res) => console.log(res))

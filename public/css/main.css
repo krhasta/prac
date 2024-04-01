@@ -13,7 +13,7 @@ Black       800
 @font-face {
     font-family: 'Pretendard-R';
     font-weight: 400;
-    font-display: swap;
+    /* font-display: swap; */
     src: local('Pretendard Regular'), url(/public/fonts/Pretendard-Regular.woff2) format('woff2'),
         url(/public/fonts/Pretendard-Regular.woff2) format('woff');
 }
@@ -21,7 +21,7 @@ Black       800
 @font-face {
     font-family: 'Pretendard-M';
     font-weight: 500;
-    font-display: swap;
+    /* font-display: swap; */
     src: local('Pretendard Medium'), url(/public/fonts/Pretendard-Medium.woff2) format('woff2'),
         url(/public/fonts/Pretendard-Medium.woff2) format('woff');
 }
@@ -29,7 +29,7 @@ Black       800
 @font-face {
     font-family: 'Pretendard-SB';
     font-weight: 500;
-    font-display: swap;
+    /* font-display: swap; */
     src: local('Pretendard SemiBold'), url(/public/fonts/Pretendard-SemiBold.woff2) format('woff2'),
         url(/public/fonts/Pretendard-SemiBold.woff2) format('woff');
 }
@@ -37,7 +37,7 @@ Black       800
 @font-face {
     font-family: 'Pretendard-EB';
     font-weight: 500;
-    font-display: swap;
+    /* font-display: swap; */
     src: local('Pretendard ExtraBold'), url(/public/fonts/Pretendard-ExtraBold.woff2) format('woff2'),
         url(/public/fonts/Pretendard-ExtraBold.woff2) format('woff');
 }
@@ -45,7 +45,7 @@ Black       800
 @font-face {
     font-family: 'Pretendard-B';
     font-weight: 500;
-    font-display: swap;
+    /* font-display: swap; */
     src: local('Pretendard Black'), url(/public/fonts/Pretendard-Black.woff2) format('woff2'),
         url(/public/fonts/Pretendard-Black.woff2) format('woff');
 }
@@ -53,6 +53,48 @@ Black       800
 @font-face {
     font-family: 'JS Arirang';
     src: url(/public/fonts/JSArirang.woff2);
+}
+
+@font-face {
+    font-family: 'KoPub-Dotum-M';
+    font-weight: 500;
+    src: local('KoPub Dotum Medium'), url(/public/fonts/KoPubDotum-Medium.ttf) format('truetype'),
+        url(/public/fonts/KoPub-Dotum-Medium.ttf) format('woff');
+}
+
+@font-face {
+    font-family: 'KoPub-Dotum-L';
+    font-weight: 500;
+    src: local('KoPub Dotum Light'), url(/public/fonts/KoPubDotum-Light.ttf) format('truetype'),
+        url(/public/fonts/KoPub-Dotum-Light.ttf) format('woff');
+}
+
+@font-face {
+    font-family: 'KoPub-Dotum-B';
+    font-weight: 500;
+    src: local('KoPub Dotum Bold'), url(/public/fonts/KoPub-Dotum-Bold.ttf) format('truetype'),
+        url(/public/fonts/KoPub-Dotum-Bold.ttf) format('woff');
+}
+
+@font-face {
+    font-family: 'KoPub-Batang-M';
+    font-weight: 500;
+    src: local('KoPub Batang Medium'), url(/public/fonts/KoPubBatang-Medium.ttf) format('truetype'),
+        url(/public/fonts/KoPub-Batang-Medium.ttf) format('woff');
+}
+
+@font-face {
+    font-family: 'KoPub-Batang-L';
+    font-weight: 500;
+    src: local('KoPub Batang Light'), url(/public/fonts/KoPubBatang-Light.ttf) format('truetype'),
+        url(/public/fonts/KoPub-Batang-Light.ttf) format('woff');
+}
+
+@font-face {
+    font-family: 'KoPub-Batang-B';
+    font-weight: 500;
+    src: local('KoPub Batang Bold'), url(/public/fonts/KoPubBatang-Bold.ttf) format('truetype'),
+        url(/public/fonts/KoPub-Batang-Bold.ttf) format('woff');
 }
 
 * {
@@ -139,7 +181,7 @@ nav {
 .nav-main {
     position: fixed;
     z-index: 5;
-    width: 70%;
+    width: 65vw;
     height: 60px;
     margin: 0px auto;
     display: flex;

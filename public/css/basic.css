@@ -45,6 +45,10 @@
     margin-bottom: 15px;
 }
 
+.p0 {
+    padding: 0px;
+}
+
 .p20 {
     padding: 20px;
 }
@@ -63,6 +67,10 @@
 
 .p40 {
     padding: 40px;
+}
+
+.m-auto {
+    margin: 0px auto;
 }
 
 .mt0 {
@@ -188,6 +196,90 @@
 
 .w100 {
     width: 100%;
+}
+
+.vw0 {
+    width: 0vw;
+}
+
+.vw5 {
+    width: 5vw;
+}
+
+.vw10 {
+    width: 10vw;
+}
+
+.vw15 {
+    width: 15vw;
+}
+
+.vw20 {
+    width: 20vw;
+}
+
+.vw25 {
+    width: 25vw;
+}
+
+.vw30 {
+    width: 30vw;
+}
+
+.vw35 {
+    width: 35vw;
+}
+
+.vw40 {
+    width: 40vw;
+}
+
+.vw45 {
+    width: 45vw;
+}
+
+.vw50 {
+    width: 50vw;
+}
+
+.vw55 {
+    width: 55vw;
+}
+
+.vw60 {
+    width: 60vw;
+}
+
+.vw65 {
+    width: 65vw;
+}
+
+.vw70 {
+    width: 70vw;
+}
+
+.vw75 {
+    width: 75vw;
+}
+
+.vw80 {
+    width: 80vw;
+}
+
+.vw85 {
+    width: 85vw;
+}
+
+.vw90 {
+    width: 90vw;
+}
+
+.vw95 {
+    width: 95vw;
+}
+
+.vw100 {
+    width: 100vw;
 }
 
 .w-auto {
