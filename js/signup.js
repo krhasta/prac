@@ -37,8 +37,6 @@ function showXMark(input_val, check, str) {
     }
 }
 
-function toggleEye(a, b) {}
-
 // signup page에서 로그인 모달을 띄울 때 문제가 생겨서
 // showXMark 실행할 switch 문으로 통합
 $('input[class="input-info"]').on('input', function () {
@@ -55,23 +53,32 @@ $('input[class="input-info"]').on('input', function () {
 
         case 'password-login':
         case 'password-signup':
-            $('f-show-' + this.id).addClass('show');
+            // 왜 '#' 안붙음??
+            // $('f-show-' + this.id).addClass('show');
+            $('#f-show-' + this.id).addClass('show');
             let passwordStrLogin = this.id.split('-');
             let checkPassword = test_password.test($(this).val());
             showXMark(this.id, checkPassword, passwordStrLogin[1]);
 
             let checkDup = $(this).val() === $('#confirm-password').val();
-            showXMark('confirm-password', checkDup, null);
+            // 비번확인칸이 안 비었을 경우에만 xMark를 띄워주세용~
+            if ($('#confirm-password').val() !== '') {
+                showXMark('confirm-password', checkDup, null);
+            }
+
             // #password == #check-password여도
-            // #password의 값이 변하면 #check-password에 xMark 부여
+            // #password의 값이 변하면 #check-password에 xMark 부여}
             break;
 
         case 'confirm-password':
-            $('f-show-confirm-' + this.id).addClass('show');
+            // 왜 '#' 안붙음??
+            // $('f-show-confirm-' + this.id).addClass('show');
+            $('#f-show-confirm-' + this.id).addClass('show');
             let password = $('#password-signup').val();
             let confirmPassword = $(this).val();
             let checkConfirmPassword = password === confirmPassword; // 비번 확인 여부
             showXMark(this.id, checkConfirmPassword, null);
+
             break;
 
         case 'username-signup':
@@ -97,4 +104,9 @@ $('#create-username-signup').on('click', function (e) {
 $('.form-info').on('click', '.fa-xmark', function (e) {
     let aaa = e.target.dataset.ftas;
     $('.input-info').eq(aaa).val('');
+});
+
+$('.fa-eye').click(function (e) {
+    let toChange = $('#password-signup').attr('type') === 'password' ? 'text' : 'password';
+    $('#password-signup').attr('type', toChange);
 });
