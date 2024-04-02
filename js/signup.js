@@ -44,12 +44,16 @@ $('input[class="input-info"]').on('input', function () {
         // this.id로 가져온 문자열을 '-'로 구분하여 마지막 문자열을 가져옴
         // 이를 이용하여 input의 종류를 구분함
 
-        case 'email-login':
+        // case 'email-login':
         case 'email-signup':
             let emailStrLogin = this.id.split('-');
             let checkEmail = test_email.test($(this).val());
             showXMark(this.id, checkEmail, emailStrLogin[1]);
             break;
+
+        // console.log('hi');
+        // $('#f-show-' + this.id).addClass('show');
+        // break;
 
         case 'password-login':
         case 'password-signup':
@@ -60,7 +64,7 @@ $('input[class="input-info"]').on('input', function () {
             let checkPassword = test_password.test($(this).val());
             showXMark(this.id, checkPassword, passwordStrLogin[1]);
 
-            let checkDup = $(this).val() === $('#confirm-password').val();
+            let checkDup = $('#password-signup').val() === $('#confirm-password').val();
             // 비번확인칸이 안 비었을 경우에만 xMark를 띄워주세용~
             if ($('#confirm-password').val() !== '') {
                 showXMark('confirm-password', checkDup, null);
@@ -88,11 +92,6 @@ $('input[class="input-info"]').on('input', function () {
     }
 });
 
-$('.fa-eye').on('click', function (e) {
-    console.log(e.target);
-    // toggleEye(a, b);
-});
-
 // 랜덤 닉네임 생성
 $('#create-username-signup').on('click', function (e) {
     $('#username-signup').val(koAliasGen());
@@ -102,11 +101,24 @@ $('#create-username-signup').on('click', function (e) {
 
 // 동적으로 생성된 .fa-xmark를 이벤트 버블링으로 처리함
 $('.form-info').on('click', '.fa-xmark', function (e) {
-    let aaa = e.target.dataset.ftas;
+    let aaa = e.target.dataset.clear;
     $('.input-info').eq(aaa).val('');
 });
 
-$('.fa-eye').click(function (e) {
-    let toChange = $('#password-signup').attr('type') === 'password' ? 'text' : 'password';
-    $('#password-signup').attr('type', toChange);
+$('.form-info').on('click', '.fa-eye', '.fa-eye-slash', function (e) {
+    e.stopPropagation(); //  쓸까말까
+    let showId = '#' + e.target.dataset.id;
+    console.log(showId);
+    let toChange = $(showId).attr('type') === 'password' ? 'text' : 'password';
+    $(showId).attr('type', toChange);
 });
+
+// function showPassword() {
+//     $('.form-info').on('click', '.fa-eye', function (e) {
+//         e.stopPropagation(); //  쓸까말까
+//         let showId = '#' + e.target.dataset.id;
+//         console.log(showId);
+//         let toChange = $(showId).attr('type') === 'password' ? 'text' : 'password';
+//         $(showId).attr('type', toChange);
+//     });
+// }
