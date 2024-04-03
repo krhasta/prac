@@ -42,21 +42,13 @@ $('input[class="input-info"]').on('input', function () {
         // this.id로 가져온 문자열을 '-'로 구분하여 마지막 문자열을 가져옴
         // 이를 이용하여 input의 종류를 구분함
 
-        // case 'email-login':
         case 'email-signup':
             let emailStrLogin = this.id.split('-');
             let checkEmail = test_email.test($(this).val());
             showXMark(this.id, checkEmail, emailStrLogin[1]);
             break;
 
-        // console.log('hi');
-        // $('#f-show-' + this.id).addClass('show');
-        // break;
-
-        case 'password-login':
         case 'password-signup':
-            // 왜 '#' 안붙음??
-            // $('f-show-' + this.id).addClass('show');
             $('#f-show-' + this.id).addClass('show');
             let passwordStrLogin = this.id.split('-');
             let checkPassword = test_password.test($(this).val());
@@ -96,9 +88,3 @@ $('#create-username-signup').on('click', function (e) {
     let check = test_korean.test($('#username-signup').val());
     showXMark('username-signup', check, null);
 });
-
-// // 동적으로 생성된 .fa-xmark를 이벤트 버블링으로 처리함
-// $('.form-info').on('click', '.fa-xmark', function (e) {
-//     let aaa = e.target.dataset.clear;
-//     $('.input-info').eq(aaa).val('');
-// });

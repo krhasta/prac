@@ -5,7 +5,3 @@ input의 type을 password로 바꿔놔야 함!!!
 페이지는 메뉴별로 만들어서 iframe 써보자
 
 main 태그 안에 들어갈 요소만 디자인 ㄱㄱ
-
-로그인 모달에서는 x버튼, passwordShow 버튼 계속 보이게 하기.
-회원가입 페이지에서는 그대로 유지하기.
-(signup.js에 있던 로그인 기능을 login.js로 분리!!)
