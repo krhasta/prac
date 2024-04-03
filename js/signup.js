@@ -37,8 +37,6 @@ function showXMark(input_val, check, str) {
     }
 }
 
-// signup page에서 로그인 모달을 띄울 때 문제가 생겨서
-// showXMark 실행할 switch 문으로 통합
 $('input[class="input-info"]').on('input', function () {
     switch (this.id) {
         // this.id로 가져온 문자열을 '-'로 구분하여 마지막 문자열을 가져옴
@@ -99,26 +97,8 @@ $('#create-username-signup').on('click', function (e) {
     showXMark('username-signup', check, null);
 });
 
-// 동적으로 생성된 .fa-xmark를 이벤트 버블링으로 처리함
-$('.form-info').on('click', '.fa-xmark', function (e) {
-    let aaa = e.target.dataset.clear;
-    $('.input-info').eq(aaa).val('');
-});
-
-$('.form-info').on('click', '.fa-eye', '.fa-eye-slash', function (e) {
-    e.stopPropagation(); //  쓸까말까
-    let showId = '#' + e.target.dataset.id;
-    console.log(showId);
-    let toChange = $(showId).attr('type') === 'password' ? 'text' : 'password';
-    $(showId).attr('type', toChange);
-});
-
-// function showPassword() {
-//     $('.form-info').on('click', '.fa-eye', function (e) {
-//         e.stopPropagation(); //  쓸까말까
-//         let showId = '#' + e.target.dataset.id;
-//         console.log(showId);
-//         let toChange = $(showId).attr('type') === 'password' ? 'text' : 'password';
-//         $(showId).attr('type', toChange);
-//     });
-// }
+// // 동적으로 생성된 .fa-xmark를 이벤트 버블링으로 처리함
+// $('.form-info').on('click', '.fa-xmark', function (e) {
+//     let aaa = e.target.dataset.clear;
+//     $('.input-info').eq(aaa).val('');
+// });
