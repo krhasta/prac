@@ -10,6 +10,10 @@
     display: inline;
 }
 
+.back-black {
+    background-color: black;
+}
+
 .red {
     color: red;
 }
@@ -44,6 +48,10 @@
     justify-content: space-around;
 }
 
+.s-eve {
+    justify-content: space-evenly;
+}
+
 .margin_b {
     margin: 0px;
     margin-bottom: 15px;
@@ -71,6 +79,16 @@
 
 .p40 {
     padding: 40px;
+}
+
+.pad-h0 {
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.pad-v0 {
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 .m-auto {
@@ -151,6 +169,14 @@
     width: 30%;
 }
 
+.w33 {
+    width: 33%;
+}
+
+.w34 {
+    width: 34%;
+}
+
 .w35 {
     width: 35%;
 }
@@ -161,6 +187,22 @@
 
 .w45 {
     width: 45%;
+}
+
+.w46 {
+    width: 46%;
+}
+
+.w47 {
+    width: 47%;
+}
+
+.w48 {
+    width: 48%;
+}
+
+.w49 {
+    width: 49%;
 }
 
 .w50 {
@@ -355,6 +397,10 @@
     height: auto;
 }
 
-.relative {
+.p-relative {
     position: relative;
+}
+
+.p-absolute {
+    position: absolute;
 }

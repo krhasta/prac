@@ -318,3 +318,17 @@ nav {
     font-family: 'KoPub-Dotum-M';
     align-items: center;
 }
+
+.media-img {
+    width: 300px;
+    height: 26px;
+}
+
+a img {
+    filter: invert(100%);
+}
+
+.media-div {
+    height: 30px;
+    border: 0.01px solid white;
+}
