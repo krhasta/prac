@@ -1,100 +1,45 @@
-/*
-Pretendard size table
-Thin        100
-ExtraLight  200
-Light       300
-Regular     400
-Medium      500
-SemiBold    600
-ExtraBold   700
-Black       800
-*/
-
 @font-face {
     font-family: 'Pretendard-R';
     font-weight: 400;
-    /* font-display: swap; */
-    src: local('Pretendard Regular'), url(/public/fonts/Pretendard-Regular.woff2) format('woff2'),
-        url(/public/fonts/Pretendard-Regular.woff2) format('woff');
+    src: local('Pretendard Regular'), url(../fonts/Pretendard-Regular.woff2) format('woff2')
 }
 
 @font-face {
     font-family: 'Pretendard-M';
     font-weight: 500;
-    /* font-display: swap; */
-    src: local('Pretendard Medium'), url(/public/fonts/Pretendard-Medium.woff2) format('woff2'),
-        url(/public/fonts/Pretendard-Medium.woff2) format('woff');
+    src: local('Pretendard Medium'), url(../fonts/Pretendard-Medium.woff2) format('woff2')
 }
 
 @font-face {
     font-family: 'Pretendard-SB';
     font-weight: 500;
-    /* font-display: swap; */
-    src: local('Pretendard SemiBold'), url(/public/fonts/Pretendard-SemiBold.woff2) format('woff2'),
-        url(/public/fonts/Pretendard-SemiBold.woff2) format('woff');
+    src: local('Pretendard SemiBold'), url(../fonts/Pretendard-SemiBold.woff2) format('woff2')
 }
 
 @font-face {
     font-family: 'Pretendard-EB';
     font-weight: 500;
-    /* font-display: swap; */
-    src: local('Pretendard ExtraBold'), url(/public/fonts/Pretendard-ExtraBold.woff2) format('woff2'),
-        url(/public/fonts/Pretendard-ExtraBold.woff2) format('woff');
+    src: local('Pretendard ExtraBold'), url(../fonts/Pretendard-ExtraBold.woff2) format('woff2')
 }
 
 @font-face {
     font-family: 'Pretendard-B';
     font-weight: 500;
-    /* font-display: swap; */
-    src: local('Pretendard Black'), url(/public/fonts/Pretendard-Black.woff2) format('woff2'),
-        url(/public/fonts/Pretendard-Black.woff2) format('woff');
+    src: local('Pretendard Black'), url(../fonts/Pretendard-Black.woff2) format('woff2')
 }
 
 @font-face {
-    font-family: 'JS Arirang';
-    src: url(/public/fonts/JSArirang.woff2);
+    font-family: 'JSArirang-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSArirang-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
     font-family: 'KoPub-Dotum-M';
     font-weight: 500;
-    src: local('KoPub Dotum Medium'), url(/public/fonts/KoPubDotum-Medium.ttf) format('truetype'),
-        url(/public/fonts/KoPub-Dotum-Medium.ttf) format('woff');
-}
-
-@font-face {
-    font-family: 'KoPub-Dotum-L';
-    font-weight: 500;
-    src: local('KoPub Dotum Light'), url(/public/fonts/KoPubDotum-Light.ttf) format('truetype'),
-        url(/public/fonts/KoPub-Dotum-Light.ttf) format('woff');
-}
-
-@font-face {
-    font-family: 'KoPub-Dotum-B';
-    font-weight: 500;
-    src: local('KoPub Dotum Bold'), url(/public/fonts/KoPub-Dotum-Bold.ttf) format('truetype'),
-        url(/public/fonts/KoPub-Dotum-Bold.ttf) format('woff');
-}
-
-@font-face {
-    font-family: 'KoPub-Batang-M';
-    font-weight: 500;
-    src: local('KoPub Batang Medium'), url(/public/fonts/KoPubBatang-Medium.ttf) format('truetype'),
-        url(/public/fonts/KoPub-Batang-Medium.ttf) format('woff');
-}
-
-@font-face {
-    font-family: 'KoPub-Batang-L';
-    font-weight: 500;
-    src: local('KoPub Batang Light'), url(/public/fonts/KoPubBatang-Light.ttf) format('truetype'),
-        url(/public/fonts/KoPub-Batang-Light.ttf) format('woff');
-}
-
-@font-face {
-    font-family: 'KoPub-Batang-B';
-    font-weight: 500;
-    src: local('KoPub Batang Bold'), url(/public/fonts/KoPubBatang-Bold.ttf) format('truetype'),
-        url(/public/fonts/KoPub-Batang-Bold.ttf) format('woff');
+    src: local('KoPub Dotum Medium'),
+    url(/public/fonts/KoPub-Dotum-Medium.ttf) format('truetype')
 }
 
 * {
@@ -103,7 +48,7 @@ Black       800
 }
 
 body {
-    margin: 0px;
+    margin: 0;
     background-color: #f2f3f5;
 }
 
@@ -124,10 +69,6 @@ body::-webkit-scrollbar-track {
 
 form {
     z-index: 10;
-}
-
-a {
-    text-decoration: none;
 }
 
 nav {
@@ -167,19 +108,10 @@ nav {
     padding: 20px;
     box-shadow: 5px 5px 3px 1px rgba(0, 0, 0, 0.2);
 }
-/* .nav-main {
-    position: fixed;
-    z-index: 5;
-    width: 70%;
-    height: 60px;
-    margin: 0px auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-} */
 
 .nav-main {
     position: fixed;
+
     z-index: 5;
     width: 65vw;
     height: 60px;
@@ -188,12 +120,22 @@ nav {
     align-items: center;
     justify-content: space-between;
     background-color: rgb(202, 204, 176);
+    cursor: default;
 }
 
 .nav-title {
-    font-family: 'JS Arirang';
+    font-family: 'JSArirang-Regular';
     cursor: pointer;
     font-size: 25px;
+}
+
+a.nav-title{
+    text-decoration: none;
+}
+
+a.nav-title:visited{
+    text-decoration: none;
+    color: black;
 }
 
 .page-main {
@@ -206,7 +148,7 @@ nav {
 
 .main-Title {
     margin: 0px 0px 25px 0px;
-    font-family: 'Pretendard-B';
+    font-family: 'Pretendard-R';
 }
 
 .form-info {
@@ -315,7 +257,6 @@ nav {
     width: 100%;
     display: inline-block;
     font-size: 25px;
-    font-family: 'KoPub-Dotum-M';
     align-items: center;
 }
 

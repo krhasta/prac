@@ -6,8 +6,8 @@
         <title>천하제일 단타대회</title>
         <link rel="stylesheet" href="/public/css/main.css" />
         <link rel="stylesheet" href="/public/css/basic.css" />
-        <!-- <link rel="stylesheet" href="/static/css/main.css" />
-        <link rel="stylesheet" href="/static/css/basic.css" /> -->
+        <!--        <link rel="stylesheet" href="/static/css/main.css" />-->
+<!--        <link rel="stylesheet" href="/static/css/basic.css" />-->
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -82,7 +82,8 @@
 
         <nav class="w100" style="background-color: rgb(202, 204, 176); height: 60px; cursor: pointer">
             <div class="nav-main">
-                <p class="nav-title">천하제일 단타대회</p>
+<!--                <p class="nav-title">천하제일 단타대회</p>-->
+                <a class="nav-title" href="index.html">천하제일 단타대회</a>
                 <p id="open-modal" class="white-div" style="cursor: pointer">로그인하세요</p>
             </div>
         </nav>
@@ -138,7 +139,9 @@
             <div class="flex s-bet">
                 <div class="white_div w33" style="height: 470px">
                     <h3 class="main-Title">이주의 뉴스</h3>
-                    <div></div>
+                    <div>
+                        <h4>정찰위성 교신성공!</h4>
+                    </div>
                 </div>
                 <div class="white_div w33" style="height: 470px"><h3 class="main-Title">이주의 랭킹</h3></div>
                 <div class="white_div w33" style="height: 470px"><h3 class="main-Title">화제의 인물</h3></div>
@@ -154,7 +157,7 @@
                     $('.carousel').css('transform', 'translateX(' + vwVal + 'vw)');
                     vwVal -= 20;
                     if (vwVal <= -80) vwVal = 0;
-                }, 2000);
+                }, 4000);
             }
 
             addVW();

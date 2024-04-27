@@ -11,6 +11,6 @@ $('.modal').click(function (e) {
 });
 
 // 천하제일 단타대회 메인 타이틀 누르면 홈으로
-$('.nav-title').click(function (e) {
-    window.location = '/index.html';
-});
+// $('.nav-title').click(function (e) {
+//     window.location = 'index.html';
+// });
