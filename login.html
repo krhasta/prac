@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>천하제일 단타대회</title>
+    <link rel="stylesheet" href="./public/css/main.css"/>
+    <link rel="stylesheet" href="./public/css/basic.css"/>
+    <!--        <link rel="stylesheet" href="/static/css/main.css" />-->
+    <!--        <link rel="stylesheet" href="/static/css/basic.css" />-->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+            integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+    <script
+            src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+<nav class="w100">
+    <div class="nav-main">
+        <a class="nav-title" href="index.html">천하제일 단타대회</a>
+        <p id="open-modal" class="white-div" style="cursor: pointer">로그인하세요</p>
+    </div>
+</nav>
+
+<div class="page-main vw65">
+    <div class="modal flex">
+        <div class="modal-body vw30">
+            <h2 class="main-Title">로그인</h2>
+            <div class="white_div p30 w100 mb20">
+                <form action="POST">
+                    <div class="form-info">
+                        <h4 class="margin_b">이메일</h4>
+                        <div class="flex">
+                            <input
+                                    type="email"
+                                    class="input-info"
+                                    id="email-login"
+                                    placeholder="이메일을 입력하세요"
+                                    name="email-login"
+                            />
+                            <i id="f-email-login" class="fa-solid fa-xmark fontasm-c" data-clear="0"></i>
+                        </div>
+                    </div>
+                    <div class="form-info mb0">
+                        <h4 class="margin_b">비밀번호</h4>
+                        <div class="flex">
+                            <input
+                                    type="password"
+                                    class="input-info"
+                                    id="password-login"
+                                    placeholder="비밀번호를 입력하세요"
+                                    name="password-login"
+                            />
+                            <i id="f-password-login" class="fa-solid fa-xmark fontasm-c" data-clear="1"></i>
+                            <i
+                                    id="f-show-password-login"
+                                    class="fa-regular fa-eye fontasm-v"
+                                    data-id="password-login"
+                                    data-vnum="0"
+                            ></i>
+                        </div>
+                        <br/>
+
+                        <div class="flex s-bet">
+                            <p class="text_grey mt5 mb0" style="text-align: right">
+                                <a href="./findAccount.html">계정을 잊으셨다구요?</a>
+                            </p>
+                            <p class="text_grey mt5 mb0" style="text-align: right">
+                                <a href="signup/signup.html">아직 회원이 아니라구요?</a>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="white_div w100">
+                <button id="login" type="submit" class="white_button w100">로그인</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="./js/index.js"></script>
+<script src="./js/login.js"></script>
+<script>
+    function addVW() {
+        let vwVal = -20;
+        setInterval(() => {
+            $('.carousel').css('transform', 'translateX(' + vwVal + 'vw)');
+            vwVal -= 20;
+            if (vwVal <= -80) vwVal = 0;
+        }, 3000);
+    }
+
+    addVW();
+</script>
+</body>
+</html>

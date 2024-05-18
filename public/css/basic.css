@@ -32,6 +32,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .hide {
     display: none;
 }
@@ -183,6 +184,10 @@
 
 .w40 {
     width: 40%;
+}
+
+.w44 {
+    width: 44%;
 }
 
 .w45 {

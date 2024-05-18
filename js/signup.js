@@ -1,6 +1,7 @@
 const test_email = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 const test_password = /^([A-Za-z1234567890!@#$%^&*()]){6,12}$/;
-const test_korean = /^([가-힣\s]){3,12}$/;
+// const test_korean = /^([가-힣\s]){3,12}$/;
+const test_korean = /^([가-힣]){3,12}$/;
 //  \s는 공백 포함
 
 document.addEventListener('DOMContentLoaded', function (event) {

@@ -52,19 +52,18 @@ body {
     background-color: #f2f3f5;
 }
 
-body::-webkit-scrollbar {
-    width: 10px;
+a{
+    text-decoration: none;
 }
 
-body::-webkit-scrollbar-thumb {
-    background-color: black;
-    background-clip: padding-box;
-    border: 1px solid transparent;
-    border-radius: 5px;
+a:link{
+    text-decoration: none;
+    color: black;
 }
 
-body::-webkit-scrollbar-track {
-    opacity: 0;
+a:visited{
+    text-decoration: none;
+    color: black;
 }
 
 form {
@@ -77,17 +76,6 @@ nav {
     justify-content: center;
 }
 
-.modal {
-    position: fixed;
-    justify-content: center;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    z-index: 15;
-}
-
 .modal_body {
     position: absolute;
     top: 50%;
@@ -95,7 +83,6 @@ nav {
     width: 400px;
     height: 600px;
     padding: 40px;
-    text-align: center;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
     box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
@@ -109,9 +96,14 @@ nav {
     box-shadow: 5px 5px 3px 1px rgba(0, 0, 0, 0.2);
 }
 
-.nav-main {
-    position: fixed;
+nav {
+    background-color: rgb(202, 204, 176);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
 
+.nav-main {
     z-index: 5;
     width: 65vw;
     height: 60px;
@@ -119,8 +111,6 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgb(202, 204, 176);
-    cursor: default;
 }
 
 .nav-title {
@@ -129,21 +119,20 @@ nav {
     font-size: 25px;
 }
 
-a.nav-title{
+a.nav-title {
     text-decoration: none;
+    color: black;
 }
 
-a.nav-title:visited{
+a.nav-title:visited {
     text-decoration: none;
     color: black;
 }
 
 .page-main {
-    width: 30%;
     display: flex;
     flex-direction: column;
-    margin: 0px auto;
-    margin-top: 70px;
+    margin: 50px auto 0;
 }
 
 .main-Title {
@@ -222,15 +211,6 @@ a.nav-title:visited{
     margin-bottom: 20px;
 }
 
-.input-info {
-    width: 100%;
-    height: 50px;
-    padding: 9px;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    transition: all 0.5s;
-}
-
 #submit {
     background-color: white;
     color: black;
@@ -272,4 +252,22 @@ a img {
 .media-div {
     height: 30px;
     border: 0.01px solid white;
+}
+
+.chart-google{
+    /*border-right: 1px solid black;*/
+}
+
+.vertical {
+    width: 1px;
+    height: 500px;
+    border:none;
+    background-color: black;
+
+}
+
+.chart-control{
+    /*border:1px solid black;*/
+    width:20vw;
+    height:500px
 }

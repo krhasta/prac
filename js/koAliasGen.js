@@ -48,5 +48,5 @@ const koAliasGen = () => {
     const IDX_A = parseInt(A.length * Math.random());
     const IDX_B = parseInt(B.length * Math.random());
 
-    return `${A[IDX_A]} ${B[IDX_B]}`;
+    return `${A[IDX_A]}${B[IDX_B]}`;
 }
