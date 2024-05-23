@@ -6,8 +6,6 @@
         <title>천하제일 단타대회</title>
         <link rel="stylesheet" href="./public/css/main.css" />
         <link rel="stylesheet" href="./public/css/basic.css" />
-        <!-- <link rel="stylesheet" href="/static/public/css/main.css" />
-    <link rel="stylesheet" href="/static/public/css/basic.css" /> -->
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -31,119 +29,114 @@
         </nav>
 
         <!-- <div class="page-main"> -->
-        <div class="page-main w70 flex s-bet" style="flex-direction: row; align-items: flex-start">
-            <div class="w45">
-                <h2 class="main-Title">서비스 이용약관</h2>
-                <div class="white_div mb20 h500 terms">내용을 불러오는 중...</div>
-                <div class="white_div mb20 flex">
-                    <p id="terms" class="text_grey">위의 사항을 숙지하였으며 이에 동의합니다.</p>
-                    <input type="checkbox" />
-                </div>
-            </div>
+        <div class="page-main w65 flex" style="flex-direction: row; align-items: flex-start">
             <div class="w45">
                 <h2 class="main-Title">잠시 검문이 있겠습니다.</h2>
-                <form action="./index.html" method="post">
-                    <div class="white_div mb20 h500 signup">
-                        <div class="form-info">
-                            <h4 class="margin_b">이메일</h4>
-                            <div class="flex">
-                                <input
-                                    type="email"
-                                    id="email-signup"
-                                    class="input-info"
-                                    placeholder="이메일을 입력하세요"
-                                    name="email-signup"
-                                />
-                                <i id="f-email-signup" class="fa-solid fa-check fontasm-c" data-clear="2"></i>
+                <form action="./aaa.php" method="post">
+                    <div class="white_div p30 mb20 h500 signup">
+                        <div class="form-inner">
+                            <div class="form-info">
+                                <h4 class="margin_b">이메일</h4>
+                                <div class="flex">
+                                    <input
+                                        type="email"
+                                        id="email-signup"
+                                        class="input-info"
+                                        placeholder="이메일을 입력하세요"
+                                        name="email-signup"
+                                    />
+                                    <i id="f-email-signup" class="fa-solid fa-check fontasm-c" data-clear="2"></i>
+                                </div>
+                                <p class="text_grey mt5">예) xxx@example.com</p>
                             </div>
-                            <p class="text_grey mt5">예) xxx@example.com</p>
-                        </div>
 
-                        <div class="form-info">
-                            <h4 class="margin_b">비밀번호</h4>
-                            <div class="flex">
-                                <input
-                                    type="password"
-                                    id="password-signup"
-                                    class="input-info"
-                                    placeholder="비밀번호를 입력하세요"
-                                    name="password-signup"
-                                />
-                                <i id="f-password-signup" class="fa-solid fa-check fontasm-c" data-clear="3"></i>
-                                <i
-                                    id="f-show-password-signup"
-                                    class="fa-regular fa-eye fontasm-v"
-                                    data-id="password-signup"
-                                    data-vnum="1"
-                                ></i>
+                            <div class="form-info">
+                                <h4 class="margin_b">비밀번호</h4>
+                                <div class="flex">
+                                    <input
+                                        type="password"
+                                        id="password-signup"
+                                        class="input-info"
+                                        placeholder="비밀번호를 입력하세요"
+                                        name="password-signup"
+                                    />
+                                    <i id="f-password-signup" class="fa-solid fa-check fontasm-c" data-clear="3"></i>
+                                    <i
+                                        id="f-show-password-signup"
+                                        class="fa-regular fa-eye fontasm-v"
+                                        data-id="password-signup"
+                                        data-vnum="1"
+                                    ></i>
+                                </div>
+                                <p class="text_grey mt5">숫자, 특수문자, 영어 소문자, 대문자들이 포함되어야 합니다.</p>
                             </div>
-                            <p class="text_grey mt5">숫자, 특수문자, 영어 소문자, 대문자들이 포함되어야 합니다.</p>
-                        </div>
 
-                        <div class="form-info">
-                            <h4 class="margin_b">비밀번호 확인</h4>
-                            <div class="flex">
-                                <input
-                                    type="password"
-                                    class="input-info"
-                                    id="confirm-password"
-                                    placeholder="비밀번호를 입력하세요"
-                                    name="confirm-password"
-                                />
-                                <i id="f-confirm-password" class="fa-solid fa-check fontasm-c" data-clear="4"></i>
-                                <i
-                                    id="f-show-confirm-password"
-                                    class="fa-regular fa-eye fontasm-v"
-                                    data-id="confirm-password"
-                                    data-vnum="2"
-                                ></i>
+                            <div class="form-info">
+                                <h4 class="margin_b">비밀번호 확인</h4>
+                                <div class="flex">
+                                    <input
+                                        type="password"
+                                        class="input-info"
+                                        id="confirm-password"
+                                        placeholder="비밀번호를 입력하세요"
+                                        name="confirm-password"
+                                    />
+                                    <i id="f-confirm-password" class="fa-solid fa-check fontasm-c" data-clear="4"></i>
+                                    <i
+                                        id="f-show-confirm-password"
+                                        class="fa-regular fa-eye fontasm-v"
+                                        data-id="confirm-password"
+                                        data-vnum="2"
+                                    ></i>
+                                </div>
+                                <p class="text_grey mt5">비밀번호를 한 번 더 입력하세요.</p>
                             </div>
-                            <p class="text_grey mt5">비밀번호를 한 번 더 입력하세요.</p>
-                        </div>
 
-                        <div class="form-info">
-                            <h4 class="margin_b">국가</h4>
-                            <div class="flex">
-                                <select name="country" id="country" class="input-info">
-                                    <option value="select">-- 국가를 선택하세요 --</option>
-                                    <option value="sw">스웨덴 - Sweden</option>
-                                    <option value="uk">영국 - UK</option>
-                                    <option value="us">미국 - US</option>
-                                    <option value="jp">일본 - JP</option>
-                                    <option value="it">이탈리아 - Italia</option>
-                                    <option value="ge">독일 - Germany</option>
-                                    <option value="sp">스페인 - Spain</option>
-                                    <option value="cn">중국 - China</option>
-                                    <option value="br">브라질 - Brazil</option>
-                                    <option value="ca">캐나다 - Canada</option>
-                                    <option value="kr">대한민국 - Korea</option>
-                                </select>
+                            <div class="form-info">
+                                <h4 class="margin_b">국가</h4>
+                                <div class="flex">
+                                    <select name="country" id="country" class="input-info">
+                                        <option value="kr">대한민국 - Korea</option>
+                                        <option value="sw">스웨덴 - Sweden</option>
+                                        <option value="uk">영국 - UK</option>
+                                        <option value="us">미국 - US</option>
+                                        <option value="jp">일본 - JP</option>
+                                        <option value="it">이탈리아 - Italia</option>
+                                        <option value="ge">독일 - Germany</option>
+                                        <option value="sp">스페인 - Spain</option>
+                                        <option value="cn">중국 - China</option>
+                                        <option value="br">브라질 - Brazil</option>
+                                        <option value="ca">캐나다 - Canada</option>
+                                    </select>
+                                </div>
+                                <p class="text_grey mt5">국가를 선택하세요</p>
                             </div>
-                        </div>
 
-                        <div class="form-info" style="margin-bottom: 0">
-                            <h4 class="margin_b">닉네임</h4>
-                            <div class="flex">
-                                <input
-                                    class="input-info"
-                                    type="text"
-                                    id="username-signup"
-                                    placeholder="닉네임을 입력하세요"
-                                    name="username-signup"
-                                />
-                                <i id="f-username-signup" class="fa-solid fa-check fontasm-c" data-clear="5"></i>
-                            </div>
-                            <div class="flex s-bet">
-                                <p id="create-username-signup" class="text_grey" style="cursor: pointer">
-                                    작명이 고민이라면?
-                                </p>
-                                <p id="gotoLogin" class="text_grey" style="text-align: right; cursor: pointer">
-                                    <a>이미 회원이신가요?</a>
-                                </p>
+                            <div class="form-info" style="margin-bottom: 0">
+                                <h4 class="margin_b">닉네임</h4>
+                                <div class="flex">
+                                    <input
+                                        class="input-info"
+                                        type="text"
+                                        id="username-signup"
+                                        placeholder="닉네임을 입력하세요"
+                                        name="username-signup"
+                                    />
+                                    <i id="f-username-signup" class="fa-solid fa-check fontasm-c" data-clear="5"></i>
+                                </div>
+                                <div class="flex s-bet">
+                                    <p id="create-username-signup" class="text_grey" style="cursor: pointer">
+                                        작명이 고민이라면?
+                                    </p>
+                                    <p id="gotoLogin" class="text_grey" style="text-align: right; cursor: pointer">
+                                        <a>이미 회원이신가요?</a>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="white_div w100">가입</button>
+                    <button type="submit">가입</button>
+                    <!-- <button type="submit" class="white_div w100">가입</button> -->
                 </form>
             </div>
         </div>

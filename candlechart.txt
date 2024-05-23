@@ -1,0 +1,10 @@
+<!-- <div id="chart-interFace" class="white_div flex s-bet">
+        <div id="chart_div" class="chart-google" style="width: 700px; height: 500px"></div>
+        <div class="vertical"></div>
+        <div class="chart-control">
+            <input class="input-info" type="text" name="" id="" placeholder="xxxx" />
+            <input class="input-info" type="text" name="" id="" placeholder="xxxx" />
+            <input class="input-info" type="text" name="" id="" placeholder="xxxx" />
+        </div>
+    </div> -->
+            <!-- <script src="./js/candleStick.js" type="text/javascript"></script> -->

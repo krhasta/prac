@@ -154,60 +154,11 @@ a.nav-title:visited {
     right: 30px;
 }
 
-/* .fontasm {
-    position: absolute;
-    opacity: 0;
-    transition: all 0.5s;
-    right: 10px;
-} */
-
 #submit {
     background-color: white;
     color: black;
     padding: 9px 18px;
     border-radius: 0.5rem;
-}
-
-.terms {
-    overflow-y: scroll; /* 텍스트가 padding 아래로 삐져나오는 문제 해결 */
-    white-space: pre;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: pre-wrap;
-}
-
-.terms::-webkit-scrollbar {
-    width: 10px;
-}
-
-.terms::-webkit-scrollbar-thumb {
-    background-color: black;
-    background-clip: padding-box;
-    border: 1px solid transparent;
-    border-radius: 5px;
-}
-
-.terms::-webkit-scrollbar-track {
-    opacity: 0;
-}
-
-.signup {
-    overflow-y: scroll;
-}
-
-.signup::-webkit-scrollbar {
-    width: 10px;
-}
-
-.signup::-webkit-scrollbar-thumb {
-    background-color: black;
-    background-clip: padding-box;
-    border: 1px solid transparent;
-    border-radius: 5px;
-}
-
-.signup::-webkit-scrollbar-track {
-    opacity: 0;
 }
 
 .form-info {
@@ -215,34 +166,33 @@ a.nav-title:visited {
     margin-bottom: 20px;
 }
 
+.form-inner {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.form-inner::-webkit-scrollbar {
+    width: 10px;
+}
+
+.form-inner::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    background-clip: padding-box;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+
+.form-inner::-webkit-scrollbar-track {
+    opacity: 0;
+}
+
 #submit {
     background-color: white;
     color: black;
     padding: 9px 18px;
     border-radius: 0.5rem;
 }
-
-/* .carousel {
-    width: 80vw;
-    transition: all 2s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.carousel-item {
-    width: 20vw;
-    float: left;
-    text-align: center;
-    align-items: center;
-}
-
-.carousel-item p {
-    width: 100%;
-    display: inline-block;
-    font-size: 25px;
-    align-items: center;
-} */
 
 .carousel-texts {
     text-align: center;
@@ -275,33 +225,57 @@ a img {
     height: 500px;
 }
 
-.btn-start {
-    box-shadow: 5px 5px 3px 1px rgba(0, 0, 0, 0.2);
+.crs-n-btn {
+    width: 100%;
 }
 
-select.icon-menu option {
-    background-repeat: no-repeat;
-    background-position: bottom left;
-    padding-left: 30px;
+.btn-start {
+    box-shadow: 5px 5px 3px 1px rgba(0, 0, 0, 0.2);
+    height: 60px;
+    right: 0;
 }
-select#countries option[value='US'] {
-    background-image: url(../img/country/Sweden.png);
+
+.page-info-standings {
 }
-select#countries option[value='IN'] {
-    background-image: url(flags/india.png);
+
+ul.standings {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
-select#countries option[value='UK'] {
-    background-image: url(flags/england.png);
+
+.standings {
+    overflow-y: scroll;
+    height: 100%;
 }
-select#countries option[value='FR'] {
-    background-image: url(flags/france.png);
+
+.standings::-webkit-scrollbar {
+    width: 10px;
 }
-select#countries option[value='GE'] {
-    background-image: url(flags/germany.png);
+
+.standings::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    background-clip: padding-box;
+    border: 1px solid transparent;
+    border-radius: 5px;
 }
-select#countries option[value='CA'] {
-    background-image: url(flags/canada.png);
+
+.standings::-webkit-scrollbar-track {
+    opacity: 0;
 }
-select#countries option[value='RU'] {
-    background-image: url(flags/russia.png);
+.standing-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.standing-info img {
+    width: 35px;
+    height: 35px;
+}
+
+.standing-country {
+    margin: 0;
+    font-size: 12px;
+    color: gray;
 }

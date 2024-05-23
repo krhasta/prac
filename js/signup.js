@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
     fetch('/public/terms.txt')
         .then((response) => response.text())
         .then((t_text) => {
-            document.querySelector('.terms').innerHTML = t_text;
+            document.querySelector('.terms-inner').innerHTML = t_text;
         })
         .catch((error) => console.error('Error', error));
 });
