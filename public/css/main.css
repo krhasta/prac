@@ -1,31 +1,31 @@
 @font-face {
     font-family: 'Pretendard-R';
     font-weight: 400;
-    src: local('Pretendard Regular'), url(../fonts/Pretendard-Regular.woff2) format('woff2')
+    src: local('Pretendard Regular'), url(../fonts/Pretendard-Regular.woff2) format('woff2');
 }
 
 @font-face {
     font-family: 'Pretendard-M';
     font-weight: 500;
-    src: local('Pretendard Medium'), url(../fonts/Pretendard-Medium.woff2) format('woff2')
+    src: local('Pretendard Medium'), url(../fonts/Pretendard-Medium.woff2) format('woff2');
 }
 
 @font-face {
     font-family: 'Pretendard-SB';
     font-weight: 500;
-    src: local('Pretendard SemiBold'), url(../fonts/Pretendard-SemiBold.woff2) format('woff2')
+    src: local('Pretendard SemiBold'), url(../fonts/Pretendard-SemiBold.woff2) format('woff2');
 }
 
 @font-face {
     font-family: 'Pretendard-EB';
     font-weight: 500;
-    src: local('Pretendard ExtraBold'), url(../fonts/Pretendard-ExtraBold.woff2) format('woff2')
+    src: local('Pretendard ExtraBold'), url(../fonts/Pretendard-ExtraBold.woff2) format('woff2');
 }
 
 @font-face {
     font-family: 'Pretendard-B';
     font-weight: 500;
-    src: local('Pretendard Black'), url(../fonts/Pretendard-Black.woff2) format('woff2')
+    src: local('Pretendard Black'), url(../fonts/Pretendard-Black.woff2) format('woff2');
 }
 
 @font-face {
@@ -38,8 +38,7 @@
 @font-face {
     font-family: 'KoPub-Dotum-M';
     font-weight: 500;
-    src: local('KoPub Dotum Medium'),
-    url(/public/fonts/KoPub-Dotum-Medium.ttf) format('truetype')
+    src: local('KoPub Dotum Medium'), url(/public/fonts/KoPub-Dotum-Medium.ttf) format('truetype');
 }
 
 * {
@@ -52,16 +51,16 @@ body {
     background-color: #f2f3f5;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-a:link{
+a:link {
     text-decoration: none;
     color: black;
 }
 
-a:visited{
+a:visited {
     text-decoration: none;
     color: black;
 }
@@ -74,19 +73,6 @@ nav {
     background-color: #f2f3f5;
     display: flex;
     justify-content: center;
-}
-
-.modal_body {
-    position: absolute;
-    top: 50%;
-    text-align: center;
-    width: 400px;
-    height: 600px;
-    padding: 40px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
-    box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
-    transform: translateY(-50%);
 }
 
 .white_div {
@@ -183,11 +169,10 @@ a.nav-title:visited {
 }
 
 .terms {
-    overflow: scroll; /* 텍스트가 padding 아래로 삐져나오는 문제 해결 */
+    overflow-y: scroll; /* 텍스트가 padding 아래로 삐져나오는 문제 해결 */
     white-space: pre;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    /* overflow-y: scroll; 텍스트가 padding 아래로 삐져나오는 문제 해결 x */
     white-space: pre-wrap;
 }
 
@@ -206,6 +191,25 @@ a.nav-title:visited {
     opacity: 0;
 }
 
+.signup {
+    overflow-y: scroll;
+}
+
+.signup::-webkit-scrollbar {
+    width: 10px;
+}
+
+.signup::-webkit-scrollbar-thumb {
+    background-color: black;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+
+.signup::-webkit-scrollbar-track {
+    opacity: 0;
+}
+
 .form-info {
     position: relative;
     margin-bottom: 20px;
@@ -218,7 +222,7 @@ a.nav-title:visited {
     border-radius: 0.5rem;
 }
 
-.carousel {
+/* .carousel {
     width: 80vw;
     transition: all 2s;
     display: flex;
@@ -238,6 +242,11 @@ a.nav-title:visited {
     display: inline-block;
     font-size: 25px;
     align-items: center;
+} */
+
+.carousel-texts {
+    text-align: center;
+    font-size: 25px;
 }
 
 .media-img {
@@ -249,25 +258,50 @@ a img {
     filter: invert(100%);
 }
 
-.media-div {
-    height: 30px;
-    border: 0.01px solid white;
-}
-
-.chart-google{
+.chart-google {
     /*border-right: 1px solid black;*/
 }
 
 .vertical {
     width: 1px;
     height: 500px;
-    border:none;
+    border: none;
     background-color: black;
-
 }
 
-.chart-control{
+.chart-control {
     /*border:1px solid black;*/
-    width:20vw;
-    height:500px
+    width: 20vw;
+    height: 500px;
+}
+
+.btn-start {
+    box-shadow: 5px 5px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+select.icon-menu option {
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    padding-left: 30px;
+}
+select#countries option[value='US'] {
+    background-image: url(../img/country/Sweden.png);
+}
+select#countries option[value='IN'] {
+    background-image: url(flags/india.png);
+}
+select#countries option[value='UK'] {
+    background-image: url(flags/england.png);
+}
+select#countries option[value='FR'] {
+    background-image: url(flags/france.png);
+}
+select#countries option[value='GE'] {
+    background-image: url(flags/germany.png);
+}
+select#countries option[value='CA'] {
+    background-image: url(flags/canada.png);
+}
+select#countries option[value='RU'] {
+    background-image: url(flags/russia.png);
 }
