@@ -69,6 +69,11 @@ form {
     z-index: 10;
 }
 
+ul.nav-main {
+    list-style-type: none;
+    padding: 0px;
+}
+
 nav {
     background-color: #f2f3f5;
     display: flex;
@@ -83,13 +88,15 @@ nav {
 }
 
 nav {
-    background-color: rgb(202, 204, 176);
+    /* background-color: rgb(202, 204, 176); */
+    background-color: #88c2dd;
     position: sticky;
     top: 0;
     z-index: 5;
 }
 
 .nav-main {
+    position: relative;
     z-index: 5;
     width: 65vw;
     height: 60px;
@@ -99,17 +106,22 @@ nav {
     justify-content: space-between;
 }
 
+.center-links {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    gap: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .nav-title {
     font-family: 'JSArirang-Regular';
     cursor: pointer;
     font-size: 25px;
 }
 
-a.nav-title {
-    text-decoration: none;
-    color: black;
-}
-
+a.nav-title,
 a.nav-title:visited {
     text-decoration: none;
     color: black;
@@ -242,6 +254,7 @@ ul.standings {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 .standings {
@@ -263,19 +276,60 @@ ul.standings {
 .standings::-webkit-scrollbar-track {
     opacity: 0;
 }
+
+/* .standing-info {
+    display: flex;
+    align-items: center;
+    height: 70px;
+    border-top-left-radius: 5px;
+    border-top: 1px solid #808080;
+    border-left: 1px solid #808080;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    box-shadow: -5px 5px 3px 1px rgba(0, 0, 0, 0.2);
+} */
+
 .standing-info {
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    height: 70px;
+    border-top-left-radius: 5px;
+    border-top: 1px solid #808080;
+    border-left: 1px solid #808080;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    transition: 0.2s all;
+    overflow-x: hidden;
+}
+
+.standing-info:hover {
+    box-shadow: -5px 5px 3px 1px rgba(0, 0, 0, 0.2);
+    transform: translate(5px, -5px);
+    overflow-x: hidden;
 }
 
 .standing-info img {
     width: 35px;
     height: 35px;
+    margin-left: 20px;
 }
 
 .standing-country {
     margin: 0;
     font-size: 12px;
-    color: gray;
+    color: #808080;
+}
+
+.view-more {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.standing-info-profile {
+    margin-left: 10px;
+}
+
+.info-profile img {
+    width: 60px;
+    height: 60px;
 }
