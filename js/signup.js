@@ -4,16 +4,6 @@ const test_password = /^([A-Za-z1234567890!@#$%^&*()]){6,12}$/;
 const test_korean = /^([가-힣]){3,12}$/;
 //  \s는 공백 포함
 
-document.addEventListener('DOMContentLoaded', function (event) {
-    event.preventDefault();
-    fetch('/public/terms.txt')
-        .then((response) => response.text())
-        .then((t_text) => {
-            document.querySelector('.terms-inner').innerHTML = t_text;
-        })
-        .catch((error) => console.error('Error', error));
-});
-
 // input 정규식 체크 결과에 따라 font-awesome 폰트 변경
 function showXMark(input_val, check, str) {
     let f_inp = '#f-' + input_val;
@@ -62,7 +52,7 @@ $('input[class="input-info"]').on('input', function () {
             }
 
             // #password == #check-password여도
-            // #password의 값이 변하면 #check-password에 xMark 부여}
+            // #password의 값이 변하면 #check-password에 xMark 부여
             break;
 
         case 'confirm-password':

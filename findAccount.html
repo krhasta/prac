@@ -29,62 +29,70 @@
         </nav>
 
         <div class="page-main vw65">
-            <div class="flex-c">
-                <div class="vw30">
-                    <h2 class="main-Title">회원정보 찾기</h2>
-                    <div class="white_div p30 w100 mb20">
-                        <form action="POST">
+            <div class="flex-c s-bet">
+                <div class="w45">
+                    <h3 class="main-Title">아이디 찾기</h3>
+                    <form action="./aaa.php" method="post">
+                        <div class="white_div p30 mb20">
                             <div class="form-info">
                                 <h4 class="margin_b">이메일</h4>
                                 <div class="flex-c">
                                     <input
-                                        type="email"
+                                        type="password"
+                                        id="password"
                                         class="input-info"
-                                        id="email-login"
                                         placeholder="이메일을 입력하세요"
-                                        name="email-login"
+                                        name="password"
                                     />
-                                    <i id="f-email-login" class="fa-solid fa-xmark fontasm-c" data-clear="0"></i>
                                 </div>
                             </div>
-                            <div class="form-info mb0">
-                                <h4 class="margin_b">비밀번호</h4>
+                            <div class="form-info">
+                                <h4 class="margin_b">닉네임</h4>
+                                <div class="flex-c">
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        class="input-info"
+                                        placeholder="닉네임을 입력하세요"
+                                        name="email"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <button class="white_div w100" type="submit">제출</button>
+                    </form>
+                </div>
+                <div class="w45">
+                    <h3 class="main-Title">비밀번호 찾기</h3>
+                    <form action="./aaa.php" method="post">
+                        <div class="white_div p30 mb20">
+                            <div class="form-info">
+                                <h4 class="margin_b">이메일</h4>
                                 <div class="flex-c">
                                     <input
                                         type="password"
+                                        id="password"
                                         class="input-info"
-                                        id="password-login"
-                                        placeholder="비밀번호를 입력하세요"
-                                        name="password-login"
+                                        placeholder="이메일을 입력하세요"
+                                        name="password"
                                     />
-                                    <i id="f-password-login" class="fa-solid fa-xmark fontasm-c" data-clear="1"></i>
-                                    <i
-                                        id="f-show-password-login"
-                                        class="fa-regular fa-eye fontasm-v"
-                                        data-id="password-login"
-                                        data-vnum="0"
-                                    ></i>
-                                </div>
-                                <br />
-
-                                <div class="flex-c s-bet">
-                                    <p class="mt5 mb0" style="text-align: right">
-                                        <a href="./findAccount.html" style="font-size: 13px; color: gray"
-                                            >계정을 잊으셨다구요?</a
-                                        >
-                                    </p>
-                                    <p class="mt5 mb0" style="text-align: right">
-                                        <a href="signup.html" style="font-size: 13px; color: gray"
-                                            >아직 회원이 아니라구요?</a
-                                        >
-                                    </p>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="white_div w100">
-                        <button id="login" type="submit" class="white_button w100">제출</button>
-                    </div>
+                            <div class="form-info">
+                                <h4 class="margin_b">아이디</h4>
+                                <div class="flex-c">
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        class="input-info"
+                                        placeholder="아이디를 입력하세요"
+                                        name="email"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <button class="white_div w100" type="submit">제출</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -85,6 +85,12 @@ nav {
     border-radius: 15px;
     padding: 20px;
     box-shadow: 5px 5px 3px 1px rgba(0, 0, 0, 0.2);
+    transition: 0.2s all;
+}
+
+button.white_div:active {
+    transform: translate(5px, 5px);
+    box-shadow: none;
 }
 
 nav {
@@ -220,10 +226,6 @@ a img {
     filter: invert(100%);
 }
 
-.chart-google {
-    /*border-right: 1px solid black;*/
-}
-
 .vertical {
     width: 1px;
     height: 500px;
@@ -303,8 +305,10 @@ ul.standings {
 }
 
 .view-more {
+    margin-top: 10px;
     margin-right: 10px;
     cursor: pointer;
+    float: right;
 }
 
 .standing-info-profile {
@@ -344,7 +348,4 @@ ul.standings {
 .myinfo-country {
     margin: 0;
     font-size: 24px;
-}
-
-.myinfo-nickname {
 }
