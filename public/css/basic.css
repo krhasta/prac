@@ -22,7 +22,15 @@
     color: green;
 }
 
-.text_grey {
+.black {
+    color: black;
+}
+
+.gray {
+    color: #808080;
+}
+
+.text-grey {
     color: #808080;
     font-size: 13px;
 }
@@ -64,11 +72,6 @@
 
 .s-eve {
     justify-content: space-evenly;
-}
-
-.margin_b {
-    margin: 0px;
-    margin-bottom: 15px;
 }
 
 .p0 {
@@ -128,6 +131,10 @@
 
 .mt5 {
     margin-top: 5px;
+}
+
+.mt10 {
+    margin-top: 10px;
 }
 
 .mt15 {
