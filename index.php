@@ -21,28 +21,6 @@ session_start();
         </div>
         <h2 class="main-Title">환영합니다!</h2>
 
-        <!-- <div id="carouselExampleAutoplaying" class="carousel slide flex-c" data-bs-ride="carousel"
-            style="margin-top:50px;margin-bottom: 60px">
-            <div class="crs-n-btn flex-c p-relative">
-                <div class="vw20 p-absolute">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active vw20 text-center">
-                            <div class="d-block w100 carousel-texts">세 살 단타<br>여든까지 간다</div>
-                        </div>
-                        <div class="carousel-item vw20 text-center">
-                            <div class="d-block w100 carousel-texts">과도한 단타,<br />휴식도 필요합니다.</div>
-                        </div>
-                        <div class="carousel-item vw20 text-center">
-                            <div class="d-block w100 carousel-texts">남녀노소 모두<br />즐거운 단타</div>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" class="white-div vw10 p-absolute btn-start" style="border: 3px solid #6f87ff;">
-                    <i class="fa-solid fa-chart-line "></i>&nbsp;&nbsp; 게임 시작!
-                </button>
-            </div>
-        </div> -->
-
         <div id="carouselExampleAutoplaying" class="carousel slide flex-c" data-bs-ride="carousel"
             style="margin-top:50px;margin-bottom: 60px">
             <div class="crs-n-btn flex-c s-eve">
