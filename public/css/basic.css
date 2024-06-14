@@ -2,6 +2,10 @@
     opacity: 1;
 }
 
+.opa-0 {
+    opacity: 0;
+}
+
 .show-d {
     display: inline-block;
 }
@@ -14,20 +18,36 @@
     background-color: black;
 }
 
+.border-n {
+    border: none !important;
+}
+
 .red {
-    color: red;
+    color: rgb(255, 0, 0);
 }
 
 .green {
-    color: green;
+    color: rgb(0, 128, 0);
 }
 
 .black {
-    color: black;
+    color: #000000 !important;
+}
+
+.white {
+    color: #ffffff !important;
 }
 
 .gray {
     color: #808080;
+}
+
+.centering {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    transition: all 0.2s;
 }
 
 .text-grey {
@@ -163,6 +183,14 @@
 
 .mb20 {
     margin-bottom: 20px;
+}
+
+.mb25 {
+    margin-bottom: 25px;
+}
+
+.mb30 {
+    margin-bottom: 30px;
 }
 
 .white_button {
@@ -502,6 +530,10 @@
     height: 500px;
 }
 
+.h550 {
+    height: 550px;
+}
+
 .h700 {
     height: 700px;
 }
@@ -510,10 +542,23 @@
     height: auto;
 }
 
-.p-relative {
+.p-rel {
     position: relative;
 }
+/* .p-relative {
+    position: relative;
+} */
 
-.p-absolute {
+.p-abs {
     position: absolute;
+}
+/* .p-absolute {
+    position: absolute;
+} */
+
+.blur {
+    -webkit-filter: blur(8px); /* 사파리, 크롬 */
+    -moz-filter: blur(8px); /* 파이어폭스 */
+    -o-filter: blur(8px); /* 오페라 */
+    filter: blur(8px);
 }

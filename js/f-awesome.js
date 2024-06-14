@@ -1,23 +1,5 @@
-// font-awesome을 동적으로 생성
-$('input[class="input-info"]').on('input', function (e) {
-    switch (this.id) {
-        case 'email-login':
-            if (this.value !== '') {
-                $('#f-' + this.id).addClass('show-o');
-            } else $('#f-' + this.id).removeClass('show-o');
-            break;
-        case 'password-login':
-            if (this.value !== '') {
-                $('#f-' + this.id).addClass('show-o');
-                $('#f-show-' + this.id).addClass('show-o');
-            } else {
-                $('#f-' + this.id).removeClass('show-o');
-                $('#f-show-' + this.id).removeClass('show-o');
-            }
-    }
-});
-
 // 동적으로 생성된 .fa-xmark를 이벤트 버블링으로 처리함
+// 이벤트 위임 아님?
 $('.form-info').on('click', '.fa-xmark', function (e) {
     let clearNum = e.target.dataset.clear;
     $('.input-info').eq(clearNum).val('');

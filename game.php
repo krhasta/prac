@@ -1,36 +1,95 @@
-<html lang="en">
+<?php
+include_once ('constants.php');
+include_once (DBCONN);
+include_once ('./phputils/checkLogin.php');
+session_start();
+
+$email_from_session = $_SESSION['uname'];
+$sql = "SELECT * FROM user WHERE uname = '$email_from_session'";
+$result = $conn->query($sql);
+if ($result->num_rows > 0)
+    $row = $result->fetch_assoc();
+
+$account_balance = $row['balance'];
+?>
+
+<html lang="ko">
 <?php include_once ('head_common.php') ?>
 
 <body>
-    <nav class="w100">
-        <div class="nav-main">
-            <a class="nav-title" href="index.php">천하제일 단타대회</a>
-            <a href="login.php" style="cursor: pointer"><i
-                    class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;로그인하세요</a>
+    <?php include_once ('nav.php') ?>
+    <div id="index" class="page-main vw80">
+        <!-- <div id="gameResult" class="vw25 p30 white-div p-abs">
+            <h3 class="m0 mb30"><?php echo "$uname" ?>님의 손익 평가</h3>
+            <h3 id="initialBalance" class="m0 mb20">초기 잔고: </h3>
+            <h3 id="currentBalance" class="m0 mb20">현재 잔고: </h3>
+            <h3 id="profit" class="m0">손익: </h3>
+        </div> -->
+        <p id="user_balance" hidden><?php echo $account_balance ?></p>
+        <div id="order-fail" class="notice p-abs vw20 centering opa-0 no-select">올바른 수량을
+            입력해주세요.</span></div>
+
+        <div id="order-cplt" class="notice p-abs vw20 centering opa-0 no-select">*** 주문체결
+            ***<br>주문수량:&nbsp;<span class="notice-quantity"></span>주<br><span class="notice-price"></span>KRW&nbsp;<span
+                class="order">&nbsp;매수</span><br>감사합니다
+            </span></div>
+
+        <div id="order-sell" class="notice p-abs vw20 centering opa-0 no-select">
+            *** 주문체결
+            ***<br>매도수량:&nbsp;<span class="notice-quantity"></span>주<br><span class="notice-price"></span>KRW&nbsp;<span
+                class="order">&nbsp;매도</span><br>감사합니다
         </div>
-    </nav>
-    <div id="index" class="page-main vw65">
-        <h2 class="main-Title">환영합니다!</h2>
-        <div id="chart-interFace" class="white-div flex s-bet p-relative">
-            <div id="chart_div" class="chart-google" style="width: 700px; height: 500px"></div>
-            <div class="vertical"></div>
-            <div class="flex flex-colm">
-                <div class="flex flex-colm chart-control" style="justify-content: center">
-                    <input class="input-info" type="text" name="" id="" placeholder="xxxx" />
-                    <input class="input-info" type="text" name="" id="" placeholder="xxxx" />
-                    <div class="flex s-eve w100">
-                        <button class="white-div w50 btn-green" style="z-index: 4">매수</button>
-                        <button class="white-div w50 btn-red" style="z-index: 5">매도</button>
+
+        <h2 id="timer" class="mb25">03:00</h2>
+        <div id="chart-interFace" class="white-div flex s-bet p-rel">
+            <div id="chart" class="flex flex-c" style="width: 900px; height: 500px"></div>
+            <div class="flex">
+                <div id="stock-order" class="flex-colm">
+                    <h3 class="m20 mt0">계좌잔고:&nbsp;KRW
+                        <span id="balance"></span> <span id="balanceProfit"></span>
+                    </h3>
+                    <div class="flex flex-colm vw15">
+                        <div class="w100 flex flex-colm" style="height:300px; justify-content:space-between;">
+                            <div class="gray-box mb20 w100">
+                                <p class="m0">가격 - Price</p>
+                                <p class="game mt20 mb0">KRW&nbsp;<span id="price-stock"></span></p>
+                                <p id="price_kr" class="mt20 mb0"></p>
+                            </div>
+
+
+                            <div class="gray-box w100 mb20">
+                                <p class="m0">수량 - Quantity</p>
+                                <div class="flex mt20 mb20"> <input id="quantity" type="number" class="game mb0"
+                                        placeholder="수량 입력">
+                                    <h3 class="m0" style="margin-left:5px;">주</h3>
+                                </div>
+                                <h4 class="m0">주문금액:&nbsp;KRW&nbsp;<span id="price"></span></h4>
+                            </div>
+                        </div>
+                        <button class="white-div w100 btn-buy black">매수</button>
                     </div>
                 </div>
+                <div id="order-list">
+                    <h3 class="m20 mt0">주문 목록</h3>
+                    <div class="w100" style="overflow-y:hidden; height:300px">
+                        <ul class="vw15 m0" style="height:280px;">
+                        </ul>
+                    </div>
+                    <button class="white-div w100 btn-sell white">매도</button>
+
+                </div>
             </div>
-            <span class="p-absolute" style="bottom: 20px; right: 20px">score: 1점</span>
         </div>
     </div>
-    <script src="./js/candleStick.js" type="text/javascript"></script>
-    <script src="./js/login.js"></script>
-    <script>
+    <audio src="./sounds/buy.wav" id="sfx_buy"></audio>
+    <audio src="./sounds/sell.wav" id="sfx_sell"></audio>
+    <script src="./js/candleStick.js" type="text/javascript">
+    </script>
+    <script src="./js/f-login.js"></script>
+    <script src="./js/order.js"></script>
 
+    <script>
+    console.log(typeof <?php echo $account_balance ?>)
     </script>
 </body>
 

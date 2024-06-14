@@ -1,66 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-<?php include_once ('head_common.php') ?>
+<html lang="ko">
+<?php
+include_once ('head_common.php');
+include_once ('constants.php');
+$pretyped_email = $_GET['email'] ?? false;
+?>
 
 <body>
-    <nav class="w100">
-        <div class="nav-main">
-            <a class="nav-title" href="index.php">천하제일 단타대회</a>
-            <a href="login.php"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;로그인하세요</a>
-        </div>
-    </nav>
-
-    <div class="page-main vw65">
-        <div class="flex-c s-bet">
-            <div class="w45">
-                <h3 class="main-Title">아이디 찾기</h3>
-                <form action="./aaa.php" method="post">
+    <?php include_once ('nav.php') ?>
+    <div id="findAccount" class="page-main vw65" style="">
+        <div id="find" class="flex-c s-bet" style="align-items: flex-start;">
+            <div id="find-id" class="w45 mb20">
+                <h3 class="mb25">아이디 찾기</h3>
+                <form action="<?php echo LOC_FINDACC_PROC ?>" method="post">
                     <div class="white-div p30 mb20">
                         <div class="form-info">
-                            <h4 class="m0 mb15">이메일</h4>
+                            <h4 class="m0 mb15">휴대폰 번호</h4>
                             <div class="flex-c">
-                                <input type="password" id="password" class="input-info" placeholder="이메일을 입력하세요"
-                                    name="password" />
+                                <input type="number" class="input-info" value="010" name="phone" />
                             </div>
-                        </div>
-                        <div class="form-info">
-                            <h4 class="m0 mb15">닉네임</h4>
-                            <div class="flex-c">
-                                <input type="email" id="email" class="input-info" placeholder="닉네임을 입력하세요"
-                                    name="email" />
-                            </div>
+                            <input type="text" name="find_type" value="find_id" hidden />
+                            <p class="text-grey mt5">
+                                가입 시 입력한 휴대폰 번호로 아이디(이메일)을 보내드립니다.
+                            </p>
                         </div>
                     </div>
                     <button class="white-div w100" type="submit">제출</button>
                 </form>
             </div>
-            <div class="w45">
+            <div id="find-pw" class="w45 mb20">
                 <h3 class="main-Title">비밀번호 찾기</h3>
-                <form action="./aaa.php" method="post">
+                <form action="<?php echo LOC_FINDACC_PROC ?>" method="post">
                     <div class="white-div p30 mb20">
                         <div class="form-info">
                             <h4 class="m0 mb15">이메일</h4>
                             <div class="flex-c">
-                                <input type="password" id="password" class="input-info" placeholder="이메일을 입력하세요"
-                                    name="password" />
+                                <input type="email" class="input-info" placeholder="이메일을 입력하세요" name="email"
+                                    value="<?php echo $pretyped_email !== false ? $pretyped_email : '' ?>" required />
                             </div>
                         </div>
                         <div class="form-info">
-                            <h4 class="m0 mb15">아이디</h4>
+                            <h4 class="m0 mb15">비밀번호 찾기 질문</h4>
                             <div class="flex-c">
-                                <input type="email" id="email" class="input-info" placeholder="아이디를 입력하세요"
-                                    name="email" />
+                                <select name="question_type" class="input-info" required>
+                                    <option value="a">기억에 남는 추억의 장소는?</option>
+                                    <option value="b">자신의 인생 좌우명은?</option>
+                                    <option value="c">자신의 보물 제1호는?</option>
+                                    <option value="d">가장 기억에 남는 선생님 성함은?</option>
+                                    <option value="e">타인이 모르는 자신만의 신체비밀이 있다면?</option>
+                                    <option value="f">추억하고 싶은 날짜가 있다면?</option>
+                                    <option value="g">받았던 선물 줄 기억에 남는 독특한 선물은?</option>
+                                    <option value="h">유년시절 가장 생각나는 친구 이름은?</option>
+                                    <option value="i">인상 깊게 읽은 책 이름은?</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-info">
+                            <h4 class="m0 mb15">답변</h4>
+                            <div class="flex-c">
+                                <input type="text" class="input-info" placeholder="답변을 입력하세요" name="answer" required />
                             </div>
                         </div>
                     </div>
+                    <input type="text" name="find_type" value="find_passwd" hidden />
                     <button class="white-div w100" type="submit">제출</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <script src="./js/index.js"></script>
-    <script src="./js/login.js"></script>
+    <script src="./js/f-login.js"></script>
 </body>
 
 </html>

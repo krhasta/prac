@@ -1,25 +1,35 @@
 <?php
 session_start();
+include_once ('constants.php');
+include_once (DBCONN);
+include_once ('./phputils/getRanks.php');
+
+$current_email = $_SESSION['email'];
+$is_guest = $_SESSION['email'] == NULL;
+$user_msg = '';
+$sql = "SELECT * FROM user WHERE email = '$current_email'";
+$result = $conn->query($sql);
+
+if ($result->num_rows == 1) {
+    $row = $result->fetch_assoc();
+    $user_msg = $row['msg'];
+}
+$current_ctry = $_SESSION['ctry'];
+$def_msg = '단타는 인생의 소금이다.';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <?php include_once ('head_common.php') ?>
 
-<body style="background-color: #f2f3f5">
-    <nav class="w100">
-        <ul class="nav-main">
-            <li class="nav-title">천하제일 단타대회</li>
-            <li class="nav-links">
-                <a href="login.php"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;로그인하세요</a>
-            </li>
-        </ul>
-    </nav>
+<body>
+    <?php include_once ('nav.php') ?>
+    <div id="index" class="page-main vw65">
 
-    <div class="page-main vw65">
-        <div class="center-links">
-            오늘의 추천 종목: xxxxx
+        <h2 class="mb25">환영합니다!</h2>
+
+        <div class="crs-n-btn flex-c s-eve">
+            <div class="vw20"></div>
         </div>
-        <h2 class="main-Title">환영합니다!</h2>
 
         <div id="carouselExampleAutoplaying" class="carousel slide flex-c" data-bs-ride="carousel"
             style="margin-top:50px;margin-bottom: 60px">
@@ -37,104 +47,105 @@ session_start();
                         </div>
                     </div>
                 </div>
-                <button type="button" class="white-div vw10 btn-start" style="border: 3px solid #6f87ff;">
+
+                <button type="button" class="white-div btn-start" style="border: 3px solid #6f87ff;">
                     <i class="fa-solid fa-chart-line "></i>&nbsp;&nbsp; 게임 시작!
                 </button>
             </div>
         </div>
 
-        <div class="page-main-info flex-c s-bet">
-            <div class="page-info-standings">
+        <div id="page-infos" class="page-main-info flex-c s-bet">
+            <div class="page-info-standings mb20">
                 <h3>Standings</h3>
-                <div class="white-div vw30 vh40 p30">
-                    <ul class="standings">
+                <div id="page-standings" class="white-div vw30 vh40 p30 p-rel">
+                    <ul class="info-standings">
                         <h4 class="m0 mb10">Players - Top 5</h4>
-                        <li class="standing-info p-relative">
-                            <img class="country" src="./public/img/country/circle/Sweden.svg" />
+                        <?php
+                        # 잔고 상위 5명만 추려서 표시
+                        $max_ranks = 5;
+                        $current_rank = 1;
+                        foreach ($now_ranks as $uname => $balance_ctry_pair) {
+                            if ($current_rank == $max_ranks + 1)
+                                break;
+                            print ('
+                            <li class="standing-info p-rel">
+                                <img class="country" src="./public/img/country/circle/' . $balance_ctry_pair[1] . '.svg" />
+                                <div class="standing-info-profile">
+                                    #<span class="standing-num">' . $current_rank . '</span> &nbsp;<span class="nickname">' . $uname . '님' . '</span><br>
+                                    <span class="asset">' . number_format($balance_ctry_pair[0]) . '</span>원
+                                </div>
+                            </li>
+                            ');
+                            $current_rank++;
+                        }
+                        $template = '
+                        <li class="standing-info p-rel">
+                            <img class="country" src="./public/img/country/circle/.svg" />
                             <!-- 랭킹 목록은 데이터를 받아와서 동적으로 생성되어야 함. -->
                             <div class="standing-info-profile">
-                                #<span class="standing-num">1</span> &nbsp;<span class="nickname">세계평화와국제기구</span>
-                                <span class="p-absolute" style="right: 20px">
-                                    <span class="score">100</span>점
-                                </span>
+                                #<span class="standing-num">1</span> &nbsp;<span class="nickname">세계평화와국제기구</span><br>
+                                <span class="asset">100</span>원
                             </div>
                         </li>
-                        <li class="standing-info p-relative">
-                            <img class="country" src="./public/img/country/circle/Sweden.svg" />
-                            <!-- 랭킹 목록은 데이터를 받아와서 동적으로 생성되어야 함. -->
-                            <div class="standing-info-profile">
-                                #<span class="standing-num">1</span> &nbsp;<span class="nickname">세계평화와국제기구</span>
-                                <span class="p-absolute" style="right: 20px">
-                                    <span class="score">100</span>점
-                                </span>
-                            </div>
-                        </li>
-                        <li class="standing-info p-relative">
-                            <img class="country" src="./public/img/country/circle/Sweden.svg" />
-                            <!-- 랭킹 목록은 데이터를 받아와서 동적으로 생성되어야 함. -->
-                            <div class="standing-info-profile">
-                                #<span class="standing-num">1</span> &nbsp;<span class="nickname">세계평화와국제기구</span>
-                                <span class="p-absolute" style="right: 20px">
-                                    <span class="score">100</span>점
-                                </span>
-                            </div>
-                        </li>
-                        <li class="standing-info p-relative">
-                            <img class="country" src="./public/img/country/circle/Sweden.svg" />
-                            <!-- 랭킹 목록은 데이터를 받아와서 동적으로 생성되어야 함. -->
-                            <div class="standing-info-profile">
-                                #<span class="standing-num">1</span> &nbsp;<span class="nickname">세계평화와국제기구</span>
-                                <span class="p-absolute" style="right: 20px">
-                                    <span class="score">100</span>점
-                                </span>
-                            </div>
-                        </li>
-                        <li class="standing-info p-relative">
-                            <img class="country" src="./public/img/country/circle/Sweden.svg" />
-                            <!-- 랭킹 목록은 데이터를 받아와서 동적으로 생성되어야 함. -->
-                            <div class="standing-info-profile">
-                                #<span class="standing-num">1</span> &nbsp;<span class="nickname">세계평화와국제기구</span>
-                                <span class="p-absolute" style="right: 20px">
-                                    <span class="score">100</span>점
-                                </span>
-                            </div>
-                        </li>
-                        <!-- <p class="text-grey mb0 text-right view-more">
-                                <i class="fa-solid fa-ranking-star"></i>&nbsp;&nbsp;랭킹 더 보기
-                            </p> -->
-                        <span id="standing" class="text-grey mb0 text-right view-more">
+                        ';
+                        ?>
+
+                        <span id="standing" class="text-grey m0 text-right view-more p-abs">
                             <i class="fa-solid fa-ranking-star fontasm-i"></i>&nbsp;&nbsp;랭킹 더 보기
                         </span>
                     </ul>
                 </div>
             </div>
-            <div class="page-info-myinfo">
+            <div class="page-info-myinfo mb20">
                 <h3>나의 정보</h3>
-                <div class="white-div vw30 vh40 p30">
-                    <div class="myinfo">
+
+                <div id="page-myinfo" class="white-div vw30 vh40 p30 p-rel">
+                    <div id="go-login" class="vw30 vh40 flex-c">
+                        <i
+                            class="<?php echo $is_guest == true ? "fas fa-lock" : '' ?>"></i>&nbsp;&nbsp;<?php echo $is_guest == true ? "로그인 후 나의 정보를 확인하세요!" : '' ?>
+                    </div>
+                    <div class="<?php echo $is_guest == true ? "login-plz" : '' ?> p-abs"></div>
+                    <div class="myinfo <?php echo $is_guest == true ? "blur" : '' ?> no-select">
                         <h4 class="m0 mb10">
-                            <!-- # 옆에는 유저의 랭킹 표기하기! -->
-                            #<span class="myinfo-standing">1</span> &nbsp;<span class="nickname">세계평화와국제기구</span>
+                            #<span class="myinfo-standing">
+                                <?php
+                                $my_rank = NULL;
+                                $curr_index = 1;
+                                foreach ($now_ranks as $uname => $balance_ctry_pair) {
+                                    if ($uname == $_SESSION['uname']) {
+                                        $my_rank = $curr_index;
+                                        break;
+                                    }
+                                    $curr_index++;
+                                }
+                                print ($my_rank);
+                                ?>
+                            </span> <span class="nickname">
+                                &nbsp;
+                                <?php echo strtoupper($_SESSION['uname']) ?>
+                            </span>
                         </h4>
                         <div class="myinfo-profile flex mb15">
-                            <p class="myinfo-country">US&nbsp;-&nbsp;</p>
-                            <img class="country" src="./public/img/country/circle/America.svg" />
+                            <p class="myinfo-country"><?php echo strtoupper($current_ctry) ?>&nbsp;-&nbsp;</p>
+                            <img class="country"
+                                src="./public/img/country/circle/<?php echo strtoupper($current_ctry) ?>.svg" />
                         </div>
 
                         <div class="myinfo-score">
-                            <p>
-                                <span>현재 점수:&nbsp;</span><span class="score">100</span>점
-                            </p>
-
+                            <h4>
+                                나의 자산:&nbsp;<span class="score">
+                                    <?php echo number_format($row['balance'] ?? "7700000") ?>
+                                </span>원
+                            </h4>
                         </div>
 
-                        <h4 class="m10">나의 한 마디</h4>
+                        <h4 class="m10 mb10">나의 한 마디</h4>
                         <div class="myinfo-determination">
-                            인생 한 방이다!
+                            "<?php echo $is_guest ? $def_msg : $user_msg ?>"
                         </div>
 
-                        <span id="info" class="text-grey mb0 text-right view-more">
-                            <i class="fa-solid fa-info fontasm-i"></i>&nbsp;&nbsp;정보 더 보기
+                        <span id="info" class="text-grey m0 text-right view-more p-abs">
+                            <span><i class="fa-solid fa-info fontasm-i"></i>&nbsp;&nbsp;정보 더 보기</span>
                         </span>
                     </div>
                 </div>
@@ -157,12 +168,9 @@ session_start();
         window.location.href = 'game.php';
     });
 
-    // standing-info의 background-color를 #808080으로 번갈아가며 적용
-    $('.standing-info').each((index, element) => {
-        if (index % 2 === 0) {
-            $(element).css('background-color', '#dbdcdc');
-        }
-    });
+    $('.login-plz').click(function() {
+        window.location.href = 'info.php';
+    })
     </script>
 </body>
 

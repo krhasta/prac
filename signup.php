@@ -1,39 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-<?php include_once ('head_common.php') ?>
+<html lang="ko">
+<?php
+include_once ('head_common.php');
+include_once ('constants.php');
+?>
 
 <body>
-    <nav class="w100">
-        <div class="nav-main">
-            <a class="nav-title" href="index.php">천하제일 단타대회</a>
-            <a href="login.php"><i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;로그인하세요</a>
-        </div>
-    </nav>
-
-    <div class="page-main w65 flex-c" style="flex-direction: row; align-items: flex-start">
-        <div class="w45">
-            <h2 class="main-Title">잠시 검문이 있겠습니다.</h2>
-            <form action="./aaa.php" method="post">
-                <div class="white-div p30 mb20 h500 signup">
+    <?php include_once ('nav.php') ?>
+    <div class="page-main flex-c mb20" style="flex-direction: row; align-items: flex-start">
+        <div id="signup" class="vw30">
+            <h2 class="mb25">잠시 검문이 있겠습니다.</h2>
+            <form action="<?php echo LOC_SIGNUP_PROC ?>" method="post">
+                <div class="white-div p30 mb20 h500 ">
                     <div class="form-inner">
                         <div class="form-info">
                             <h4 class="m0 mb15">이메일</h4>
                             <div class="flex-c">
-                                <input type="email" id="email-signup" class="input-info" placeholder="이메일을 입력하세요"
-                                    name="email-signup" />
-                                <i id="f-email-signup" class="fa-solid fa-check fontasm-c" data-clear="0"></i>
+                                <input type="email" id="email" class="input-info" placeholder="이메일을 입력하세요"
+                                    name="email" />
+                                <i id="f-email" class="fa-solid fa-check fontasm-c" data-clear="0"></i>
                             </div>
-                            <p class="text-grey mt5">예) xxx@example.com</p>
+                            <p class="text-grey mt5" style="cursor: pointer; display: inline-block;">예) xxx@example.com
+                            </p>
+                            <p id="validate-email" class="text-grey mt5"
+                                style="cursor: pointer; display: inline-block; margin-left: 5px;">
+                                이메일 중복검사
+                            </p>
                         </div>
 
                         <div class="form-info">
                             <h4 class="m0 mb15">비밀번호</h4>
                             <div class="flex-c">
-                                <input type="password" id="password-signup" class="input-info" placeholder="비밀번호를 입력하세요"
-                                    name="password-signup" />
-                                <i id="f-password-signup" class="fa-solid fa-check fontasm-c" data-clear="1"></i>
-                                <i id="f-show-password-signup" class="fa-regular fa-eye fontasm-v"
-                                    data-id="password-signup" data-vnum="0"></i>
+                                <input type="password" id="password" class="input-info" placeholder="비밀번호를 입력하세요"
+                                    name="password" />
+                                <i id="f-password" class="fa-solid fa-check fontasm-c" data-clear="1"></i>
+                                <i id="f-show-password" class="fa-regular fa-eye fontasm-v" data-id="password"
+                                    data-vnum="0"></i>
                             </div>
                             <p class="text-grey mt5">숫자, 특수문자, 영어 소문자, 대문자들이 포함되어야 합니다.</p>
                         </div>
@@ -48,6 +50,29 @@
                                     data-id="confirm-password" data-vnum="1"></i>
                             </div>
                             <p class="text-grey mt5">비밀번호를 한 번 더 입력하세요.</p>
+                        </div>
+
+                        <div class="form-info">
+                            <h4 class="m0 mb15">비밀번호 찾기 질문</h4>
+                            <div class="flex-c">
+                                <select name="question_type" class="input-info" required>
+                                    <option value="a">기억에 남는 추억의 장소는?</option>
+                                    <option value="b">자신의 인생 좌우명은?</option>
+                                    <option value="c">자신의 보물 제1호는?</option>
+                                    <option value="d">가장 기억에 남는 선생님 성함은?</option>
+                                    <option value="e">타인이 모르는 자신만의 신체비밀이 있다면?</option>
+                                    <option value="f">추억하고 싶은 날짜가 있다면?</option>
+                                    <option value="g">받았던 선물 중 기억에 남는 독특한 선물은?</option>
+                                    <option value="h">유년시절 가장 생각나는 친구 이름은?</option>
+                                    <option value="i">인상 깊게 읽은 책 이름은?</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-info">
+                            <h4 class="m0 mb15">답변</h4>
+                            <div class="flex-c">
+                                <input type="text" class="input-info" placeholder="답변을 입력하세요" name="answer" required />
+                            </div>
                         </div>
 
                         <div class="form-info">
@@ -73,12 +98,28 @@
                         <div class="form-info" style="margin-bottom: 0">
                             <h4 class="m0 mb15">닉네임</h4>
                             <div class="flex-c">
-                                <input class="input-info" type="text" id="username-signup" placeholder="닉네임을 입력하세요"
-                                    name="username-signup" />
-                                <i id="f-username-signup" class="fa-solid fa-check fontasm-c" data-clear="4"></i>
+                                <input class="input-info" type="text" id="username" placeholder="닉네임을 입력하세요"
+                                    name="username" />
+                                <i id="f-username" class="fa-solid fa-check fontasm-c" data-clear="4"></i>
                             </div>
-                            <p id="create-username-signup" class="text-grey mt5" style="cursor: pointer">
+                            <p id="validate-username" class="text-grey mt5"
+                                style="cursor: pointer; display: inline-block">
+                                닉네임 중복검사
+                            </p>
+                            <p id="create-username" class="text-grey mt5"
+                                style="cursor: pointer; display: inline-block; margin-left: 5px;">
                                 작명이 고민이라면?
+                            </p>
+                        </div>
+
+                        <div class="form-info" style="margin-bottom: 0">
+                            <h4 class="m0 mb15">휴대폰 번호</h4>
+                            <div class="flex-c">
+                                <input class="input-info" type="number" id="phone" value="010" name="phone" required />
+                                <i id="f-username" class="fa-solid fa-check fontasm-c" data-clear="5"></i>
+                            </div>
+                            <p class="text-grey mt5">
+                                전화번호는 아이디를 찾을 때 사용됩니다. 하이픈('-') 없이 입력하세요.
                             </p>
 
                         </div>
@@ -86,9 +127,9 @@
                         <div class="form-info" style="margin-bottom: 0">
                             <h4 class="m0 mb15">나의 한 마디</h4>
                             <div class="flex-c">
-                                <input class="input-info" type="text" id="determination-signup"
-                                    placeholder="나의 각오! (선택)" name="determination-signup" />
-                                <i id="f-determination-signup" class="fa-solid fa-check fontasm-c" data-clear="5"></i>
+                                <input class="input-info" type="text" id="determination" placeholder="나의 각오! (선택)"
+                                    name="determination" />
+                                <i id="f-determination" class="fa-solid fa-check fontasm-c" data-clear="6"></i>
                             </div>
                             <p id="gotoLogin" class="text-grey" style="text-align:right; cursor: pointer">
                                 <a>이미 회원이신가요?</a>
@@ -105,11 +146,11 @@
     </script>
     <script>
     $('#gotoLogin').click(() => {
-        location.href = 'login.php';
+        location.href = '<?php echo LOC_SIGNIN ?>';
     });
     </script>
-    <script src="./js/signup.js"></script>
-    <script src="./js/login.js"></script>
+    <script src="./js/f-signup.js"></script>
+    <script src="./js/f-awesome.js"></script>
     <script src="./js/koAliasGen.js"></script>
 </body>
 
