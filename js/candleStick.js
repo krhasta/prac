@@ -1,22 +1,25 @@
-const korNum = value => {
-    const resultValue = []
-    const unit1 = ['', '만', '억', '조']
-    const unit2 = ['', '십', '백', '천', '만']
-    const numData = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구']
-  
-    const valueStr = value + ""
-    const unit1Size = Math.ceil(valueStr.length / 4)
-  
-    const splitReverse = valueStr.split('').reverse()
-  
+const korNum = (value) => {
+    const resultValue = [];
+    const unit1 = ['', '만', '억', '조'];
+    const unit2 = ['', '십', '백', '천', '만'];
+    const numData = ['영', '일', '이', '삼', '사', '오', '육', '칠', '팔', '구'];
+
+    const valueStr = value + '';
+    const unit1Size = Math.ceil(valueStr.length / 4);
+
+    const splitReverse = valueStr.split('').reverse();
+
     for (let i = 0; i < unit1Size; i++) {
-      const number = splitReverse.splice(0, 4)
-      let result = number.map((num, idx) => num != 0 ? numData[num] + unit2[idx] : '').reverse().join('')
-      if (result) result += unit1[i]
-      resultValue.unshift(result)
+        const number = splitReverse.splice(0, 4);
+        let result = number
+            .map((num, idx) => (num != 0 ? numData[num] + unit2[idx] : ''))
+            .reverse()
+            .join('');
+        if (result) result += unit1[i];
+        resultValue.unshift(result);
     }
-    return resultValue.join('')
-  }
+    return resultValue.join('');
+};
 
 $(document).ready(() => {
     const price_indicator = document.getElementById('price-stock');
@@ -227,6 +230,18 @@ $(document).ready(() => {
         },
         xaxis: { type: 'datetime' },
         yaxis: { tooltip: { enabled: true } },
+
+        plotOptions: {
+            candlestick: {
+                colors: {
+                    upward: '#2ecc71',
+                    downward: '#ff4d4d',
+                },
+                wick: {
+                    useFillColor: true,
+                },
+            },
+        },
     };
 
     function updateAccData(newPrice) {
@@ -263,6 +278,9 @@ $(document).ready(() => {
         console.log(`현재 캔들 업데이트 횟수: ${currentCandle.updateCount}`);
     }
 
+    let count = 0;
+    let initialPrice = 0;
+
     setInterval(async () => {
         await fetch(server + `?before=${beforePrice}`)
             .then((r) => r.json())
@@ -270,6 +288,8 @@ $(document).ready(() => {
                 updateAccData(data.now);
                 beforePrice = data.now;
                 price_indicator.innerText = new String(data.now).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                if (count++ === 0) initialPrice = data.now;
+
                 if (data.news != null) {
                     console.log('[뉴스] ' + data.news);
                     // news_content.innerText = '[뉴스] ' + data.news;
@@ -304,4 +324,36 @@ $(document).ready(() => {
     var chart = new ApexCharts(document.querySelector('#chart'), options);
     chart.render();
     window.chart = chart;
+
+    // define callback function
+    const showMutationPrice = function (mutationsList, obs) {
+        const currPrice = parseInt($('#price-stock').text().replace(/,/g, ''));
+        const initPrice = initialPrice;
+        // console.log(initPrice, currPrice);
+        const diff = currPrice - initPrice;
+        // const diffP = ((diff / initPrice) * 100).toFixed(2);
+        const diffP = Math.abs(((diff / initPrice) * 100).toFixed(2));
+        const diffText = diff.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+        if (diff > 0) {
+            $('#percent').css('color', '#2ecc71');
+            // $('#percent').css('color', '#32FF7E');
+            $('#percent').text('+' + diffText + ' (' + diffP + '%)');
+        }
+
+        if (diff < 0) {
+            // 음수일 경우 diffP의 '-'기호 제거
+            $('#percent').css('color', '#ff4d4d');
+            // $('#percent').css('color', '#FF4D4D');
+            $('#percent').text(diffText + ' (' + diffP + '%)');
+        }
+    };
+
+    // create MutationObserver Instance
+    const priceObs = new MutationObserver(showMutationPrice);
+
+    const obsTarget = document.getElementById('price-stock');
+    const config = { attributes: true, childList: true, subtree: true };
+
+    priceObs.observe(obsTarget, config);
 });

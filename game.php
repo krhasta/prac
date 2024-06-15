@@ -26,15 +26,15 @@ $account_balance = $row['balance'];
             <h3 id="profit" class="m0">손익: </h3>
         </div> -->
         <p id="user_balance" hidden><?php echo $account_balance ?></p>
-        <div id="order-fail" class="notice p-abs vw20 centering opa-0 no-select">올바른 수량을
+        <div id="order-fail" class="notice white-div p-abs vw20 centering opa-0 no-select">올바른 수량을
             입력해주세요.</span></div>
 
-        <div id="order-cplt" class="notice p-abs vw20 centering opa-0 no-select">*** 주문체결
+        <div id="order-cplt" class="notice white-div p-abs vw20 centering opa-0 no-select">*** 주문체결
             ***<br>주문수량:&nbsp;<span class="notice-quantity"></span>주<br><span class="notice-price"></span>KRW&nbsp;<span
                 class="order">&nbsp;매수</span><br>감사합니다
             </span></div>
 
-        <div id="order-sell" class="notice p-abs vw20 centering opa-0 no-select">
+        <div id="order-sell" class="notice white-div p-abs vw20 centering opa-0 no-select">
             *** 주문체결
             ***<br>매도수량:&nbsp;<span class="notice-quantity"></span>주<br><span class="notice-price"></span>KRW&nbsp;<span
                 class="order">&nbsp;매도</span><br>감사합니다
@@ -52,7 +52,9 @@ $account_balance = $row['balance'];
                     <div id="sp-sq" class="flex flex-colm vw15">
                         <div class="gray-box mb20 w100">
                             <p class="m0">주가 - Stock Price</p>
-                            <p class="game mt20 mb0">KRW&nbsp;<span id="price-stock"></span></p>
+                            <p class="game mt20 mb0">KRW&nbsp;<span id="price-stock"></span>&nbsp;<span id="percent"
+                                    style="font-size:15px"></span>
+                            </p>
                             <p id="price_kr" class="mt20 mb0"></p>
                         </div>
 
@@ -65,7 +67,7 @@ $account_balance = $row['balance'];
                             <h4 class="m0">주문금액:&nbsp;KRW&nbsp;<span id="price"></span></h4>
                         </div>
                     </div>
-                    <button class="white-div w100 btn-buy black mt20">매수</button>
+                    <button class="white-div w100 btn-buy white mt20">매수</button>
                 </div>
                 <div id="order-list">
                     <!-- <div id="order-list" style="align-items: flex-start;"> -->
@@ -86,7 +88,6 @@ $account_balance = $row['balance'];
     <script src="./js/f-login.js"></script>
     <script src="./js/order.js"></script>
     <script>
-    $('#ol ul').height($('#sp-sq').height());
     </script>
 </body>
 

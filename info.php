@@ -86,7 +86,7 @@ if ($result->num_rows > 0) {
                                 <button class="white-div info-btn mb0" type="submit" onClick="logout()"><i
                                         class="fa-solid fa-arrow-right-from-bracket logout"></i>&nbsp;&nbsp;로그아웃</button>
 
-                                <button class="white-div info-btn mb0" style="background-color: #e74c3c; color: white;"
+                                <button class="white-div info-btn mb0 white" style="background-color: #ea2027;"
                                     type="submit" onClick="removeAccount()"><i
                                         class="fa-regular fa-circle-xmark logout"></i>&nbsp;&nbsp;회원탈퇴</button>
                             </div>

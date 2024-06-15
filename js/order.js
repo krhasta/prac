@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    const timer = document.getElementById('timer');
+    const timer = $('#timer');
     let time = 180;
     let minutes;
     let seconds;
@@ -10,11 +10,11 @@ $(document).ready(() => {
         minutes = minutes < 10 ? '0' + minutes : minutes;
         seconds = seconds < 10 ? '0' + seconds : seconds;
 
-        timer.innerHTML = minutes + ':' + seconds;
+        timer.text(minutes + ':' + seconds);
 
         if (--time < 0) {
             clearInterval(interval);
-            timer.innerHTML = '시간초과';
+            timer.text('시간초과');
         }
     }, 1000);
 
@@ -80,23 +80,22 @@ $(document).ready(() => {
         });
     }
 
-    function addNewOrderBox(quantity, orderPrice, totalPrice) {
+    function addNewOrderBox(quantity, orderPrice, totalPrice, priceDiff) {
         const orderList = $('#order-list ul li');
-        console.log('------------------------------------');
-        console.log(orderList.length);
-        console.log('------------------------------------');
+        const time = $('#timer').text();
         // 현재 ul 태그 안에 있는 li 태그의 개수를 가져와서 data-order-list 속성을 설정
         const orderListLength = orderList.length;
-        // const orderListLength = $('#order-list ul li').length;
         // 새로운 li 요소 생성
         const newLi = $(`<li id="order-box" class="gray-box w100 mb20" data-order-list="${orderListLength}"></li>`);
         // 내용 추가
         newLi.html(
             `<span>#${
                 orderListLength + 1
-            }</span><br><span class="quantity">${quantity}</span>주<br>체결단가: <span>${orderPrice}</span>&nbsp;KRW<br>총 금액: <span id="totalPrice">${totalPrice}</span>&nbsp;KRW<br>현재가: <span class="currentPrice">${addComma(
-                quantity * rmComma(orderPrice)
-            )}</span>&nbsp;KRW&nbsp;&nbsp;&nbsp;<span id="profit" style="float:right"></span>`
+            }</span>&nbsp;&nbsp;<span class="quantity">${quantity}</span>주&nbsp;-&nbsp;<i class="fas fa-stopwatch"></i>&nbsp;${time}<br>
+            체결단가: <span>${orderPrice}</span><br>
+            총 금액: <span id="totalPrice">${totalPrice}</span><br>
+            현재가: <span class="currentPrice">${addComma(quantity * rmComma(orderPrice))}</span><br>
+            변동: <span id="profit"></span>`
         );
         // 새로운 li 요소를 ul 태그의 자식으로 추가
         // order.append(newLi);
@@ -118,13 +117,9 @@ $(document).ready(() => {
 
         const validQuantity = balance - totalPrice > 0;
         const pass = order && validQuantity ? '#order-cplt' : '#order-fail';
-        const color = order && validQuantity ? '#32ff7e' : '#ff4d4d';
-        const textColor = order && validQuantity ? "'color', '#000000'" : "'color', '#FFFFFF'";
 
         $('.notice-quantity').text($('#quantity').val());
         $('.notice-price').text(totalPriceText);
-        $('.notice').css('background-color', color);
-        $('.notice').css(textColor);
         if (order && validQuantity) {
             addNewOrderBox(quantity, price, totalPriceText);
             // #balance의 값을 #price만큼 뺀 값으로 변경
@@ -152,8 +147,6 @@ $(document).ready(() => {
 
         // selected가 없을 때 매도할 경우 다른 알림 띄우기
         if ($('li.selected').length == 0) {
-            $('.notice').css('background-color', '#ff4d4d');
-            $('.notice').css('color', '#FFFFFF');
             $('.notice').text('매도할 주문을 선택해주세요');
             showNotice();
             return;
@@ -235,13 +228,18 @@ $(document).ready(() => {
                     $(this).find('.currentPrice').text(addComma(currentPrice));
                     currentPrice = parseInt(rmComma($(this).find('.currentPrice').text()));
                     const totalPrice = parseInt(rmComma($(this).find('#totalPrice').text()));
-                    const profit = ((currentPrice - totalPrice) / totalPrice) * 100;
-                    $(this)
-                        .find('#profit')
-                        .text(profit.toFixed(2) + '%');
-                    if (profit > 0) {
-                        $(this).find('#profit').css('color', '#32ff7e');
+                    const diff = currentPrice - totalPrice;
+                    const profit = Math.abs(diff / totalPrice) * 100;
+                    if (diff > 0) {
+                        $(this)
+                            .find('#profit')
+                            .text('+' + addComma(diff) + ' ' + '(' + profit.toFixed(2) + ')%');
+                        $(this).find('#profit').css('color', '#2ecc71');
+                        // $(this).find('#profit').css('color', '#EA2027');
                     } else {
+                        $(this)
+                            .find('#profit')
+                            .text(addComma(diff) + ' ' + '(' + profit.toFixed(2) + ')%');
                         $(this).find('#profit').css('color', '#ff4d4d');
                     }
                 });
@@ -254,9 +252,12 @@ $(document).ready(() => {
 
     // MutationObserver를 사용하여 #ol>ul과 #sp-sq의 높이 차이 감지 및 동기화
     // 1. 감지할 대상 요소 선택
-    const targetElement = document.querySelector('#sp-sq');
-
     // 2. Observer의 콜백 함수 정의
+    // 3. MutationObserver 인스턴스 생성 및 설정
+    // 4. Observer 설정: attributes 변화 감지, 자식 요소의 변화 또는 추가 감지
+    // 5. Observer 실행: #sp-sq 요소에 대해 감지 시작
+
+    const targetElement = document.querySelector('#sp-sq');
     const adjustHeight = (mutationsList, obs) => {
         // #sp-sq의 높이 가져오기
         const targetHeight = $('#sp-sq').height();
@@ -265,13 +266,7 @@ $(document).ready(() => {
             $('#ol ul').height(targetHeight);
         }
     };
-
-    // 3. MutationObserver 인스턴스 생성 및 설정
     const obs = new MutationObserver(adjustHeight);
-
-    // 4. Observer 설정: attributes 변화 감지, 자식 요소의 변화 또는 추가 감지
     const conf = { attributes: true, childList: true, subtree: true };
-
-    // 5. Observer 실행: #sp-sq 요소에 대해 감지 시작
     obs.observe(targetElement, conf);
 });
