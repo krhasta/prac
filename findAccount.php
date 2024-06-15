@@ -70,6 +70,28 @@ $pretyped_email = $_GET['email'] ?? false;
     </div>
 
     <script src="./js/f-login.js"></script>
+    <script>
+        $(document).ready(() => {
+    const timer = document.querySelector('.apexcharts-title-text');
+    let time = 5;
+    // let time = 180;
+    let minutes, seconds;
+    const interval = setInterval(function () {
+        minutes = parseInt(time / 60, 10);
+        seconds = parseInt(time % 60, 10);
+
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        console.log(timer);
+        timer.innerText = timer.innerHTML + minutes + ':' + seconds;
+
+        if (--time < 0) {
+            clearInterval(interval);
+            timer.text('시간초과');
+        }
+    }, 1000);
+    </script>
 </body>
 
 </html>

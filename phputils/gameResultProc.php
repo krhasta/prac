@@ -3,8 +3,6 @@ include_once('../constants.php');
 include_once('dbconn.php');
 session_start();
 
-header('Content-Type: application/json');
-
 if ($_SESSION['email'] == NULL) {
     die("
     <script>
@@ -47,8 +45,10 @@ $update_balance_sql  = "UPDATE user
 
 $update_result = $conn->query($update_balance_sql); // 잔액 반영
 if ($update_result) {
+    header('Content-Type: application/json');
     $result = array(
         'status'      => true,
+        'message'     => '게임 결과가 반영되었습니다.',
         'before_game' => $curr_balance,
         'delta'       => $delta,
         'after_game'  => $after_balance

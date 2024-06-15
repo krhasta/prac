@@ -13,6 +13,9 @@ $answer = $_POST['answer'];
 $phone = $_POST['phone'];
 $reg_date = date('Y/m/d');
 
+# 가입시 기본 잔액
+define('INITIAL_BALANCE', 100 * 10000);
+
 # 비밀번호 확인
 if ($password != $cfrm_password) {
     print("
@@ -57,7 +60,7 @@ if (strlen($username) < 4) {
 
 # 오류가 발생하지 않았다면 회원가입 진행
 $sql = "INSERT INTO user
-        VALUES ('$email', '$password', '$country', '$username', '$determination', '$question_type', '$answer', '$phone', '$reg_date', 0)";
+        VALUES ('$email', '$password', '$country', '$username', '$determination', '$question_type', '$answer', '$phone', '$reg_date', INITIAL_BALANCE)";
 try {
     if ($conn->query($sql)) {
         print("

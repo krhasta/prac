@@ -1,23 +1,4 @@
 $(document).ready(() => {
-    const timer = $('#timer');
-    let time = 180;
-    let minutes;
-    let seconds;
-    const interval = setInterval(function () {
-        minutes = parseInt(time / 60, 10);
-        seconds = parseInt(time % 60, 10);
-
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-
-        timer.text(minutes + ':' + seconds);
-
-        if (--time < 0) {
-            clearInterval(interval);
-            timer.text('시간초과');
-        }
-    }, 1000);
-
     const korNum = (value) => {
         const resultValue = [];
         const unit1 = ['', '만', '억', '조'];
@@ -42,7 +23,6 @@ $(document).ready(() => {
     };
 
     $('#balance').text(parseInt($('#user_balance').text()));
-
     let initialBalance = $('#balance').text().replace(/\D/g, '');
 
     function rmComma(query) {
@@ -53,6 +33,13 @@ $(document).ready(() => {
         return query.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
+    function timeOver() {
+        if ($('#timer').text() === '시간초과') {
+            showNotice('시간이 초과됐습니다.');
+            return true;
+        }
+    }
+
     // input.game에 숫자를 입력할 때 마다 #price-stock의 값과 input의 값을 곱한 결과를 #price에 표기를 jQuery로 작성
     $('#quantity').on('input', function () {
         var price = $('#price-stock').text();
@@ -61,28 +48,26 @@ $(document).ready(() => {
         var quantity = $('#quantity').val();
         var price = price * quantity;
         $('#price').text(addComma(price.toString()));
-        // $('#price').text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
     });
 
     // #balance에 세 자리 수 마다 ',' 표기를 jQuery로 작성
-    $('#balance').text(
-        addComma($('#balance').text())
-        // $('#balance').text().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-    );
+    $('#balance').text(addComma($('#balance').text()));
 
-    function showNotice(pass = '#order-sell') {
+    function showNotice(notice) {
         return new Promise((resolve) => {
-            $(pass + '.notice').css('opacity', '1');
+            $('.notice').css('opacity', '1');
             setTimeout(() => {
-                $(pass + '.notice').css('opacity', '0');
+                $('.notice').css('opacity', '0');
                 resolve(); // setTimeout이 완료되면 Promise를 resolve합니다.
             }, 1500);
+            $('.notice').text(notice);
         });
     }
 
-    function addNewOrderBox(quantity, orderPrice, totalPrice, priceDiff) {
+    function addNewOrderBox(quantity, orderPrice, totalPrice) {
         const orderList = $('#order-list ul li');
-        const time = $('#timer').text();
+        let time = $('#timer').text();
+        time = time.slice(-5) + '<br>' + time.slice(0, -5);
         // 현재 ul 태그 안에 있는 li 태그의 개수를 가져와서 data-order-list 속성을 설정
         const orderListLength = orderList.length;
         // 새로운 li 요소 생성
@@ -98,15 +83,13 @@ $(document).ready(() => {
             변동: <span id="profit"></span>`
         );
         // 새로운 li 요소를 ul 태그의 자식으로 추가
-        // order.append(newLi);
         $('#order-list ul').append(newLi);
     }
 
     async function orderProcess() {
-        // 매수주문 효과음 재생
-        const sfx = document.querySelector('#sfx_buy');
-        sfx.currentTime = 0.05;
-        sfx.play();
+        if (timeOver()) {
+            return;
+        }
 
         const quantity = $('#quantity').val(); // input#quantity의 값을 가져옵니다.
         const order = quantity > 0;
@@ -114,32 +97,41 @@ $(document).ready(() => {
         const price = $('#price-stock').text();
         const totalPrice = rmComma($('#price').text());
         const totalPriceText = addComma($('#price').text());
-
         const validQuantity = balance - totalPrice > 0;
-        const pass = order && validQuantity ? '#order-cplt' : '#order-fail';
+        const check = order && validQuantity ? 'succ' : 'fail';
+        const sfx = document.querySelector('#sfx_buy');
+        sfx.currentTime = 0.05;
 
+        if (check == 'succ') sfx.play(); // 매수주문 효과음 재생
         $('.notice-quantity').text($('#quantity').val());
         $('.notice-price').text(totalPriceText);
         if (order && validQuantity) {
             addNewOrderBox(quantity, price, totalPriceText);
             // #balance의 값을 #price만큼 뺀 값으로 변경
             $('#balance').text(addComma((balance - totalPrice).toString()));
+        } else {
+            await showNotice('올바른 수량을 입력해주세요');
+            return;
         }
 
         $('input#quantity').val('');
         $('#price').text('0');
-        await showNotice(pass); // showNotice 함수 실행
+        await showNotice('주문이 체결되었습니다.');
     }
 
     // 매수버튼 클릭 또는 엔터키 입력시 주문 실행
     $('.btn-buy').click(orderProcess);
-    $('input#quantity').on('keyup', function (key) {
+    $('input#quantity').on('keyup', (key) => {
         if (key.keyCode == 13) {
             orderProcess();
         }
     });
 
     $('.btn-sell').click(function () {
+        if (timeOver()) {
+            return;
+        }
+
         // 매도주문 효과음 재생
         const sfx = document.querySelector('#sfx_sell');
         sfx.currentTime = 0.05;
@@ -147,8 +139,7 @@ $(document).ready(() => {
 
         // selected가 없을 때 매도할 경우 다른 알림 띄우기
         if ($('li.selected').length == 0) {
-            $('.notice').text('매도할 주문을 선택해주세요');
-            showNotice();
+            showNotice('매도할 주문을 선택해주세요!');
             return;
         }
         // 주문수량 가져오기
@@ -189,7 +180,7 @@ $(document).ready(() => {
 
         $('#balanceProfit').text(balanceProfit + ' %');
         if (balanceProfit > 0) {
-            $('#balanceProfit').css('color', '#32ff7e');
+            $('#balanceProfit').css('color', '#2ecc71');
             $('#balanceProfit').text('+' + $('#balanceProfit').text());
         } else {
             $('#balanceProfit').css('color', '#ff4d4d');

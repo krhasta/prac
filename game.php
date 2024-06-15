@@ -26,25 +26,15 @@ $account_balance = $row['balance'];
             <h3 id="profit" class="m0">손익: </h3>
         </div> -->
         <p id="user_balance" hidden><?php echo $account_balance ?></p>
-        <div id="order-fail" class="notice white-div p-abs vw20 centering opa-0 no-select">올바른 수량을
-            입력해주세요.</span></div>
+        <div class="notice white-div p-abs vw20 centering opa-0 no-select"></div>
 
-        <div id="order-cplt" class="notice white-div p-abs vw20 centering opa-0 no-select">*** 주문체결
-            ***<br>주문수량:&nbsp;<span class="notice-quantity"></span>주<br><span class="notice-price"></span>KRW&nbsp;<span
-                class="order">&nbsp;매수</span><br>감사합니다
-            </span></div>
 
-        <div id="order-sell" class="notice white-div p-abs vw20 centering opa-0 no-select">
-            *** 주문체결
-            ***<br>매도수량:&nbsp;<span class="notice-quantity"></span>주<br><span class="notice-price"></span>KRW&nbsp;<span
-                class="order">&nbsp;매도</span><br>감사합니다
-        </div>
-
-        <h2 id="timer" class="mb25">03:00</h2>
         <div id="chart-interFace" class="white-div flex s-bet p-rel">
+            <p id="timer" class="mb25 p-abs">
+                <!-- 종목명 (종목코드) 남은시간 -->
+            </p>
             <div id="chart" class="flex flex-c" style="width: 900px; height: 500px"></div>
             <div class="flex">
-                <!-- <div id="stock-order" class="flex-colm" style="align-items: flex-start;"> -->
                 <div id="stock-order">
                     <h3 class="m0 mb20">잔고: KRW
                         <span id="balance"></span> <span id="balanceProfit"></span>
@@ -70,9 +60,8 @@ $account_balance = $row['balance'];
                     <button class="white-div w100 btn-buy white mt20">매수</button>
                 </div>
                 <div id="order-list">
-                    <!-- <div id="order-list" style="align-items: flex-start;"> -->
                     <h3 class="m0 mb20">주문 목록</h3>
-                    <div id="ol" class="w100" style="overflow-y:hidden;">
+                    <div id="ol" class="w100">
                         <ul class="vw15 m0">
                         </ul>
                     </div>
@@ -87,8 +76,6 @@ $account_balance = $row['balance'];
     </script>
     <script src="./js/f-login.js"></script>
     <script src="./js/order.js"></script>
-    <script>
-    </script>
 </body>
 
 </html>

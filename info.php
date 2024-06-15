@@ -204,7 +204,7 @@ if ($result->num_rows > 0) {
     </script>
     <script src="./js/f-signup.js"></script>
     <script src="./js/f-awesome.js"></script>
-    <script src="/js/koAliasGen.js"></script>
+    <script src="./js/koAliasGen.js"></script>
     <script>
     function logout() {
         confirm('정말 로그아웃할까요?') == true ?

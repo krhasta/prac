@@ -14,6 +14,13 @@ $new_uname = $_POST['new_uname'];
 
 $sql = '';
 
+$change_type_name = [
+    'email' => '이메일',
+    'passwd' => '비밀번호',
+    'ctry' => '국가',
+    'uname' => '닉네임'
+];
+
 if ($change_type === NULL) {
     die("
     <script>
@@ -24,16 +31,27 @@ if ($change_type === NULL) {
 
 function verify_email($email) {
     global $conn;
+    $check_email = preg_match("/^[_\.0-9a-zA-Z-]+@([0-9a-zA-Z][0-9a-zA-Z-]+\.)+[a-zA-Z]{2,6}$/i", $email);
+
     $ver_email_sql = "SELECT email FROM user WHERE email = '$email'";
     $result = $conn->query($ver_email_sql);
 
-    if ($result->num_rows > 0) {
+    if ($check_email == false) {
+        die("
+        <script>
+            alert('이메일 형식이 올바르지 않습니다.');
+            history.go(-1);
+        </script>
+        ");
+
+    } else if ($result->num_rows > 0) {
         die("
         <script>
             alert('이미 사용중인 이메일입니다.');
             history.go(-1);
         ");
     }
+    
 }
 
 function verify_uname($uname) {
@@ -56,14 +74,16 @@ function verify_passwd($passwd, $confirm_passwd) {
         <script>
             alert('비밀번호 확인이 일치하지 않습니다.');
             history.go(-1);
-        </script>");
+        </script>
+        ");
 
     } else if (strlen($passwd) < 8) {
         die("
         <script>
             alert('비밀번호는 8자 이상이어야 합니다.');
             history.go(-1);
-        </script>");
+        </script>
+        ");
     }
 }
 
@@ -75,11 +95,11 @@ switch ($change_type) {
 
     case 'passwd':
         verify_passwd($new_password, $new_password_confirm);
-        $sql = "UPDATE user SET password = '$new_password' WHERE email = '$_SESSION[email]'";
+        $sql = "UPDATE user SET pwd = '$new_password' WHERE email = '$_SESSION[email]'";
         break;
 
     case 'ctry':
-        $sql = "UPDATE user SET country = '$new_country' WHERE email = '$_SESSION[email]'";
+        $sql = "UPDATE user SET ctry = '$new_country' WHERE email = '$_SESSION[email]'";
         break;
 
     case 'uname':
@@ -100,8 +120,8 @@ $change_result = $conn->query($sql);
 if ($change_result) {
     echo "
     <script>
-        alert('정보 변경이 완료되었습니다.');
-        history.go(-1);
+        alert('" . $change_type_name[$change_type] . " 변경이 완료되었습니다.');
+        location.href = 'logoutProc.php';
     </script>";
 
 } else {

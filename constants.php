@@ -14,6 +14,7 @@ define('LOC_SIGNUP',       PRJ_ROOT.'/signup.php');
 define('LOC_FINDACC',      PRJ_ROOT.'/findAccount.php');
 define('LOC_MYPAGE',       PRJ_ROOT.'/info.php');
 define('LOC_SIGNIN_PROC',  './phputils/loginProc.php');
+define('LOC_SIGNOUT_PROC', './phputils/logoutProc.php');
 define('LOC_SIGNUP_PROC',  './phputils/signupProc.php');
 define('LOC_FINDACC_PROC', './phputils/findAccountProc.php');
 define('LOC_GAME',         './phputils/game.php');
