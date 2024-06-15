@@ -1,14 +1,18 @@
 <?php
+ini_set('display_errors', 1);
+
 include_once('../constants.php');
-include_once('dbconn.php');
+include_once('./dbconn.php');
 session_start();
 
 $change_type = $_POST['change_type'];
-$new_email = $_POST['email'];
-$new_paddword = $_POST['password'];
+$new_email = $_POST['new_email'];
+$new_password = $_POST['new_password'];
 $new_password_confirm = $_POST['confirm_password'];
-$new_country = $_POST['ctry'];
-$new_uname = $_POST['uname'];
+$new_country = $_POST['new_country'];
+$new_uname = $_POST['new_uname'];
+
+$sql = '';
 
 if ($change_type === NULL) {
     die("
@@ -19,8 +23,10 @@ if ($change_type === NULL) {
 }
 
 function verify_email($email) {
-    $sql = "SELECT email FROM user WHERE email = '$email'";
-    $result = $conn->query($sql);
+    global $conn;
+    $ver_email_sql = "SELECT email FROM user WHERE email = '$email'";
+    $result = $conn->query($ver_email_sql);
+
     if ($result->num_rows > 0) {
         die("
         <script>
@@ -31,8 +37,10 @@ function verify_email($email) {
 }
 
 function verify_uname($uname) {
-    $sql = "SELECT uname FROM user WHERE uname = '$uname'";
-    $result = $conn->query($sql);
+    global $conn;
+    $ver_uname_sql = "SELECT uname FROM user WHERE uname = '$uname'";
+    $result = $conn->query($ver_uname_sql);
+
     if ($result->num_rows > 0) {
         die("
         <script>
@@ -88,11 +96,12 @@ switch ($change_type) {
 }
 
 $change_result = $conn->query($sql);
+
 if ($change_result) {
     echo "
     <script>
         alert('정보 변경이 완료되었습니다.');
-        location.href='".LOC_MAIN."';
+        history.go(-1);
     </script>";
 
 } else {
@@ -102,5 +111,4 @@ if ($change_result) {
         history.go(-1);
     </script>");
 }
-
 ?>

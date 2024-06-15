@@ -20,7 +20,7 @@ if ($result->num_rows > 0) {
     <?php include_once ('nav.php') ?>
     <div id="info" class="page-main vw65">
         <h2 class="mb25">내 정보</h2>
-        <div id="aaa" class="flex s-bet">
+        <div id="colm" class="flex s-bet">
             <div class="w45 mb20">
                 <div id="info-myinfo" class="info">
                     <div class="white-div p30 mb20 h550">
@@ -83,12 +83,11 @@ if ($result->num_rows > 0) {
 
 
                             <div class="flex" style="justify-content:right; gap: 10px;">
-                                <button class="white-div myinfo-btn-submit mb0" type="submit" onClick="logout()"><i
+                                <button class="white-div info-btn mb0" type="submit" onClick="logout()"><i
                                         class="fa-solid fa-arrow-right-from-bracket logout"></i>&nbsp;&nbsp;로그아웃</button>
 
-                                <button class="white-div myinfo-btn-submit mb0"
-                                    style="background-color: #e74c3c; color: white;" type="submit"
-                                    onClick="removeAccount()"><i
+                                <button class="white-div info-btn mb0" style="background-color: #e74c3c; color: white;"
+                                    type="submit" onClick="removeAccount()"><i
                                         class="fa-regular fa-circle-xmark logout"></i>&nbsp;&nbsp;회원탈퇴</button>
                             </div>
                         </div>
@@ -110,7 +109,7 @@ if ($result->num_rows > 0) {
                                 </div>
                                 <p class="text-grey mt5">예) xxx@example.com</p>
                                 <div class="flex" style="justify-content:right">
-                                    <button class="white-div myinfo-btn-submit mt10" name="change_type" value="email"
+                                    <button class="white-div info-btn mt10" name="change_type" value="email"
                                         type="submit">이메일
                                         변경</button>
                                 </div>
@@ -140,7 +139,7 @@ if ($result->num_rows > 0) {
                                 </div>
                                 <p class="text-grey mt5">비밀번호를 한 번 더 입력하세요.</p>
                                 <div class="flex" style="justify-content:right">
-                                    <button class="white-div myinfo-btn-submit mt10" name="change_type" value="passwd"
+                                    <button class="white-div info-btn mt10" name="change_type" value="passwd"
                                         type="submit">비밀번호 변경</button>
                                 </div>
                             </div>
@@ -164,7 +163,7 @@ if ($result->num_rows > 0) {
                                 </div>
                                 <p class="text-grey mt5">국가를 선택하세요</p>
                                 <div class="flex" style="justify-content:right">
-                                    <button class="white-div myinfo-btn-submit mt10" name="change_type" value="ctry"
+                                    <button class="white-div info-btn mt10" name="change_type" value="ctry"
                                         type="submit">국가 변경</button>
                                 </div>
                             </div>
@@ -183,8 +182,8 @@ if ($result->num_rows > 0) {
 
                                 </div>
                                 <div class="flex" style="justify-content:right">
-                                    <button class="white-div myinfo-btn-submit mt10 mb0" name="change_type"
-                                        value="uname" type="submit">닉네임 변경</button>
+                                    <button class="white-div info-btn mt10 mb0" name="change_type" value="uname"
+                                        type="submit">닉네임 변경</button>
                                 </div>
                             </div>
                         </div>

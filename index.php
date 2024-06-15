@@ -56,10 +56,10 @@ $def_msg = '단타는 인생의 소금이다.';
 
         <div id="page-infos" class="page-main-info flex-c s-bet">
             <div class="page-info-standings mb20">
-                <h3>Standings</h3>
+                <h3>유저 랭킹</h3>
                 <div id="page-standings" class="white-div vw30 vh40 p30 p-rel">
                     <ul class="info-standings">
-                        <h4 class="m0 mb10">Players - Top 5</h4>
+                        <h4 class="m0 mb10">Top 5</h4>
                         <?php
                         # 잔고 상위 5명만 추려서 표시
                         $max_ranks = 5;

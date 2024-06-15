@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
-<?php
-include_once ('head_common.php');
-include_once ('constants.php');
-?>
+<?php include_once ('head_common.php');
+include_once ('constants.php'); ?>
 
 <body>
     <?php include_once ('nav.php') ?>
@@ -18,14 +16,17 @@ include_once ('constants.php');
                             <div class="flex-c">
                                 <input type="email" id="email" class="input-info" placeholder="이메일을 입력하세요"
                                     name="email" />
-                                <i id="f-email" class="fa-solid fa-check fontasm-c" data-clear="0"></i>
+                                <i id="f-email" class="fa-solid fontasm-c" data-clear="0"></i>
                             </div>
-                            <p class="text-grey mt5" style="cursor: pointer; display: inline-block;">예) xxx@example.com
-                            </p>
-                            <p id="validate-email" class="text-grey mt5"
-                                style="cursor: pointer; display: inline-block; margin-left: 5px;">
-                                이메일 중복검사
-                            </p>
+                            <div class="flex s-bet" style="align-items:flex-start">
+                                <p class="text-grey mt5">예)
+                                    xxx@example.com
+                                </p>
+                                <button id="validate-email" class="white-div text-grey mt5 info-btn"
+                                    style="cursor: pointer; display: inline-block; margin-left: 5px;">
+                                    이메일 중복검사
+                                </button>
+                            </div>
                         </div>
 
                         <div class="form-info">
@@ -33,7 +34,7 @@ include_once ('constants.php');
                             <div class="flex-c">
                                 <input type="password" id="password" class="input-info" placeholder="비밀번호를 입력하세요"
                                     name="password" />
-                                <i id="f-password" class="fa-solid fa-check fontasm-c" data-clear="1"></i>
+                                <i id="f-password" class="fa-solid fontasm-c" data-clear="1"></i>
                                 <i id="f-show-password" class="fa-regular fa-eye fontasm-v" data-id="password"
                                     data-vnum="0"></i>
                             </div>
@@ -45,7 +46,7 @@ include_once ('constants.php');
                             <div class="flex-c">
                                 <input type="password" class="input-info" id="confirm-password"
                                     placeholder="비밀번호를 입력하세요" name="confirm-password" />
-                                <i id="f-confirm-password" class="fa-solid fa-check fontasm-c" data-clear="2"></i>
+                                <i id="f-confirm-password" class="fa-solid fontasm-c" data-clear="2"></i>
                                 <i id="f-show-confirm-password" class="fa-regular fa-eye fontasm-v"
                                     data-id="confirm-password" data-vnum="1"></i>
                             </div>
@@ -100,28 +101,29 @@ include_once ('constants.php');
                             <div class="flex-c">
                                 <input class="input-info" type="text" id="username" placeholder="닉네임을 입력하세요"
                                     name="username" />
-                                <i id="f-username" class="fa-solid fa-check fontasm-c" data-clear="4"></i>
+                                <i id="f-username" class="fa-solid fontasm-c" data-clear="6"></i>
                             </div>
-                            <p id="validate-username" class="text-grey mt5"
-                                style="cursor: pointer; display: inline-block">
-                                닉네임 중복검사
-                            </p>
-                            <p id="create-username" class="text-grey mt5"
-                                style="cursor: pointer; display: inline-block; margin-left: 5px;">
-                                작명이 고민이라면?
-                            </p>
+                            <div class="flex s-bet mt5" style="align-items:flex-start;">
+                                <p id="create-username" class="text-grey mt5" style="display: inline-block;">
+                                    작명이 고민이라면?
+                                </p>
+                                <button id="validate-username" class="white-div text-grey mt5 info-btn"
+                                    style="display: inline-block">
+                                    닉네임 중복검사
+                                </button>
+                            </div>
                         </div>
 
                         <div class="form-info" style="margin-bottom: 0">
                             <h4 class="m0 mb15">휴대폰 번호</h4>
                             <div class="flex-c">
-                                <input class="input-info" type="number" id="phone" value="010" name="phone" required />
-                                <i id="f-username" class="fa-solid fa-check fontasm-c" data-clear="5"></i>
+                                <input class="input-info" type="number" id="phone" name="phone"
+                                    placeholder="하이픈('-') 없이 전화번호를 입력하세요" />
+                                <i id="f-phone" class="fa-solid fontasm-c" data-clear="7"></i>
                             </div>
                             <p class="text-grey mt5">
-                                전화번호는 아이디를 찾을 때 사용됩니다. 하이픈('-') 없이 입력하세요.
+                                전화번호는 아이디를 찾을 때 사용됩니다.
                             </p>
-
                         </div>
 
                         <div class="form-info" style="margin-bottom: 0">
@@ -129,15 +131,14 @@ include_once ('constants.php');
                             <div class="flex-c">
                                 <input class="input-info" type="text" id="determination" placeholder="나의 각오! (선택)"
                                     name="determination" />
-                                <i id="f-determination" class="fa-solid fa-check fontasm-c" data-clear="6"></i>
                             </div>
-                            <p id="gotoLogin" class="text-grey" style="text-align:right; cursor: pointer">
+                            <p id="gotoLogin" class="text-grey mt5" style="text-align:right; cursor: pointer">
                                 <a>이미 회원이신가요?</a>
                             </p>
                         </div>
                     </div>
                 </div>
-                <button class="white-div w100" type="submit">가입</button>
+                <button id="goSignup" class="white-div w100 disable" type="submit">가입</button>
             </form>
         </div>
     </div>
@@ -154,4 +155,4 @@ include_once ('constants.php');
     <script src="./js/koAliasGen.js"></script>
 </body>
 
-</h>
+</html>

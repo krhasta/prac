@@ -44,39 +44,37 @@ $account_balance = $row['balance'];
         <div id="chart-interFace" class="white-div flex s-bet p-rel">
             <div id="chart" class="flex flex-c" style="width: 900px; height: 500px"></div>
             <div class="flex">
-                <div id="stock-order" class="flex-colm">
-                    <h3 class="m20 mt0">계좌잔고:&nbsp;KRW
+                <!-- <div id="stock-order" class="flex-colm" style="align-items: flex-start;"> -->
+                <div id="stock-order">
+                    <h3 class="m0 mb20">잔고: KRW
                         <span id="balance"></span> <span id="balanceProfit"></span>
                     </h3>
-                    <div class="flex flex-colm vw15">
-                        <div class="w100 flex flex-colm" style="height:300px; justify-content:space-between;">
-                            <div class="gray-box mb20 w100">
-                                <p class="m0">가격 - Price</p>
-                                <p class="game mt20 mb0">KRW&nbsp;<span id="price-stock"></span></p>
-                                <p id="price_kr" class="mt20 mb0"></p>
-                            </div>
-
-
-                            <div class="gray-box w100 mb20">
-                                <p class="m0">수량 - Quantity</p>
-                                <div class="flex mt20 mb20"> <input id="quantity" type="number" class="game mb0"
-                                        placeholder="수량 입력">
-                                    <h3 class="m0" style="margin-left:5px;">주</h3>
-                                </div>
-                                <h4 class="m0">주문금액:&nbsp;KRW&nbsp;<span id="price"></span></h4>
-                            </div>
+                    <div id="sp-sq" class="flex flex-colm vw15">
+                        <div class="gray-box mb20 w100">
+                            <p class="m0">주가 - Stock Price</p>
+                            <p class="game mt20 mb0">KRW&nbsp;<span id="price-stock"></span></p>
+                            <p id="price_kr" class="mt20 mb0"></p>
                         </div>
-                        <button class="white-div w100 btn-buy black">매수</button>
+
+                        <div class="gray-box w100">
+                            <p class="m0">주문수량 - Stock Quantity</p>
+                            <div class="flex mt20 mb20"> <input id="quantity" type="number" class="game mb0"
+                                    placeholder="수량 입력">
+                                <h3 class="m0" style="margin-left:5px;">주</h3>
+                            </div>
+                            <h4 class="m0">주문금액:&nbsp;KRW&nbsp;<span id="price"></span></h4>
+                        </div>
                     </div>
+                    <button class="white-div w100 btn-buy black mt20">매수</button>
                 </div>
                 <div id="order-list">
-                    <h3 class="m20 mt0">주문 목록</h3>
-                    <div class="w100" style="overflow-y:hidden; height:300px">
-                        <ul class="vw15 m0" style="height:280px;">
+                    <!-- <div id="order-list" style="align-items: flex-start;"> -->
+                    <h3 class="m0 mb20">주문 목록</h3>
+                    <div id="ol" class="w100" style="overflow-y:hidden;">
+                        <ul class="vw15 m0">
                         </ul>
                     </div>
-                    <button class="white-div w100 btn-sell white">매도</button>
-
+                    <button class="white-div w100 btn-sell white mt20">매도</button>
                 </div>
             </div>
         </div>
@@ -87,9 +85,8 @@ $account_balance = $row['balance'];
     </script>
     <script src="./js/f-login.js"></script>
     <script src="./js/order.js"></script>
-
     <script>
-    console.log(typeof <?php echo $account_balance ?>)
+    $('#ol ul').height($('#sp-sq').height());
     </script>
 </body>
 

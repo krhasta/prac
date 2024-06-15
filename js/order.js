@@ -209,15 +209,16 @@ $(document).ready(() => {
         $(this).toggleClass('selected');
     });
 
+    // let priceStock = $('#price-stock'); // 감시 대상 노드 설정
     let priceStock = document.getElementById('price-stock'); // 감시 대상 노드 설정
-    var config = {
+    const config = {
         characterData: true,
         childList: true,
         subtree: true,
     }; // 감시할 변화 유형 설정
 
     // 변화 감지 시 실행할 콜백 함수
-    var alterPriceStock = function (mutationsList, observer) {
+    const alterPriceStock = function (mutationsList, observer) {
         for (var mutation of mutationsList) {
             if (mutation.type === 'childList' || mutation.type === 'characterData') {
                 const price = $('#price');
@@ -228,11 +229,6 @@ $(document).ready(() => {
                 price.text(isNaN(totalPrice) ? 0 : totalPrice); // #price 업데이트
                 price.text(addComma(price.text())); // #price의 값을 세 자리 단위로 ',' 구분
                 $('#price_kr').text(korNum(priceStock) + ' 원');
-
-                console.log('------------------------------------');
-                console.log(parseFloat(priceStock));
-                console.log('------------------------------------');
-
                 $('#order-list ul li').each(function () {
                     const quantity = parseInt($(this).find('span').eq(1).text());
                     let currentPrice = quantity * priceStock;
@@ -253,7 +249,29 @@ $(document).ready(() => {
         }
     };
 
-    // MutationObserver 인스턴스 생성 및 설정
-    var observer = new MutationObserver(alterPriceStock);
+    const observer = new MutationObserver(alterPriceStock);
     observer.observe(priceStock, config);
+
+    // MutationObserver를 사용하여 #ol>ul과 #sp-sq의 높이 차이 감지 및 동기화
+    // 1. 감지할 대상 요소 선택
+    const targetElement = document.querySelector('#sp-sq');
+
+    // 2. Observer의 콜백 함수 정의
+    const adjustHeight = (mutationsList, obs) => {
+        // #sp-sq의 높이 가져오기
+        const targetHeight = $('#sp-sq').height();
+        // #ol>ul의 현재 높이와 #sp-sq의 높이 비교 후 다를 경우 업데이트
+        if ($('#ol ul').height() !== targetHeight) {
+            $('#ol ul').height(targetHeight);
+        }
+    };
+
+    // 3. MutationObserver 인스턴스 생성 및 설정
+    const obs = new MutationObserver(adjustHeight);
+
+    // 4. Observer 설정: attributes 변화 감지, 자식 요소의 변화 또는 추가 감지
+    const conf = { attributes: true, childList: true, subtree: true };
+
+    // 5. Observer 실행: #sp-sq 요소에 대해 감지 시작
+    obs.observe(targetElement, conf);
 });
