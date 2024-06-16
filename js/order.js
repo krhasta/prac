@@ -1,5 +1,5 @@
-$(document).ready(() => {
-    const korNum = (value) => {
+$(document).ready(function () {
+    const korNum = function (value) {
         const resultValue = [];
         const unit1 = ['', '만', '억', '조'];
         const unit2 = ['', '십', '백', '천', '만'];
@@ -34,7 +34,9 @@ $(document).ready(() => {
     }
 
     function timeOver() {
-        if ($('#timer').text() === '시간초과') {
+        // if ($('#timer').text() === '시간초과') {
+        const timeText = $('#timer').text();
+        if (timeText === '시간초과') {
             showNotice('시간이 초과됐습니다.');
             return true;
         }
@@ -53,11 +55,13 @@ $(document).ready(() => {
     // #balance에 세 자리 수 마다 ',' 표기를 jQuery로 작성
     $('#balance').text(addComma($('#balance').text()));
 
-    function showNotice(notice) {
-        return new Promise((resolve) => {
+    function showNotice(notice = '주문이 체결되었습니다.') {
+        return new Promise(function (resolve) {
+            $('.notice.centering').css('z-index', '20');
             $('.notice').css('opacity', '1');
-            setTimeout(() => {
+            setTimeout(function () {
                 $('.notice').css('opacity', '0');
+                $('.notice.centering').css('z-index', '0');
                 resolve(); // setTimeout이 완료되면 Promise를 resolve합니다.
             }, 1500);
             $('.notice').text(notice);
@@ -67,11 +71,12 @@ $(document).ready(() => {
     function addNewOrderBox(quantity, orderPrice, totalPrice) {
         const orderList = $('#order-list ul li');
         let time = $('#timer').text();
+        console.log(time);
         time = time.slice(-5) + '<br>' + time.slice(0, -5);
         // 현재 ul 태그 안에 있는 li 태그의 개수를 가져와서 data-order-list 속성을 설정
         const orderListLength = orderList.length;
         // 새로운 li 요소 생성
-        const newLi = $(`<li id="order-box" class="gray-box w100 mb20" data-order-list="${orderListLength}"></li>`);
+        const newLi = $(`<li class="order-box gray-box w100 mb20" data-order-list="${orderListLength}"></li>`);
         // 내용 추가
         newLi.html(
             `<span>#${
@@ -84,6 +89,10 @@ $(document).ready(() => {
         );
         // 새로운 li 요소를 ul 태그의 자식으로 추가
         $('#order-list ul').append(newLi);
+        // 렌더링 될 때의 시간이 걸리는 관계로 .order-box가 렌더링 된 후에 opacity를 1로 지정
+        $('.order-box').ready(function () {
+            $('.order-box').css('opacity', '1');
+        });
     }
 
     async function orderProcess() {
@@ -121,7 +130,7 @@ $(document).ready(() => {
 
     // 매수버튼 클릭 또는 엔터키 입력시 주문 실행
     $('.btn-buy').click(orderProcess);
-    $('input#quantity').on('keyup', (key) => {
+    $('input#quantity').on('keyup', function (key) {
         if (key.keyCode == 13) {
             orderProcess();
         }
@@ -132,39 +141,33 @@ $(document).ready(() => {
             return;
         }
 
-        // 매도주문 효과음 재생
-        const sfx = document.querySelector('#sfx_sell');
-        sfx.currentTime = 0.05;
-        sfx.play();
-
-        // selected가 없을 때 매도할 경우 다른 알림 띄우기
         if ($('li.selected').length == 0) {
             showNotice('매도할 주문을 선택해주세요!');
             return;
         }
-        // 주문수량 가져오기
-        const quantity = $('li.selected quantity').text();
-        // 총 금액 가져오기
-        const totalPriceText = $('li.selected').text().split('총 금액: ')[1];
-        const currentPrice = rmComma($('li.selected .currentPrice').text());
-        console.log('------------------------------------');
-        console.log(parseInt(rmComma($('#balance').text())), parseInt(currentPrice));
-        console.log('------------------------------------');
-        // select 클래스가 붙은 li 태그의 totalPrice를 balance에 더하기
+
+        const sfx = document.querySelector('#sfx_sell');
+        sfx.currentTime = 0.05;
+
+        let totalQuantity = 0;
+        let balance = parseInt(rmComma($('#balance').text()));
+
         $('li.selected').each(function () {
-            $('#balance').text(addComma(parseInt(rmComma($('#balance').text())) + parseInt(currentPrice)));
+            const quantity = parseInt($(this).find('.quantity').text());
+            const currentPrice = parseInt(rmComma($(this).find('.currentPrice').text()));
+            totalQuantity += quantity;
+            balance += currentPrice;
         });
 
-        // selected 클래스에 있던 li 태그의 정보들을 showNotice에 출력
-        $('#order-sell').html(`*** 주문체결
-            ***<br>매도수량:&nbsp;${quantity}주<br>${totalPriceText}<span
-                class="order">&nbsp;매도</span><br>감사합니다`);
+        $('#balance').text(addComma(balance));
         showNotice();
+        sfx.play();
 
-        // select 클래스가 붙은 li 태그 삭제
-        $('li.selected').remove();
+        setTimeout(function () {
+            $('li.selected').remove();
+        }, 300);
+        $('li.selected').css('opacity', '0');
 
-        // data-order-list 재정렬
         $('#order-list ul li').each(function (index) {
             $(this).attr('data-order-list', index);
             $(this)
@@ -173,10 +176,7 @@ $(document).ready(() => {
                 .text(`#${index + 1}`);
         });
 
-        const balance = parseInt(rmComma($('#balance').text()));
         const balanceProfit = (((balance - initialBalance) / initialBalance) * 100).toFixed(2);
-
-        console.log(balance, balanceProfit);
 
         $('#balanceProfit').text(balanceProfit + ' %');
         if (balanceProfit > 0) {
@@ -187,13 +187,10 @@ $(document).ready(() => {
         }
     });
 
-    $('#order-list').on('click', 'li#order-box', function () {
-        // 클릭된 li#order-box에만 selected 클래스를 토글합니다.
-        $('li#order-box.selected').removeClass('selected');
+    $('#order-list').on('click', 'li.order-box', function () {
         $(this).toggleClass('selected');
     });
 
-    // let priceStock = $('#price-stock'); // 감시 대상 노드 설정
     let priceStock = document.getElementById('price-stock'); // 감시 대상 노드 설정
     const config = {
         characterData: true,
@@ -226,7 +223,6 @@ $(document).ready(() => {
                             .find('#profit')
                             .text('+' + addComma(diff) + ' ' + '(' + profit.toFixed(2) + ')%');
                         $(this).find('#profit').css('color', '#2ecc71');
-                        // $(this).find('#profit').css('color', '#EA2027');
                     } else {
                         $(this)
                             .find('#profit')
@@ -249,7 +245,7 @@ $(document).ready(() => {
     // 5. Observer 실행: #sp-sq 요소에 대해 감지 시작
 
     const targetElement = document.querySelector('#sp-sq');
-    const adjustHeight = (mutationsList, obs) => {
+    const adjustHeight = function (mutationsList, obs) {
         // #sp-sq의 높이 가져오기
         const targetHeight = $('#sp-sq').height();
         // #ol>ul의 현재 높이와 #sp-sq의 높이 비교 후 다를 경우 업데이트
@@ -260,4 +256,59 @@ $(document).ready(() => {
     const obs = new MutationObserver(adjustHeight);
     const conf = { attributes: true, childList: true, subtree: true };
     obs.observe(targetElement, conf);
+
+    // MutationObserver를 사용하여 $('#timer').text() === "시간초과" 감지 후 알림창 띄우기
+    // 1. 감지할 대상 요소 선택
+    // 2. Observer의 콜백 함수 정의
+    // 3. MutationObserver 인스턴스 생성 및 설정
+    // 4. Observer 설정: attributes 변화 감지, 자식 요소의 변화 또는 추가 감지
+    // 5. Observer 실행: #sp-sq 요소에 대해 감지 시작
+
+    // 1. 감지 대상 요소 선택
+    const time = document.querySelector('#timer');
+
+    // 2. Observer의 콜백 함수 정의
+    const showResult = function () {
+        if (time.innerText === '시간초과') {
+            // 모든 #order-list 판매
+            let userBalance = $('#user_balance').text();
+            $('#order-list ul li').each(function () {
+                const quantity = parseInt($(this).find('.quantity').text());
+                const currentPrice = parseInt(rmComma($(this).find('.currentPrice').text()));
+                const initBalance = parseInt(userBalance);
+                console.log(initBalance);
+                const currBalance = parseInt(rmComma($('#balance').text()));
+                $('#balance').text(addComma(currBalance + currentPrice));
+                setTimeout(function () {
+                    $('li').remove();
+                }, 300);
+                $('li').css('opacity', '0');
+            });
+            $('#gameResult').css({ opacity: '1', 'z-index': '10' });
+            $('#initialBalance').text(addComma(parseInt(userBalance)));
+            $('#currentBalance').text($('#balance').text());
+
+            // alterPriceStock의 diff와 비슷하게 #finalProfit에 가격 차이와 비율 표시
+            const initialBalance = parseInt(rmComma($('#initialBalance').text()));
+            const currentBalance = parseInt(rmComma($('#currentBalance').text()));
+            const diff = currentBalance - initialBalance;
+            const diffP = Math.abs((diff / initialBalance) * 100).toFixed(2);
+            const diffText = diff.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+            if (diff > 0) {
+                $('#finalProfit, #balanceProfit').css('color', '#2ecc71');
+                $('#finalProfit, #balanceProfit').text('+' + diffText + ' (' + diffP + '%)');
+            }
+            if (diff < 0) {
+                $('#finalProfit, #balanceProfit').css('color', '#ff4d4d');
+                $('#finalProfit, #balanceProfit').text(diffText + ' (' + diffP + '%)');
+            }
+
+            // $('#finalProfit').text($('#balanceProfit').text());
+        }
+    };
+
+    // 3. MutationObserver 인스턴스 생성 및 설정
+    const timeObs = new MutationObserver(showResult);
+    const timeObsConf = { attributes: true, childList: true, subtree: true };
+    timeObs.observe(time, timeObsConf);
 });

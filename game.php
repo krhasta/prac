@@ -19,15 +19,14 @@ $account_balance = $row['balance'];
 <body>
     <?php include_once ('nav.php') ?>
     <div id="index" class="page-main vw80">
-        <!-- <div id="gameResult" class="vw25 p30 white-div p-abs">
+        <div id="gameResult" class="vw25 p30 white-div p-abs opa-0">
             <h3 class="m0 mb30"><?php echo "$uname" ?>님의 손익 평가</h3>
-            <h3 id="initialBalance" class="m0 mb20">초기 잔고: </h3>
-            <h3 id="currentBalance" class="m0 mb20">현재 잔고: </h3>
-            <h3 id="profit" class="m0">손익: </h3>
-        </div> -->
+            <h3 class="m0 mb15">초기 잔고: KRW&nbsp;<span id="initialBalance"></span></h3>
+            <h3 class="m0 mb15">현재 잔고: KRW&nbsp;<span id="currentBalance"></span></h3>
+            <h3 class="m0">손익비율: &nbsp;<span id="finalProfit"></span></h3>
+        </div>
         <p id="user_balance" hidden><?php echo $account_balance ?></p>
-        <div class="notice white-div p-abs vw20 centering opa-0 no-select"></div>
-
+        <div class="notice white-div p-abs vw20 centering no-select opa-0"></div>
 
         <div id="chart-interFace" class="white-div flex s-bet p-rel">
             <p id="timer" class="mb25 p-abs">
@@ -37,7 +36,7 @@ $account_balance = $row['balance'];
             <div class="flex">
                 <div id="stock-order">
                     <h3 class="m0 mb20">잔고: KRW
-                        <span id="balance"></span> <span id="balanceProfit"></span>
+                        <span id="balance"></span> <br><span id="balanceProfit"></span>
                     </h3>
                     <div id="sp-sq" class="flex flex-colm vw15">
                         <div class="gray-box mb20 w100">
@@ -72,6 +71,7 @@ $account_balance = $row['balance'];
     </div>
     <audio src="./sounds/buy.wav" id="sfx_buy"></audio>
     <audio src="./sounds/sell.wav" id="sfx_sell"></audio>
+
     <script src="./js/candleStick.js" type="text/javascript">
     </script>
     <script src="./js/f-login.js"></script>

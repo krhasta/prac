@@ -271,7 +271,7 @@ function updateAccData(newPrice) {
 
     // 카운트 처리
     if (currentCandle.updateCount >= maxUpdatesPerCandle) {
-        console.log(`현재 카운트: ${currentCandle.updateCount}, 새 템플릿 추가`);
+        // console.log(`현재 카운트: ${currentCandle.updateCount}, 새 템플릿 추가`);
         priceAcc.shift();
         priceAcc.push(priceDataTemplate());
         currentCandle = priceAcc[idx];
@@ -283,7 +283,7 @@ function updateAccData(newPrice) {
         currentCandle.data.open = newPrice;
         currentCandle.data.high = newPrice;
         currentCandle.data.low = newPrice;
-        console.log('0 / 시가 저장');
+        // console.log('0 / 시가 저장');
         currentCandle.createdAt = new Date().getTime(); // 생성일시 추가
     } else {
         if (newPrice > currentCandle.data.high) {
@@ -296,7 +296,7 @@ function updateAccData(newPrice) {
 
     currentCandle.data.close = newPrice; // 항상 종가로 최신 가격 업데이트
     currentCandle.updateCount++;
-    console.log(`현재 캔들 업데이트 횟수: ${currentCandle.updateCount}`);
+    // console.log(`현재 캔들 업데이트 횟수: ${currentCandle.updateCount}`);
 }
 
 let count = 0;
@@ -363,14 +363,12 @@ const showMutationPrice = function (mutationsList, obs) {
 
     if (diff > 0) {
         $('#percent').css('color', '#2ecc71');
-        // $('#percent').css('color', '#32FF7E');
         $('#percent').text('+' + diffText + ' (' + diffP + '%)');
     }
 
     if (diff < 0) {
         // 음수일 경우 diffP의 '-'기호 제거
         $('#percent').css('color', '#ff4d4d');
-        // $('#percent').css('color', '#FF4D4D');
         $('#percent').text(diffText + ' (' + diffP + '%)');
     }
 };

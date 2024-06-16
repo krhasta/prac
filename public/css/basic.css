@@ -545,16 +545,10 @@
 .p-rel {
     position: relative;
 }
-/* .p-relative {
-    position: relative;
-} */
 
 .p-abs {
     position: absolute;
 }
-/* .p-absolute {
-    position: absolute;
-} */
 
 .blur {
     -webkit-filter: blur(8px); /* 사파리, 크롬 */
