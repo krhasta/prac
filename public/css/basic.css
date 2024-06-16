@@ -550,6 +550,29 @@
     position: absolute;
 }
 
+.font15 {
+    font-size: 15px;
+}
+
+.font16 {
+    font-size: 16px;
+}
+
+.font17 {
+    font-size: 17px;
+}
+
+.font18 {
+    font-size: 18px;
+}
+
+.font19 {
+    font-size: 19px;
+}
+
+.font20 {
+    font-size: 20px;
+}
 .blur {
     -webkit-filter: blur(8px); /* 사파리, 크롬 */
     -moz-filter: blur(8px); /* 파이어폭스 */

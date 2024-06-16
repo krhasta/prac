@@ -3,6 +3,9 @@ include_once('../constants.php');
 include_once('dbconn.php');
 session_start();
 
+error_reporting( E_ALL );
+ini_set( "display_errors", 1 );
+
 if ($_SESSION['email'] == NULL) {
     die("
     <script>
@@ -38,10 +41,14 @@ if ($result->num_rows > 0) {
 }
 
 $after_balance = $curr_balance + (int)$delta; // 게임 종료 후 잔고 계산
+$now_datetime = date('Y-m-d H:i:s', strtotime('+0 hours'));
 
+// 잔고 반영 + 마지막 게임완료시간 업데이트 + 잔액변동 업데이트 쿼리
 $update_balance_sql  = "UPDATE user 
-                        SET balance = $after_balance
-                        WHERE email = '$curr_email'"; // 잔고 반영 쿼리
+                        SET balance = $after_balance,
+                            last = '$now_datetime',
+                            last_delta = $delta
+                        WHERE email = '$curr_email'";
 
 $update_result = $conn->query($update_balance_sql); // 잔액 반영
 if ($update_result) {

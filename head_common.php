@@ -24,6 +24,7 @@ print ('
     ></script>
     <link rel="stylesheet" href="./public/css/bootstrap-carousel.css" />
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@kfonts/bm-euljiro@0.2.1/index.min.css" rel="stylesheet">
 </head>
 ');
 ?>

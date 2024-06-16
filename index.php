@@ -56,10 +56,9 @@ $def_msg = '단타는 인생의 소금이다.';
 
         <div id="page-infos" class="page-main-info flex-c s-bet">
             <div class="page-info-standings mb20">
-                <h3>유저 랭킹</h3>
+                <h3>유저 랭킹 - Top 5</h3>
                 <div id="page-standings" class="white-div vw30 vh40 p30 p-rel">
                     <ul class="info-standings">
-                        <h4 class="m0 mb10">Top 5</h4>
                         <?php
                         # 잔고 상위 5명만 추려서 표시
                         $max_ranks = 5;
@@ -67,15 +66,41 @@ $def_msg = '단타는 인생의 소금이다.';
                         foreach ($now_ranks as $uname => $balance_ctry_pair) {
                             if ($current_rank == $max_ranks + 1)
                                 break;
-                            print ('
-                            <li class="standing-info p-rel">
-                                <img class="country" src="./public/img/country/circle/' . $balance_ctry_pair[1] . '.svg" />
-                                <div class="standing-info-profile">
-                                    #<span class="standing-num">' . $current_rank . '</span> &nbsp;<span class="nickname">' . $uname . '님' . '</span><br>
-                                    <span class="asset">' . number_format($balance_ctry_pair[0]) . '</span>원
-                                </div>
-                            </li>
-                            ');
+                            $last_str = $balance_ctry_pair[2] == 'NA' ? '' : '마지막 거래 ' . substr($balance_ctry_pair[2], 5, -3);
+                            $last_delta_classname = (int)$balance_ctry_pair[3] > 0 ? 'color: red' : 'color: blue';
+                            $last_delta_sign = (int)$balance_ctry_pair[3] > 0 ? '▲' : '▼';
+                            $last_delta_str = $balance_ctry_pair[3] == 'NA' ? '' : '손익 ' . $last_delta_sign . number_format(abs($balance_ctry_pair[3])) . '원';
+
+                            if ($current_rank <= 3) {
+                                print ('
+                                <li class="standing-info p-rel">
+                                    <img class="country" src="./public/img/country/circle/' . $balance_ctry_pair[1] . '.svg" />
+                                    <div class="standing-info-profile">
+                                        <span class="ranker" style="font-weight: 700"><span class="standing-num">#' . $current_rank . '</span> &nbsp;<span class="nickname">' . $uname . '님' . '</span><br></span>
+                                        <span class="asset">자산 ' . number_format($balance_ctry_pair[0]) . '</span>원
+                                        <div style="position: absolute; right: 5px; bottom: 5px">
+                                            <span>' . $last_str . '</span>
+                                            <span style="margin-left: 5px;' . $last_delta_classname . '">' . $last_delta_str . '</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                ');
+
+                            } else {
+                                print ('
+                                    <li class="standing-info p-rel">
+                                        <img class="country" src="./public/img/country/circle/' . $balance_ctry_pair[1] . '.svg" />
+                                        <div class="standing-info-profile">
+                                            #<span class="standing-num">' . $current_rank . '</span> &nbsp;<span class="nickname">' . $uname . '님' . '</span><br>
+                                            <span class="asset">자산 ' . number_format($balance_ctry_pair[0]) . '</span>원
+                                            <div style="position: absolute; right: 5px; bottom: 5px">
+                                                <span>' . $last_str . '</span>
+                                                <span style="margin-left: 5px;' . $last_delta_classname . '">' . $last_delta_str . '</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                ');
+                            }
                             $current_rank++;
                         }
                         $template = '

@@ -20,6 +20,12 @@
                     foreach ($now_ranks as $uname => $balance_ctry_pair) {
                         if ($current_rank == $max_ranks + 1)
                             break;
+
+                        $last_str = $balance_ctry_pair[2] == 'NA' ? '' : '마지막 거래 '.substr($balance_ctry_pair[2], 5, -3);
+                        $last_delta_classname = (int)$balance_ctry_pair[3] > 0 ? 'color: red' : 'color: blue';
+                        $last_delta_sign = (int)$balance_ctry_pair[3] > 0 ? '▲' : '▼';
+                        $last_delta_str = $balance_ctry_pair[3] == 'NA' ? '' : '손익 '.$last_delta_sign.number_format(abs($balance_ctry_pair[3])).'원';
+
                         if ($current_rank <= 3) {
                             print ('
                                 <li class="standing-info p-rel">
@@ -27,7 +33,11 @@
                                     <div class="standing-info-profile">
                                         <span class="standing-num ranker">#' . $current_rank . '</span> &nbsp;<span class="nickname ranker" 
                                         style="font-weight: 600">' . $uname . '님' . '</span><br>
-                                        <span class="asset">' . number_format($balance_ctry_pair[0]) . '</span>원
+                                        <span class="asset">자산 ' . number_format($balance_ctry_pair[0]) . '</span>원
+                                        <div style="position: absolute; right: 5px; bottom: 5px;">
+                                            <span>'.$last_str.'</span>
+                                            <span style="margin-left: 5px;'.$last_delta_classname.'">'.$last_delta_str.'</span>
+                                        </div>
                                     </div>
                                 </li>
                             ');
@@ -38,7 +48,7 @@
                                     <img class="country" src="./public/img/country/circle/' . $balance_ctry_pair[1] . '.svg" />
                                     <div class="standing-info-profile">
                                         #<span class="standing-num">' . $current_rank . '</span> &nbsp;<span class="nickname">' . $uname . '님' . '</span><br>
-                                        <span class="asset">' . number_format($balance_ctry_pair[0]) . '</span>원
+                                        <span class="asset">자산 ' . number_format($balance_ctry_pair[0]) . '</span>원
                                     </div>
                                 </li>
                             ');

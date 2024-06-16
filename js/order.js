@@ -71,18 +71,15 @@ $(document).ready(function () {
     function addNewOrderBox(quantity, orderPrice, totalPrice) {
         const orderList = $('#order-list ul li');
         let time = $('#timer').text();
-        console.log(time);
-        time = time.slice(-5) + '<br>' + time.slice(0, -5);
         // 현재 ul 태그 안에 있는 li 태그의 개수를 가져와서 data-order-list 속성을 설정
         const orderListLength = orderList.length;
         // 새로운 li 요소 생성
         const newLi = $(`<li class="order-box gray-box w100 mb20" data-order-list="${orderListLength}"></li>`);
         // 내용 추가
         newLi.html(
-            `<span>#${
+            `KRW&nbsp;&nbsp;<span>#${
                 orderListLength + 1
-            }</span>&nbsp;&nbsp;<span class="quantity">${quantity}</span>주&nbsp;-&nbsp;<i class="fas fa-stopwatch"></i>&nbsp;${time}<br>
-            체결단가: <span>${orderPrice}</span><br>
+            }</span>&nbsp;&nbsp;<span class="quantity">${quantity}</span>주&nbsp;-&nbsp;<i class="fas fa-stopwatch"></i>&nbsp;${time}<br>체결단가: <span>${orderPrice}</span><br>
             총 금액: <span id="totalPrice">${totalPrice}</span><br>
             현재가: <span class="currentPrice">${addComma(quantity * rmComma(orderPrice))}</span><br>
             변동: <span id="profit"></span>`
@@ -191,6 +188,10 @@ $(document).ready(function () {
         $(this).toggleClass('selected');
     });
 
+    $('.close').click(function () {
+        $('#gameResult').css('opacity', '0');
+    });
+
     let priceStock = document.getElementById('price-stock'); // 감시 대상 노드 설정
     const config = {
         characterData: true,
@@ -254,8 +255,7 @@ $(document).ready(function () {
         }
     };
     const obs = new MutationObserver(adjustHeight);
-    const conf = { attributes: true, childList: true, subtree: true };
-    obs.observe(targetElement, conf);
+    obs.observe(targetElement, config);
 
     // MutationObserver를 사용하여 $('#timer').text() === "시간초과" 감지 후 알림창 띄우기
     // 1. 감지할 대상 요소 선택
@@ -294,6 +294,12 @@ $(document).ready(function () {
             const diff = currentBalance - initialBalance;
             const diffP = Math.abs((diff / initialBalance) * 100).toFixed(2);
             const diffText = diff.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+            const resultProcRes = fetch('http://203.237.81.64/wdwp-final/phputils/gameResultProc.php?delta=' + diff)
+                .then((response) => response.json())
+                .then((data) => { console.info('게임 결과가 반영되었습니다.'); data.status; })
+                .catch((error) => console.error('Error:', error));
+
             if (diff > 0) {
                 $('#finalProfit, #balanceProfit').css('color', '#2ecc71');
                 $('#finalProfit, #balanceProfit').text('+' + diffText + ' (' + diffP + '%)');
@@ -302,13 +308,10 @@ $(document).ready(function () {
                 $('#finalProfit, #balanceProfit').css('color', '#ff4d4d');
                 $('#finalProfit, #balanceProfit').text(diffText + ' (' + diffP + '%)');
             }
-
-            // $('#finalProfit').text($('#balanceProfit').text());
         }
     };
 
     // 3. MutationObserver 인스턴스 생성 및 설정
     const timeObs = new MutationObserver(showResult);
-    const timeObsConf = { attributes: true, childList: true, subtree: true };
-    timeObs.observe(time, timeObsConf);
+    timeObs.observe(time, config);
 });
