@@ -1,4 +1,10 @@
 @font-face {
+    font-family: 'Chinese';
+    font-weight: normal;
+    src: url(../fonts/chinese.ttf) format('truetype');
+}
+
+@font-face {
     font-family: 'Pretendard-R';
     font-weight: 400;
     src: local('Pretendard Regular'), url(../fonts/Pretendard-Regular.woff2) format('woff2');
@@ -12,21 +18,8 @@
 }
 
 @font-face {
-    font-family: 'KoPub-Dotum-M';
-    font-weight: 500;
-    src: local('KoPub Dotum Medium'), url(/public/fonts/KoPub-Dotum-Medium.ttf) format('truetype');
-}
-
-@font-face {
     font-family: 'news-fnt';
     src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'BMEULJIRO';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BMEULJIRO.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -69,12 +62,7 @@ ul.nav-main {
     padding: 0px;
 }
 
-nav {
-    display: flex;
-    justify-content: center;
-}
-
-.white-div {
+.white-box {
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
     padding: 20px;
@@ -83,26 +71,27 @@ nav {
     z-index: 2;
 }
 
-button.white-div {
+button.white-box {
     border: 2px solid #000000;
     color: #000000;
 }
 
-button.white-div:active {
+button.white-box:active {
     transform: scale(0.95);
     box-shadow: none;
 }
 
 nav {
+    display: flex;
+    justify-content: center;
     background-color: #aab9ff;
     position: sticky;
     top: 0;
-    z-index: 5;
+    z-index: 50;
 }
 
 .nav-main {
     position: relative;
-    z-index: 5;
     width: 65vw;
     height: 60px;
     margin: 0px auto;
@@ -124,7 +113,7 @@ nav {
 
 .login-plz {
     width: 30vw;
-    height: 40vh;
+    height: 410px;
     border-radius: 15px;
     background-color: #808080;
     opacity: 0.5;
@@ -266,19 +255,16 @@ nav {
 .notice {
     text-align: center;
     background-color: #aab9ff !important;
-}
-
-.notice.centering {
-    z-index: 0;
-}
-
-input#quantity {
-    z-index: 50;
+    z-index: 1;
 }
 
 #chart .apexcharts-title-text {
     font-family: 'Pretendard-R' !important;
     font-size: 20px;
+}
+
+.info-standings * {
+    font-size: 14px;
 }
 
 ul.info-standings {
@@ -312,6 +298,16 @@ input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.ranker {
+    background: linear-gradient(to right, #cd8453 20%, #00affa 30%, #0190cd 70%, #cd7653 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 500% auto;
+    animation: textShine 2s ease-in-out infinite alternate;
+    font-weight: 700;
 }
 
 .standing-info {
@@ -417,7 +413,7 @@ input[type='number']::-webkit-inner-spin-button {
 }
 
 .gray-box {
-    border: 3px solid #f2f3f5;
+    border: 3px solid #bdc3c7;
     background-color: #f2f3f5;
     border-radius: 15px;
     padding: 20px;
@@ -453,28 +449,25 @@ input.game:focus {
     outline: none;
 }
 
-.news-content {
-    position: absolute;
+#news {
     left: 50%;
     top: 32px;
-    opacity: 0.8;
-    display: flex;
     font-weight: 700;
-    align-items: center;
-    justify-content: center;
     font-family: 'news-fnt';
-    border-radius: 10px;
-    opacity: 0;
     z-index: 9;
-    width: 550px;
-    height: 100px;
-    background-color: #ccc;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
     transform: translate(-50%);
-    transition: all 0.2s;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    transition: all 0.3s;
+    text-align: left;
+}
+
+.news-title {
+    font-family: 'Chinese';
+    font-size: 30px;
+}
+
+.news-content {
+    text-align: left;
 }
 
 #gameResult {
@@ -482,7 +475,7 @@ input.game:focus {
     left: 50%;
     transform: translate(-50%, -50%);
     border: 3px solid #aab9ff;
-    transition: all 0.5s;
+    transition: all 0.3s;
 }
 
 .notice {
@@ -499,6 +492,10 @@ input.game:focus {
     top: 0;
     font-size: 20px;
     color: #aab9ff;
+}
+
+#chart-interFace {
+    z-index: 50;
 }
 
 #stock-order {
@@ -546,8 +543,8 @@ input.game:focus {
     margin-bottom: 0px;
 }
 
-/*태블릿, 모바일 페이지*/
-@media screen and (max-width: 1150px) {
+/* 모바일 페이지 세로화면 */
+@media screen and (max-width: 1200px) {
     body {
         overflow-y: scroll !important;
     }
@@ -564,6 +561,22 @@ input.game:focus {
         margin-bottom: 0px;
     }
 
+    .page-main {
+        margin: 20px auto 0;
+    }
+
+    #hide {
+        display: none;
+    }
+
+    br.nl {
+        display: inline-block;
+    }
+
+    .game {
+        font-size: 14px;
+    }
+
     #index,
     #findAccount,
     #login,
@@ -574,7 +587,10 @@ input.game:focus {
     #find-pw,
     #info-myinfo,
     #info-edit,
-    #result {
+    #result,
+    #news,
+    #game,
+    #gameResult {
         width: 90vw !important;
     }
 
@@ -634,11 +650,19 @@ input.game:focus {
     }
 
     #page-standings,
-    #page-myinfo,
-    .login-plz,
-    #go-login.vw30.vh40 {
+    #page-myinfo {
         width: 90vw;
         height: 50vh;
+    }
+
+    #go-login,
+    .login-plz {
+        width: 90vw !important;
+    }
+
+    .standing-info:hover {
+        box-shadow: none;
+        transform: none;
     }
 
     /*game.php*/
@@ -651,7 +675,7 @@ input.game:focus {
 
     #chart {
         width: 80vw !important;
-        height: 50vh !important;
+        height: 250px !important;
     }
 
     #chart-interFace > .flex {
@@ -669,16 +693,30 @@ input.game:focus {
         width: 100%;
     }
 
-    #stock-order {
-        margin-bottom: 20px;
+    .order.s-eve {
+        width: 100%;
+        flex-direction: flex-end;
+        align-items: center;
     }
 
-    .notice {
+    #stock-order,
+    #order-list {
+        margin-right: 0;
+        width: 50%;
+    }
+
+    #news {
+        position: fixed;
+        top: 20%;
+    }
+
+    .notice,
+    #gameResult {
         position: fixed !important;
         top: 50% !important;
         left: 50% !important;
         transform: translate(-50%, -50%) !important;
-        z-index: 999;
+        z-index: 1;
     }
 
     .notice.vw20 {
@@ -686,27 +724,11 @@ input.game:focus {
     }
 }
 
-/*모바일 페이지 간격 조정*/
-@media screen and (max-width: 1000px) and (max-height: 500px) {
-    #carouselExampleAutoplaying {
-        margin: 0px !important;
+/* 모바일 페이지 가로화면 */
+@media screen and (max-width: 600px) {
+    .order * {
+        font-size: 12px;
     }
-
-    #page-standings,
-    #page-myinfo {
-        width: 90vw;
-        height: 70vh;
-    }
-}
-
-.ranker {
-    background: linear-gradient(to right, #cd8453 20%, #00affa 30%, #0190cd 70%, #cd7653 80%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-fill-color: transparent;
-    background-size: 500% auto;
-    animation: textShine 2s ease-in-out infinite alternate;
 }
 
 @keyframes textShine {

@@ -6,32 +6,32 @@ include_once ('constants.php');
 $pretyped_email = $_GET['email'] ?? false;
 ?>
 
-<body>
+<body style="overflow-y: scroll">
     <?php include_once ('nav.php') ?>
-    <div id="findAccount" class="page-main vw65" style="">
-        <div id="find" class="flex-c s-bet" style="align-items: flex-start;">
-            <div id="find-id" class="w45 mb20">
+    <div id="findAccount" class="page-main vw30" style="">
+        <div id="find" class="flex flex-colm">
+            <div id="find-id" class="w100 mb20">
                 <h3 class="mb25">아이디 찾기</h3>
                 <form action="<?php echo LOC_FINDACC_PROC ?>" method="post">
-                    <div class="white-div p30 mb20">
+                    <div class="white-box p30 mb20">
                         <div class="form-info">
                             <h4 class="m0 mb15">휴대폰 번호</h4>
                             <div class="flex-c">
                                 <input type="number" class="input-info" value="010" name="phone" />
                             </div>
                             <input type="text" name="find_type" value="find_id" hidden />
-                            <p class="text-grey mt5">
+                            <p class="text-gray mt5">
                                 가입 시 입력한 휴대폰 번호로 아이디(이메일)을 보내드립니다.
                             </p>
                         </div>
                     </div>
-                    <button class="white-div w100" type="submit">제출</button>
+                    <button class="white-box w100" type="submit">제출</button>
                 </form>
             </div>
-            <div id="find-pw" class="w45 mb20">
+            <div id="find-pw" class="w100 mb20">
                 <h3 class="main-Title">비밀번호 찾기</h3>
                 <form action="<?php echo LOC_FINDACC_PROC ?>" method="post">
-                    <div class="white-div p30 mb20">
+                    <div class="white-box p30 mb20">
                         <div class="form-info">
                             <h4 class="m0 mb15">이메일</h4>
                             <div class="flex-c">
@@ -63,7 +63,7 @@ $pretyped_email = $_GET['email'] ?? false;
                         </div>
                     </div>
                     <input type="text" name="find_type" value="find_passwd" hidden />
-                    <button class="white-div w100" type="submit">제출</button>
+                    <button class="white-box w100" type="submit">제출</button>
                 </form>
             </div>
         </div>
@@ -71,26 +71,26 @@ $pretyped_email = $_GET['email'] ?? false;
 
     <script src="./js/f-login.js"></script>
     <script>
-        $(document).ready(() => {
-    const timer = document.querySelector('.apexcharts-title-text');
-    let time = 5;
-    // let time = 180;
-    let minutes, seconds;
-    const interval = setInterval(function () {
-        minutes = parseInt(time / 60, 10);
-        seconds = parseInt(time % 60, 10);
+    $(document).ready(() => {
+                const timer = document.querySelector('.apexcharts-title-text');
+                let time = 5;
+                // let time = 180;
+                let minutes, seconds;
+                const interval = setInterval(function() {
+                    minutes = parseInt(time / 60, 10);
+                    seconds = parseInt(time % 60, 10);
 
-        minutes = minutes < 10 ? '0' + minutes : minutes;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
+                    minutes = minutes < 10 ? '0' + minutes : minutes;
+                    seconds = seconds < 10 ? '0' + seconds : seconds;
 
-        console.log(timer);
-        timer.innerText = timer.innerHTML + minutes + ':' + seconds;
+                    console.log(timer);
+                    timer.innerText = timer.innerHTML + minutes + ':' + seconds;
 
-        if (--time < 0) {
-            clearInterval(interval);
-            timer.text('시간초과');
-        }
-    }, 1000);
+                    if (--time < 0) {
+                        clearInterval(interval);
+                        timer.text('시간초과');
+                    }
+                }, 1000);
     </script>
 </body>
 

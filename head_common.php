@@ -25,6 +25,22 @@ print ('
     <link rel="stylesheet" href="./public/css/bootstrap-carousel.css" />
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <link href="https://cdn.jsdelivr.net/npm/@kfonts/bm-euljiro@0.2.1/index.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/favicon-0.png?" type="image/x-icon">
+    <link rel="icon" id="favicon" href="/favicon.ico?" type="image/x-icon">
+    <script>
+      var faviconRoute = "/wdwp-final/favicons/";
+      var faviconNames = ["favicon-0.png", "favicon-1.png", "favicon-2.png", "favicon-3.png", "favicon-4.png",
+                      "favicon-5.png", "favicon-6.png", "favicon-7.png"];
+  
+      var idx = 0;
+  
+      setInterval(func, 300);
+  
+      function func() {
+          document.querySelector("#favicon").setAttribute("href", faviconRoute + faviconNames[idx++]);
+          idx %= faviconNames.length;
+      }
+  </script>
 </head>
 ');
 ?>

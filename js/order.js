@@ -34,7 +34,6 @@ $(document).ready(function () {
     }
 
     function timeOver() {
-        // if ($('#timer').text() === '시간초과') {
         const timeText = $('#timer').text();
         if (timeText === '시간초과') {
             showNotice('시간이 초과됐습니다.');
@@ -56,16 +55,16 @@ $(document).ready(function () {
     $('#balance').text(addComma($('#balance').text()));
 
     function showNotice(notice = '주문이 체결되었습니다.') {
-        return new Promise(function (resolve) {
-            $('.notice.centering').css('z-index', '20');
-            $('.notice').css('opacity', '1');
+        $('.notice').css('z-index', '100');
+        $('.notice').css('opacity', '1');
+        setTimeout(function () {
             setTimeout(function () {
-                $('.notice').css('opacity', '0');
-                $('.notice.centering').css('z-index', '0');
-                resolve(); // setTimeout이 완료되면 Promise를 resolve합니다.
-            }, 1500);
-            $('.notice').text(notice);
-        });
+                $('.notice.centering').css('z-index', '1');
+                resolve();
+            }, 300);
+            $('.notice').css('opacity', '0');
+        }, 1500);
+        $('.notice').text(notice);
     }
 
     function addNewOrderBox(quantity, orderPrice, totalPrice) {
@@ -284,7 +283,7 @@ $(document).ready(function () {
                 }, 300);
                 $('li').css('opacity', '0');
             });
-            $('#gameResult').css({ opacity: '1', 'z-index': '10' });
+            $('#gameResult').css({ opacity: '1', 'z-index': '99' });
             $('#initialBalance').text(addComma(parseInt(userBalance)));
             $('#currentBalance').text($('#balance').text());
 
@@ -297,7 +296,10 @@ $(document).ready(function () {
 
             const resultProcRes = fetch('http://203.237.81.64/wdwp-final/phputils/gameResultProc.php?delta=' + diff)
                 .then((response) => response.json())
-                .then((data) => { console.info('게임 결과가 반영되었습니다.'); data.status; })
+                .then((data) => {
+                    console.info('게임 결과가 반영되었습니다.');
+                    data.status;
+                })
                 .catch((error) => console.error('Error:', error));
 
             if (diff > 0) {

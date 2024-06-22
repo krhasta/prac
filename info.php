@@ -23,7 +23,7 @@ if ($result->num_rows > 0) {
         <div id="colm" class="flex s-bet">
             <div class="w45 mb20">
                 <div id="info-myinfo" class="info">
-                    <div class="white-div p30 mb20 h550">
+                    <div class="white-box p30 mb20 h550">
                         <div class="form-inner">
                             <div class="form-info">
                                 <h4 class="m0 mb5">이메일</h4>
@@ -52,14 +52,14 @@ if ($result->num_rows > 0) {
                                         }
                                         print ($my_rank);
                                         ?>
-                                    </span>&nbsp;&nbsp;<?php echo $_SESSION['uname'] ?> 님
+                                    </span>&nbsp;<?php echo $_SESSION['uname'] ?> 님
                                 </div>
                             </div>
 
                             <div class="form-info">
                                 <h4 class="m0 mb5">잔고</h4>
                                 <div class="m0 mb15">
-                                    ₩&nbsp;<?php echo number_format($row['balance']) ?>원
+                                    KRW&nbsp;<?php echo number_format($row['balance']) ?>
                                 </div>
                             </div>
 
@@ -83,10 +83,10 @@ if ($result->num_rows > 0) {
 
 
                             <div class="flex" style="justify-content:right; gap: 10px;">
-                                <button class="white-div info-btn mb0" type="submit" onClick="logout()"><i
+                                <button class="white-box info-btn mb0" type="submit" onClick="logout()"><i
                                         class="fa-solid fa-arrow-right-from-bracket logout"></i>&nbsp;&nbsp;로그아웃</button>
 
-                                <button class="white-div info-btn mb0 white" style="background-color: #ea2027;"
+                                <button class="white-box info-btn mb0 white" style="background-color: #ea2027;"
                                     type="submit" onClick="removeAccount()"><i
                                         class="fa-regular fa-circle-xmark logout"></i>&nbsp;&nbsp;회원탈퇴</button>
                             </div>
@@ -98,7 +98,7 @@ if ($result->num_rows > 0) {
 
             <div class="w45 mb20">
                 <form action="/wdwp-final/phputils/modifyInfoProc.php" method="post">
-                    <div id="info-edit" class="white-div p30 mb20 h550 edit">
+                    <div id="info-edit" class="white-box p30 mb20 h550 edit">
                         <div class="form-inner">
                             <div class="form-info">
                                 <h3 class="m0 mb15">이메일</h3>
@@ -107,9 +107,9 @@ if ($result->num_rows > 0) {
                                         name="new_email" />
                                     <i id="f-email" class="fa-solid fa-check fontasm-c" data-clear="0"></i>
                                 </div>
-                                <p class="text-grey mt5">예) xxx@example.com</p>
+                                <p class="text-gray mt5">예) xxx@example.com</p>
                                 <div class="flex" style="justify-content:right">
-                                    <button class="white-div info-btn mt10" name="change_type" value="email"
+                                    <button class="white-box info-btn mt10" name="change_type" value="email"
                                         type="submit">이메일
                                         변경</button>
                                 </div>
@@ -125,7 +125,7 @@ if ($result->num_rows > 0) {
                                     <i id="f-show-password" class="fa-regular fa-eye fontasm-v" data-id="password"
                                         data-vnum="0"></i>
                                 </div>
-                                <p class="text-grey mt5">숫자, 특수문자, 영어 소문자, 대문자들이 포함되어야 합니다.</p>
+                                <p class="text-gray mt5">숫자, 특수문자, 영어 소문자, 대문자들이 포함되어야 합니다.</p>
                             </div>
 
                             <div class="form-info">
@@ -137,9 +137,9 @@ if ($result->num_rows > 0) {
                                     <i id="f-show-confirm-password" class="fa-regular fa-eye fontasm-v"
                                         data-id="confirm-password" data-vnum="1"></i>
                                 </div>
-                                <p class="text-grey mt5">비밀번호를 한 번 더 입력하세요.</p>
+                                <p class="text-gray mt5">비밀번호를 한 번 더 입력하세요.</p>
                                 <div class="flex" style="justify-content:right">
-                                    <button class="white-div info-btn mt10" name="change_type" value="passwd"
+                                    <button class="white-box info-btn mt10" name="change_type" value="passwd"
                                         type="submit">비밀번호 변경</button>
                                 </div>
                             </div>
@@ -161,9 +161,9 @@ if ($result->num_rows > 0) {
                                         <option value="ca">캐나다 - Canada</option>
                                     </select>
                                 </div>
-                                <p class="text-grey mt5">국가를 선택하세요</p>
+                                <p class="text-gray mt5">국가를 선택하세요</p>
                                 <div class="flex" style="justify-content:right">
-                                    <button class="white-div info-btn mt10" name="change_type" value="ctry"
+                                    <button class="white-box info-btn mt10" name="change_type" value="ctry"
                                         type="submit">국가 변경</button>
                                 </div>
                             </div>
@@ -176,13 +176,13 @@ if ($result->num_rows > 0) {
                                     <i id="f-username" class="fa-solid fa-check fontasm-c" data-clear="4"></i>
                                 </div>
                                 <div class="flex-c s-bet">
-                                    <p id="create-username" class="text-grey" style="cursor: pointer">
+                                    <p id="create-username" class="text-gray" style="cursor: pointer">
                                         작명이 고민이라면?
                                     </p>
 
                                 </div>
                                 <div class="flex" style="justify-content:right">
-                                    <button class="white-div info-btn mt10 mb0" name="change_type" value="uname"
+                                    <button class="white-box info-btn mt10 mb0" name="change_type" value="uname"
                                         type="submit">닉네임 변경</button>
                                 </div>
                             </div>

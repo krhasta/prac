@@ -37,18 +37,18 @@ $def_msg = '단타는 인생의 소금이다.';
                 <div class="vw20">
                     <div class="carousel-inner">
                         <div class="carousel-item active vw20 text-center">
-                            <div class="d-block w100 carousel-texts">세 살 단타<br>여든까지 간다</div>
+                            <div class="d-block w100 carousel-texts">세 살 단타&nbsp;<br class="nl">여든까지 간다</div>
                         </div>
                         <div class="carousel-item vw20 text-center">
-                            <div class="d-block w100 carousel-texts">과도한 단타,<br />휴식도 필요합니다.</div>
+                            <div class="d-block w100 carousel-texts">과도한 단타,&nbsp;<br class="nl" />휴식도 필요합니다.</div>
                         </div>
                         <div class="carousel-item vw20 text-center">
-                            <div class="d-block w100 carousel-texts">남녀노소 모두<br />즐거운 단타</div>
+                            <div class="d-block w100 carousel-texts">남녀노소 모두&nbsp;<br class="nl" />즐거운 단타</div>
                         </div>
                     </div>
                 </div>
 
-                <button type="button" class="white-div btn-start" style="border: 3px solid #6f87ff;">
+                <button type="button" class="white-box btn-start" style="border: 3px solid #6f87ff;">
                     <i class="fa-solid fa-chart-line "></i>&nbsp;&nbsp; 게임 시작!
                 </button>
             </div>
@@ -57,7 +57,7 @@ $def_msg = '단타는 인생의 소금이다.';
         <div id="page-infos" class="page-main-info flex-c s-bet">
             <div class="page-info-standings mb20">
                 <h3>유저 랭킹 - Top 5</h3>
-                <div id="page-standings" class="white-div vw30 vh40 p30 p-rel">
+                <div id="page-standings" class="white-box vw30 h410 p30 p-rel">
                     <ul class="info-standings">
                         <?php
                         # 잔고 상위 5명만 추려서 표시
@@ -69,38 +69,24 @@ $def_msg = '단타는 인생의 소금이다.';
                             $last_str = $balance_ctry_pair[2] == 'NA' ? '' : '마지막 거래 ' . substr($balance_ctry_pair[2], 5, -3);
                             $last_delta_classname = (int)$balance_ctry_pair[3] > 0 ? 'color: red' : 'color: blue';
                             $last_delta_sign = (int)$balance_ctry_pair[3] > 0 ? '▲' : '▼';
-                            $last_delta_str = $balance_ctry_pair[3] == 'NA' ? '' : '손익 ' . $last_delta_sign . number_format(abs($balance_ctry_pair[3])) . '원';
-
-                            if ($current_rank <= 3) {
-                                print ('
+                            $last_delta_str = $balance_ctry_pair[3] == 'NA' ? '' : $last_delta_sign . number_format(abs($balance_ctry_pair[3]));
+                            $ranker = ($current_rank <= 3) ? 'ranker' : '';
+                            print ('
                                 <li class="standing-info p-rel">
                                     <img class="country" src="./public/img/country/circle/' . $balance_ctry_pair[1] . '.svg" />
                                     <div class="standing-info-profile">
-                                        <span class="ranker" style="font-weight: 700"><span class="standing-num">#' . $current_rank . '</span> &nbsp;<span class="nickname">' . $uname . '님' . '</span><br></span>
-                                        <span class="asset">자산 ' . number_format($balance_ctry_pair[0]) . '</span>원
-                                        <div style="position: absolute; right: 5px; bottom: 5px">
-                                            <span>' . $last_str . '</span>
+                                        <span class="' . $ranker . '">
+                                            <span class="standing-num"">#' . $current_rank . '</span> &nbsp;
+                                            <span class="nickname">' . $uname . '님' . '</span>
+                                        </span><br>
+                                        <div class="flex">
+                                            <span class="asset">자산: KRW ' . number_format($balance_ctry_pair[0]) . '</span>&nbsp;
                                             <span style="margin-left: 5px;' . $last_delta_classname . '">' . $last_delta_str . '</span>
                                         </div>
+                                        <span>' . $last_str . '</span>
                                     </div>
                                 </li>
                                 ');
-
-                            } else {
-                                print ('
-                                    <li class="standing-info p-rel">
-                                        <img class="country" src="./public/img/country/circle/' . $balance_ctry_pair[1] . '.svg" />
-                                        <div class="standing-info-profile">
-                                            #<span class="standing-num">' . $current_rank . '</span> &nbsp;<span class="nickname">' . $uname . '님' . '</span><br>
-                                            <span class="asset">자산 ' . number_format($balance_ctry_pair[0]) . '</span>원
-                                            <div style="position: absolute; right: 5px; bottom: 5px">
-                                                <span>' . $last_str . '</span>
-                                                <span style="margin-left: 5px;' . $last_delta_classname . '">' . $last_delta_str . '</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                ');
-                            }
                             $current_rank++;
                         }
                         $template = '
@@ -115,7 +101,7 @@ $def_msg = '단타는 인생의 소금이다.';
                         ';
                         ?>
 
-                        <span id="standing" class="text-grey m0 text-right view-more p-abs">
+                        <span id="standing" class="text-gray m0 text-right view-more p-abs">
                             <i class="fa-solid fa-ranking-star fontasm-i"></i>&nbsp;&nbsp;랭킹 더 보기
                         </span>
                     </ul>
@@ -124,8 +110,8 @@ $def_msg = '단타는 인생의 소금이다.';
             <div class="page-info-myinfo mb20">
                 <h3>나의 정보</h3>
 
-                <div id="page-myinfo" class="white-div vw30 vh40 p30 p-rel">
-                    <div id="go-login" class="vw30 vh40 flex-c">
+                <div id="page-myinfo" class="white-box vw30 h410 p30 p-rel">
+                    <div id="go-login" class="vw30 h410 flex-c">
                         <i
                             class="<?php echo $is_guest == true ? "fas fa-lock" : '' ?>"></i>&nbsp;&nbsp;<?php echo $is_guest == true ? "로그인 후 나의 정보를 확인하세요!" : '' ?>
                     </div>
@@ -169,7 +155,7 @@ $def_msg = '단타는 인생의 소금이다.';
                             "<?php echo $is_guest ? $def_msg : $user_msg ?>"
                         </div>
 
-                        <span id="info" class="text-grey m0 text-right view-more p-abs">
+                        <span id="info" class="text-gray m0 text-right view-more p-abs">
                             <span><i class="fa-solid fa-info fontasm-i"></i>&nbsp;&nbsp;정보 더 보기</span>
                         </span>
                     </div>

@@ -12,7 +12,7 @@ include_once ('constants.php');
             <div id="login" class="vw30">
                 <h2 class="mb25">로그인</h2>
                 <form method="POST" action="<?php echo LOC_SIGNIN_PROC ?>">
-                    <div class="white-div p30 w100 mb20">
+                    <div class="white-box p30 w100 mb20">
                         <div class="form-info">
                             <h4 class="m0 mb15">이메일</h4>
                             <div class="flex-c">
@@ -44,7 +44,7 @@ include_once ('constants.php');
                         </div>
                     </div>
 
-                    <button type="submit" class="white-div w100" style="color:black">
+                    <button type="submit" class="white-box w100" style="color:black">
                         <i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;로그인
                     </button>
                 </form>

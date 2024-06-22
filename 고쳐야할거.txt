@@ -1,3 +1,0 @@
-1. game.php의 input 영역 문제 해결 후 result 페이지 안 나옴.
-display: none, block을 사용해서 해결해야 함.
-game.php에서 아예 #gameResult를 지워버린 후 order.js에서 동적으로 생성하는 방법도 있음

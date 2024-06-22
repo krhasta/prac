@@ -46,11 +46,14 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 10;
     transition: all 0.2s;
 }
 
-.text-grey {
+.nl {
+    display: none;
+}
+
+.text-gray {
     color: #808080;
     font-size: 13px;
 }
@@ -524,6 +527,14 @@
 
 .h100 {
     height: 100%;
+}
+
+.h400 {
+    height: 400px;
+}
+
+.h410 {
+    height: 410px !important;
 }
 
 .h500 {

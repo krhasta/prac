@@ -2,10 +2,6 @@
 // 이벤트 위임 아님?
 $('.form-info').on('click', '.fa-xmark', function (e) {
     let clearNum = e.target.dataset.clear;
-    console.log('------------------------------------');
-    console.log(clearNum);
-    console.log('------------------------------------');
-    // $('.input-info').eq(clearNum).val('');
     // e.target.dataset.clear번째의 값 비우기
     $('.input-info').eq(clearNum).val('');
     $('#' + this.id).removeClass('show-o');
