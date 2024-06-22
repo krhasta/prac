@@ -369,20 +369,8 @@ const chart = new ApexCharts(document.querySelector('#chart'), options);
 chart.render();
 window.chart = chart;
 
-// $(window).resize(function () {
-//     let browserWdt = $(window).width();
-//     console.log('browserWdt:', browserWdt);
-//     if ($(window).width() <= 500) {
-//         options.chart.height = 250;
-//     } else if ($(window).width() <= 1200) {
-//         options.chart.height = 350;
-//     } else {
-//         options.chart.height = 450;
-//     }
-// });
-
-// define callback function
-const showMutationPrice = function (mutationsList, obs) {
+// define callback function?
+const showMutationPrice = function () {
     const currPrice = parseInt($('#price-stock').text().replace(/,/g, ''));
     const initPrice = initialPrice;
     const diff = currPrice - initPrice;
@@ -401,8 +389,9 @@ const showMutationPrice = function (mutationsList, obs) {
     }
 };
 
-// create MutationObserver Instance
 const priceObs = new MutationObserver(showMutationPrice);
 
 const obsTarget = document.getElementById('price-stock');
 const config = { attributes: true, childList: true, subtree: true };
+
+priceObs.observe(obsTarget, config);

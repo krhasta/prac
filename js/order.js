@@ -237,39 +237,20 @@ $(document).ready(function () {
     const observer = new MutationObserver(alterPriceStock);
     observer.observe(priceStock, config);
 
-    // MutationObserver를 사용하여 #ol>ul과 #sp-sq의 높이 차이 감지 및 동기화
-    // 1. 감지할 대상 요소 선택
-    // 2. Observer의 콜백 함수 정의
-    // 3. MutationObserver 인스턴스 생성 및 설정
-    // 4. Observer 설정: attributes 변화 감지, 자식 요소의 변화 또는 추가 감지
-    // 5. Observer 실행: #sp-sq 요소에 대해 감지 시작
-
     const targetElement = document.querySelector('#sp-sq');
     const adjustHeight = function (mutationsList, obs) {
-        // #sp-sq의 높이 가져오기
         const targetHeight = $('#sp-sq').height();
-        // #ol>ul의 현재 높이와 #sp-sq의 높이 비교 후 다를 경우 업데이트
         if ($('#ol ul').height() !== targetHeight) {
             $('#ol ul').height(targetHeight);
         }
     };
+
     const obs = new MutationObserver(adjustHeight);
     obs.observe(targetElement, config);
 
-    // MutationObserver를 사용하여 $('#timer').text() === "시간초과" 감지 후 알림창 띄우기
-    // 1. 감지할 대상 요소 선택
-    // 2. Observer의 콜백 함수 정의
-    // 3. MutationObserver 인스턴스 생성 및 설정
-    // 4. Observer 설정: attributes 변화 감지, 자식 요소의 변화 또는 추가 감지
-    // 5. Observer 실행: #sp-sq 요소에 대해 감지 시작
-
-    // 1. 감지 대상 요소 선택
     const time = document.querySelector('#timer');
-
-    // 2. Observer의 콜백 함수 정의
     const showResult = function () {
         if (time.innerText === '시간초과') {
-            // 모든 #order-list 판매
             let userBalance = $('#user_balance').text();
             $('#order-list ul li').each(function () {
                 const quantity = parseInt($(this).find('.quantity').text());
@@ -313,7 +294,6 @@ $(document).ready(function () {
         }
     };
 
-    // 3. MutationObserver 인스턴스 생성 및 설정
     const timeObs = new MutationObserver(showResult);
     timeObs.observe(time, config);
 });
